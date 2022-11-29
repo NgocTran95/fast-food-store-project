@@ -1,0 +1,15 @@
+.container {
+    border-radius: 50%;
+    background-color: #332FD0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    color: #fff;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}

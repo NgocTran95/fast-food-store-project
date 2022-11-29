@@ -1,0 +1,143 @@
+.container {
+    --bs-offcanvas-width: 100%;
+    .offcanvas-header {
+        padding: 20px;
+    }
+}
+// Header
+.heading {
+    font-weight: 600;
+    font-size: 2rem;
+}
+
+.close-btn {
+    padding: 6px 15px;
+    font-size: 2rem;
+}
+
+// Body 
+
+.body {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.cart-list {
+    flex: 1;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    & ~ .cart-item {
+        margin-top: 10px;
+    }
+}
+
+
+.item-info {
+    display: flex;
+    align-items: center;
+
+}
+
+.item-image {
+    width: 70px;
+    height: 70px;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-right: 10px;
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+.item-detail {
+
+}
+
+.item-name {
+    max-width: 220px;
+    font-size: 1.6rem;
+    font-weight: 600;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+.item-price {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}   
+
+.item-quantity {
+    display: flex;
+    align-items: center;
+    span {
+        padding: 0 10px;
+        font-size: 1.4rem;
+    }
+    .change-qtt-btn {
+        width: 25px;
+        height: 25px;
+        background-color: var(--button-bg-color);
+        border-radius: 5px;
+        font-size: 2rem;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+}
+.delete-btn {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background-color: var(--button-bg-color);
+    cursor: pointer;
+    &:hover {
+        color: var(--primary-color);
+        transition: var(--primary-transition);
+    }
+}
+
+// Action buttons 
+
+.action-btns {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+
+.action-btn {
+    min-width: 150px;
+    padding: 8px 15px;
+    border-radius: 20px;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.checkout-btn {
+    color: var(--white-text-color);
+    background-color: var(--primary-color);
+}
+
+.btn-icon {
+    margin-right: 5px;
+}
+
+
+
+
+
+@media (min-width: 768px) {
+    .container {
+        --bs-offcanvas-width: 400px;
+    }
+}

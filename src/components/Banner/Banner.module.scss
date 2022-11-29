@@ -1,0 +1,94 @@
+.container {
+    position: relative;
+}
+
+
+.first-slide {
+    background: url('../../assets/images/banner-bg-hamburger.jpg') no-repeat center;
+}
+
+.second-slide {
+    background: url('../../assets/images/banner-bg-pizza.jpg') no-repeat center;
+}
+
+.third-slide {
+    background: url('../../assets/images/banner-bg-chicken.jpg') no-repeat center;
+}
+
+
+.carousel-item {
+    width: 100%;
+    height: 70vh;
+    background-size: cover;
+    filter: blur(3px);
+    -webkit-filter: blur(3px);
+}
+
+
+.inner {
+    position: absolute;
+    top: 50%;
+    left: 20px;
+    transform: translateY(-50%);
+    z-index: 1;
+}
+.content {
+    color: var(--white-text-color);
+    .first-content {
+        font-size: 3.5rem;
+        font-weight: 600;
+        margin-bottom: 20px;
+    }
+    .second-content {
+        font-size: 2rem;
+        font-style: italic;
+        font-weight: 600;
+        margin-bottom: 20px;
+        .delivery-img {
+            width: 40px;
+            margin-left: 10px;
+        }
+    }
+    span {
+        color: var(--primary-color);
+        font-weight: 700;
+    }
+}
+
+.button-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .button-icon {
+        margin-right: 5px;
+    }
+}
+
+@media (min-width: 768px) {
+    .carousel-item {
+        height: 90vh;
+    }
+    .inner {
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+    }
+    .content {
+        .first-content {
+            width: 700px;
+            font-size: 6rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+        .second-content {
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            .delivery-img {
+                width: 50px;
+                margin-left: 20px;
+            }
+        }
+    }
+}
+
+

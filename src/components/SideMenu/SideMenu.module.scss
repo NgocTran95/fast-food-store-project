@@ -1,0 +1,40 @@
+.container {
+    --bs-offcanvas-width: 300px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+}
+
+.user-name {
+    margin-left: 10px;
+    margin-bottom: 0;
+}
+
+.close-btn {
+    padding: 6px 15px;
+    font-size: 2rem;
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    padding: 15px 10px;
+}
+
+.nav-icon {
+    font-size: 2rem;
+    margin-right: 10px;
+}
+
+.nav-btn {
+    width: 100%;
+    font-weight: inherit;
+    padding: 15px 10px;
+    text-align: left;
+}
+
+.logout-btn {
+    color: red;
+}

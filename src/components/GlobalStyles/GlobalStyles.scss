@@ -1,0 +1,87 @@
+@import "~bootstrap/scss/bootstrap";
+@import 'normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap');
+:root {
+  --primary-color: #ff0201;
+  
+  // Text-color
+  --primary-text-color: #4b5155;
+  --white-text-color: #ffffff;
+  // Font
+  --primary-font: 'Montserrat', sans-serif;
+  // Transition
+  --primary-transition: all 0.25s ease-in-out;
+  // Button bg color
+  --button-bg-color: rgba(0, 0, 0, 0.05);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: var(--primary-font);
+  font-size: 1.6rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text-color);
+  text-rendering: optimizeSpeed;
+}
+
+button,
+input {
+  outline: none;
+  border: none;
+  font-family: var(--primary-font);
+}
+
+button { 
+  cursor: pointer;
+  background-color: transparent;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+  margin-bottom: 0;
+  // reset boostrap css
+}
+
+
+// Scroll bar
+
+html *::-webkit-scrollbar {
+  border-radius: 0;
+  width: 6px;
+}
+
+html *::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background-color: rgba(22, 24, 35, 0.06);
+}
+
+html *::-webkit-scrollbar-track {
+  border-radius: 0;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+//
+.MuiTooltip-tooltip .MuiTooltip-tooltipPlacementBottom .css-ja5taz-MuiTooltip-tooltip {
+  font-size: 1.4rem !important;
+}
