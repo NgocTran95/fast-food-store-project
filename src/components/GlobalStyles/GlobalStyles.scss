@@ -3,6 +3,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap');
 :root {
   --primary-color: #ff0201;
+  --secondary-color:#eae116;
   
   // Text-color
   --primary-text-color: #4b5155;
@@ -10,7 +11,7 @@
   // Font
   --primary-font: 'Montserrat', sans-serif;
   // Transition
-  --primary-transition: all 0.25s ease-in-out;
+  --primary-transition: all 0.3s ease-in-out;
   // Button bg color
   --button-bg-color: rgba(0, 0, 0, 0.05);
 }

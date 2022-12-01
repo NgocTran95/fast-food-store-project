@@ -65,7 +65,7 @@ function Header() {
         <div className={cx('user-infor')}>
           <button className={cx('cart-btn')} onClick={() => setShowCart(true)}>
             <FontAwesomeIcon icon={faCartShopping} className={cx('cart-icon')} />
-            {user && <span className={cx('cart-quantity')}>3</span>}
+            {user && <span className={cx('cart-quantity')}>6</span>}
           </button>
           {user ? (
             <>

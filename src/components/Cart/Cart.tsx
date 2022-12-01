@@ -5,6 +5,7 @@ import Offcanvas from 'react-bootstrap/Offcanvas';
 import { Link } from 'react-router-dom';
 
 import styles from './Cart.module.scss';
+import { useState } from 'react';
 
 const cx = classNames.bind(styles);
 
@@ -14,6 +15,7 @@ interface Props {
 }
 
 function Cart({ show, setShow }: Props) {
+  const [showOderDetails, setShowOderDetails] = useState<boolean>(false)
   const handleClose = () => {
     setShow(false);
   };
@@ -37,7 +39,7 @@ function Cart({ show, setShow }: Props) {
               </div>
               <div className={cx('item-details')}>
                 <p className={cx('item-name')}>Hamburger American</p>
-                <span className={cx('item-price')}>50$</span>
+                <span className={cx('item-price')}>$50</span>
                 <div className={cx('item-quantity')}>
                   <button className={cx('change-qtt-btn')}>-</button>
                   <span>3</span>
@@ -59,7 +61,7 @@ function Cart({ show, setShow }: Props) {
               </div>
               <div className={cx('item-details')}>
                 <p className={cx('item-name')}>Hamburger American</p>
-                <span className={cx('item-price')}>50$</span>
+                <span className={cx('item-price')}>$50</span>
                 <div className={cx('item-quantity')}>
                   <button className={cx('change-qtt-btn')}>-</button>
                   <span>3</span>
@@ -72,12 +74,33 @@ function Cart({ show, setShow }: Props) {
             </button>
           </div>
         </div>
+        <div className={cx('oder-info')}>
+          <button className={cx('toggle-btn')} onClick={() => setShowOderDetails(prev => !prev)}></button>
+          <div className={cx('oder-details', showOderDetails ? 'show' : 'hide')}>
+            <div className={cx('detail-item')}>
+              <p className={cx('label')}>Discount</p>
+              <span className={cx('value')}>$6</span>
+            </div>
+            <div className={cx('detail-item')}>
+              <p className={cx('label')}>Shipping fee</p>
+              <span className={cx('value')}>Free</span>
+            </div>
+            <div className={cx('detail-item')}>
+              <p className={cx('label')}>Voucher</p>
+              <span className={cx('value')}>None</span>
+            </div>
+          </div>
+          <div className={cx('oder-total')}>
+            <p className={cx('total-label')}>Total:</p>
+            <span className={cx('total-num')}>$300</span>
+          </div>
+        </div>
         <div className={cx('action-btns')}>
           <button className={cx('action-btn', 'checkout-btn')}>
             <FontAwesomeIcon icon={faCreditCard} className={cx('btn-icon')}/>
             Check out
           </button>
-          <Link to='/products' className={cx('action-btn')}>
+          <Link to='/products' className={cx('action-btn', 'getmore-btn')}>
             <FontAwesomeIcon icon={faCartPlus} className={cx('btn-icon')}/>
             Get more
           </Link>
