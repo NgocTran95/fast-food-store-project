@@ -92,6 +92,10 @@
 .cart-btn {
     position: relative;
     padding: 10px;
+    &:hover .cart-icon {
+        color: var(--secondary-color);
+        transition: var(--primary-transition);
+    }
 }
 
 .cart-icon {

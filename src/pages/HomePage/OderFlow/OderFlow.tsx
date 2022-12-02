@@ -18,17 +18,28 @@ const fadeInBottom = keyframes`
   }
 `;
 
+const fadeInTop = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(-50px)
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0px)
+  }
+`;
+
 const cx = classNames.bind(styles);
 function OderFlow() {
   return (
     <div className={cx('container')}>
       <div className={cx('inner')}>
         <div className={cx('header')}>
-          <p className={cx('title')}>How does it work?</p>
+          <p className={cx('title')}>How it's work?</p>
           <p className={cx('content')}>Only 3 steps to enjoy yummy foods</p>
         </div>
         <div className={cx('oder-flow')}>
-          <Reveal keyframes={fadeInBottom} duration={500}>
+          <Reveal keyframes={fadeInBottom} duration={1000}>
             <div className={cx('flow-step')}>
               <div className={cx('flow-thumbnail')}>
                 <div className={cx('step-img')}>
@@ -39,10 +50,10 @@ function OderFlow() {
               <p className={cx('description')}>Select your foods and oder</p>
             </div>
           </Reveal>
-          <Reveal keyframes={fadeInBottom} duration={200} delay={500}>
+          <Reveal keyframes={fadeInTop} duration={1000}>
             <img src={nextImage} alt="next-img" className={cx('next-img')} />
           </Reveal>
-          <Reveal keyframes={fadeInBottom} duration={500} delay={700}>
+          <Reveal keyframes={fadeInBottom} duration={1500}>
             <div className={cx('flow-step')}>
               <div className={cx('flow-thumbnail')}>
                 <div className={cx('step-img')}>
@@ -53,10 +64,10 @@ function OderFlow() {
               <p className={cx('description')}>Waiting for us a moment</p>
             </div>
           </Reveal>
-          <Reveal keyframes={fadeInBottom} duration={200} delay={1200}>
+          <Reveal keyframes={fadeInTop} duration={1500}>
             <img src={nextImage} alt="next-img" className={cx('next-img')} />
           </Reveal>
-          <Reveal keyframes={fadeInBottom} duration={500} delay={1400}>
+          <Reveal keyframes={fadeInBottom} duration={1200}>
             <div className={cx('flow-step')}>
               <div className={cx('flow-thumbnail')}>
                 <div className={cx('step-img')}>

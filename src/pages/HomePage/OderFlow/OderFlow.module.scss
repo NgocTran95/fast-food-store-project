@@ -5,18 +5,18 @@
 }
 
 .inner {
-    padding: 50px 0;
+    padding: 30px 0;
 }
 
 .header { 
     text-align: center;
     margin-bottom: 30px;
     .title {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
         font-style: italic;
     }
     .content {
-        font-size: 2.5rem;
+        font-size: 2rem;
         color: var(--primary-color);
         font-weight: 700;
     }
@@ -24,8 +24,10 @@
 
 .oder-flow {
     display: flex;
-    gap: 50px;
+    flex-direction: column;
+    gap: 10px;
     .next-img {
+        display: none;
         width: 150px;
         transform: translateY(-30px);
         filter: drop-shadow(rgba(0, 0, 0, 0.24) 0px 3px 8px);
@@ -46,10 +48,10 @@
     }
     .flow-thumbnail {
         position: relative;
-        width: 200px;
-        height: 200px;
+        width: 150px;
+        height: 150px;
         border-radius: 50%;
-        border: 15px solid var(--primary-color);
+        border: 10px solid var(--primary-color);
         box-shadow: rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px
     }
     .step-img {
@@ -65,13 +67,13 @@
     }
     .step-num {
         position: absolute;
-        top: -26px;
-        right: -26px;
+        top: -24px;
+        right: -24px;
         display: flex;
         align-items: center;
         justify-content: center;
-        width: 60px;
-        height: 60px;
+        width: 50px;
+        height: 50px;
         border-radius: 50%;
         background-color: var(--primary-color);
         color: var(--white-text-color);
@@ -81,14 +83,68 @@
         transition: var(--primary-transition);
     }
     .description {
-        opacity: 0;
-        transform: translateY(-30px);
-        margin-top: 30px;
+        opacity: 1;
+        margin-top: 10px;
         max-width: 200px;
         font-size: 1.8rem;
         font-weight: 600;
         color: var(--primary-color);
         text-align: center;
         transition: var(--primary-transition);
+    }
+}
+
+
+@media (min-width: 768px) {
+
+    .header { 
+        text-align: center;
+        margin-bottom: 20px;
+        .title {
+            font-size: 1.8rem;
+        }
+        .content {
+            font-size: 2.5rem;
+        }
+    }
+    .oder-flow {
+        flex-direction: row;
+        .description {
+            opacity: 0;
+            transform: translateY(-30px);
+            margin-top: 15px;
+        }
+    }
+}
+
+
+@media (min-width: 992px) {
+    .oder-flow {
+        gap: 30px;
+        .next-img {
+            display: block;
+            width: 100px;
+        }
+        .flow-thumbnail {
+            width: 200px;
+            height: 200px;
+            border: 15px solid var(--primary-color);
+        }
+        .step-num {
+            width: 60px;
+            height: 60px;
+            top: -26px;
+            right: -26px;
+        }
+    }
+}
+
+@media (min-width: 1200px) { 
+    .oder-flow {
+        gap: 50px;
+        .next-img {
+            display: block;
+            width: 150px;
+        }
     }
 }
