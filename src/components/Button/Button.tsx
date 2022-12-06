@@ -6,27 +6,28 @@ interface Props {
   onClick?: () => void;
   to?: string;
   href?: string;
-  classNames?: string;
+  className?: string;
   children: JSX.Element | string;
+  variants: 'outline' | 'primary';
 }
 
 const cx = classNames.bind(styles);
-function Button({ onClick, to, href, children, classNames }: Props) {
+function Button({ onClick, to, href, children, className, variants }: Props) {
   if (to)
     return (
-      <Link to={to} className={cx('btn', 'btn-primary', classNames)}>
+      <Link to={to} className={cx('btn', `btn-${variants}` , className)}>
         {children}
       </Link>
     );
   else if (href)
     return (
-      <a href={href} className={cx('btn', 'btn-primary', classNames)}>
+      <a href={href} className={cx('btn', `btn-${variants}` , className)}>
         {children}
       </a>
     );
   else {
     return (
-      <button className={cx('btn', 'btn-primary', classNames)} onClick={onClick}>
+      <button className={cx('btn', `btn-${variants}` , className)} onClick={onClick}>
         {children}
       </button>
     );

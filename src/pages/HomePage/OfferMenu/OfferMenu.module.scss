@@ -1,0 +1,221 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff9ef;
+    
+}
+
+.inner {
+    width: 100%;
+    max-width: 1200px;
+    padding: 30px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slider {
+    width: 100%;
+}
+
+.slide-inner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+}
+.slide-thumbnail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+    &:hover {
+        color: var(--primary-color);
+        box-shadow: 0 6px 14px 0 rgb(0 0 0 / 10%);
+        transition: var(--primary-transition);
+        &::before {
+            opacity: 1;
+            visibility: visible;
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+    }
+    &::before {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: calc(50% - 5px);
+        display: inline-block;
+        background: url(../../../assets/images/offer-menu-slider/offer-menu-slider-icon.svg) no-repeat;
+        width: 18px;
+        height: 18px;
+        background-size: contain;
+        -webkit-transition: var(--primary-transition);
+        transition: var(--primary-transition);
+        z-index: 99;
+        opacity: 0;
+        visibility: hidden;
+        -webkit-transform: translateY(-10px);
+        transform: translateY(-10px);
+    }
+}
+.slide-image {
+    width: 180px;
+    height: 180px;
+    img {
+        object-fit: contain;
+    }
+}
+.slide-name {
+    position: absolute;
+    bottom: 10px;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.first-row {
+    height: 1200px;
+}
+.second-row {
+    height: 1050px;
+}
+
+.combos {
+    margin-top: 30px;
+    width: 100%;
+}
+
+.combos-item {
+    color: var(--white-text-color);
+    position: relative;
+    overflow: hidden;
+    .combo-name {
+        font-size: 3.2rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+    }
+    .combo-desc {
+        font-size: 1.6rem;
+        line-height: 2;
+        max-width: 200px;
+        margin-bottom: 30px;
+    }
+    .combo-price {
+        font-size: 2.8rem;
+        font-weight: 700;
+    }
+    &:hover {
+        .bg-image {
+            transform: scale(1.1);
+            transition: opacity 1s ease 0s,transform 1s ease 0s;
+            -webkit-transition: opacity 1s ease 0s,transform 1s ease 0s;
+        }
+    }
+}
+.content {
+    position: absolute;
+    top: 70px;
+    left: 30px;
+    z-index: 1;
+}
+.bg-image {
+    position: absolute;
+    backface-visibility: hidden;
+    transition: opacity 1s ease 0s,transform 1s ease 0s;
+    -webkit-transition: opacity 1s ease 0s,transform 1s ease 0s;
+}
+
+.first-combo {
+    background-color: #00a850;
+    .bg-image {
+        top: 0;
+        left: 30%;
+        width: 150%;
+        height: 100%;
+    }
+}
+.second-combo {
+    background-color: #ffb319;
+    .bg-image {
+        top: -10px;
+        left: 30%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.third-combo {
+    background-color: #0058ba;
+    .bg-image {
+        bottom: -50px;
+        left: 30%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.fourth-combo {
+    background-color: #080609;
+    .bg-image {
+        top: 80px;
+        left: 30%;
+        width: 90%;
+        height: 100%;
+    } 
+}
+
+.fifth-combo {
+    background-color: #f2252c;
+    .bg-image {
+        top: 30px;
+        left: 18%;
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.sixth-combo {
+    background-color: #ffffff;
+    color: var(--primary-text-color);
+    .content {
+        top: 40px;
+    }
+    .bg-image {
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.2;
+    }
+}
+
+@media (min-width: 990px) {
+    .first-row {
+        height: 400px;
+    }
+    .second-row {
+        height: 350px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .slide-thumbnail {
+        width: 250px;
+        height: 250px;   
+    }
+    .slide-image {
+        width: 200px;
+        height: 200px;
+    }
+}

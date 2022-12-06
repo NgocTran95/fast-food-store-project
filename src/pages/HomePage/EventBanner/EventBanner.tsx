@@ -16,12 +16,13 @@ function EventBanner() {
               Sale off <span>30%</span>
             </div>
           </div>
-          <div className={cx('infor')}>
-            <div className={cx('content')}>
-              <h3 className={cx('title')}>Hot news</h3>
-              <h1 className={cx('event-name')}>Chicken Week</h1>
-              <p className={cx('desc')}>Discount up to 30% per fried chicken oder</p>
-            </div>
+          <div className={cx('content')}>
+            <h3 className={cx('title')}>Hot news</h3>
+            <h1 className={cx('event-name')}>Chicken Week</h1>
+            <p className={cx('desc')}>Together - More fun</p>
+            <Button className={cx('oder-btn')} variants='primary' to="/products">
+              Oder now
+            </Button>
           </div>
         </div>
         <div className={cx('sub-block')}>
@@ -30,12 +31,9 @@ function EventBanner() {
           </div>
           <div className={cx('content')}>
             <p className={cx('time')}>Only from 01/12 to 07/12/2022</p>
-            <p className={cx('details')}>Discount 5% per $50 of fried chiken oder, maximum 20%</p>
+            <p className={cx('details')}>Discount <span>5% per $50</span> of fried chiken oder, maximum 20%</p>
           </div>
-          <p className={cx('especial-detail')}>Especially, up to 30% with oder directly at restaurant</p>
-          <Button classNames={cx('oder-btn')} to="/products">
-            Oder now
-          </Button>
+          <p className={cx('especial-detail')}>Especially, discount up to <span>30%</span> when you come with <span>your friends</span></p>
         </div>
       </div>
     </div>

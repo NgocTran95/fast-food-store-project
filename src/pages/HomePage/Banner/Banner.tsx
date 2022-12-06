@@ -1,44 +1,93 @@
 import classNames from 'classnames/bind';
 import styles from './Banner.module.scss';
-import deliveryImage from '../../../assets/images/fast-delivery.png';
+import Slider from 'react-slick';
+import BannerSliderArrow from './BannerSliderArrow';
 import Button from '../../../components/Button';
-import { Fade } from 'react-awesome-reveal';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Carousel } from 'react-bootstrap';
+import { faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { BannerBurger, BannerPizza, BannerSteak } from '../../../assets/images/banner';
 
 const cx = classNames.bind(styles);
+
+const setting = {
+  autoplay: true,
+  autoplaySpeed: 5000,
+  infinite: true,
+  speed: 800,
+  slidesToShow: 1,
+  slidesToScroll: 1,
+  prevArrow: <BannerSliderArrow to="prev" />,
+  nextArrow: <BannerSliderArrow to="next" />,
+};
+
 function Banner() {
   return (
     <div className={cx('container')}>
-      <Carousel indicators={false} controls={false} fade={true} pause={false} interval={5000}>
-        <Carousel.Item className={cx('carousel-item', 'first-slide')} />
-        <Carousel.Item className={cx('carousel-item', 'second-slide')} />
-        <Carousel.Item className={cx('carousel-item', 'third-slide')} />
-      </Carousel>
-      <div className={cx('inner')}>
-        <div className={cx('content')}>
-          <Fade delay={500} direction="up" duration={2000}>
-            <h1 className={cx('first-content')}>
-              Enjoy your meal with <span>Flash Food</span>!
-            </h1>
-          </Fade>
-          <Fade delay={1500} direction="left" duration={1000}>
-            <p className={cx('second-content')}>
-              <span>Flash</span> Oder - <span>Flash</span> Delivery
-              <img src={deliveryImage} alt="fast-delivery" className={cx('delivery-img')} />
-            </p>
-          </Fade>
-        </div>
-        <Fade delay={2500} direction="bottom-right" duration={1000}>
-          <Button to="/products">
-            <div className={cx('button-content')}>
-              <FontAwesomeIcon icon={faCartPlus} className={cx('button-icon')} />
-              Discover now
+      <Slider {...setting}>
+        <div className={cx('slider-item')}>
+          <div className={cx('content')}>
+            <div className={cx('food-type')}>
+              <div className={cx('widget')}>Hot</div>
+              <h1 className={cx('type')}>Hamburger</h1>
             </div>
-          </Button>
-        </Fade>
-      </div>
+            <h1 className={cx('food-name')}>Burger King</h1>
+            <p className={cx('description')}>
+              Buy any 5 burger and get 1.5L Coca free
+            </p>
+          </div>
+          <div className={cx('hero')}>
+            <img src={BannerBurger} alt="hero-bg" />
+            <div className={cx('offer-price')}>
+              <span>Offer</span>
+              <span className={cx('price')}>$6.5</span>
+            </div>
+          </div>
+        </div>
+        <div className={cx('slider-item')}>
+          <div className={cx('content')}>
+            <div className={cx('food-type')}>
+              <div className={cx('widget')}>Hot</div>
+              <h1 className={cx('type')}>Pizza</h1>
+            </div>
+            <h1 className={cx('food-name')}>Hawaiian Pizza</h1>
+            <p className={cx('description')}>
+              Buy any 2 pizzas and get 1.5L Pepsi free
+            </p>
+          </div>
+          <div className={cx('hero')}>
+            <img src={BannerPizza} alt="hero-bg" />
+            <div className={cx('offer-price')}>
+              <span>Offer</span>
+              <span className={cx('price')}>$15.5</span>
+            </div>
+          </div>
+        </div>
+        <div className={cx('slider-item')}>
+          <div className={cx('content')}>
+            <div className={cx('food-type')}>
+              <div className={cx('widget')}>New</div>
+              <h1 className={cx('type')}>Steak</h1>
+            </div>
+            <h1 className={cx('food-name')}>Saltbrick Prime</h1>
+            <p className={cx('description')}>
+              Discount up to 10% per oder above $100
+            </p>
+          </div>
+          <div className={cx('hero')}>
+            <img src={BannerSteak} alt="hero-bg" />
+            <div className={cx('offer-price')}>
+              <span>Offer</span>
+              <span className={cx('price')}>$25.5</span>
+            </div>
+          </div>
+        </div>
+      </Slider>
+      <Button to="/products" variants="outline" className={cx('oder-button')}>
+        <>
+          <FontAwesomeIcon icon={faCartShopping} />
+          <span>ODER NOW</span>
+        </>
+      </Button>
     </div>
   );
 }

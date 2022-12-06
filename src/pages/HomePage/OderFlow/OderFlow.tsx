@@ -1,9 +1,6 @@
 import classNames from 'classnames/bind';
 import styles from './OderFlow.module.scss';
-import firstOderStep from '../../../assets/images/oder-step-1.png';
-import secondOderStep from '../../../assets/images/oder-step-2.png';
-import thirdOderStep from '../../../assets/images/oder-step-3.png';
-import nextImage from '../../../assets/images/next-img.png';
+import { firstOderStep, secondOderStep, thirdOderStep, nextImage } from '../../../assets/images/oder-flow';
 import { keyframes } from '@emotion/react';
 import { Reveal } from 'react-awesome-reveal';
 
@@ -35,8 +32,7 @@ function OderFlow() {
     <div className={cx('container')}>
       <div className={cx('inner')}>
         <div className={cx('header')}>
-          <p className={cx('title')}>How it's work?</p>
-          <p className={cx('content')}>Only 3 steps to enjoy yummy foods</p>
+          Only 3 steps to enjoy yummy foods
         </div>
         <div className={cx('oder-flow')}>
           <Reveal keyframes={fadeInBottom} duration={1000}>

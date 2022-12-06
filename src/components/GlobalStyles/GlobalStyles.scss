@@ -1,17 +1,19 @@
-@import "~bootstrap/scss/bootstrap";
 @import 'normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500;600;700;800&display=swap');
+@import "~bootstrap/scss/bootstrap";
+@import "slick-carousel/slick/slick.css";
+@import "slick-carousel/slick/slick-theme.css";
 :root {
-  --primary-color: #ff0201;
+  --primary-color: #f1252b;
   --secondary-color:#eae116;
   
   // Text-color
-  --primary-text-color: #4b5155;
+  --primary-text-color: #272727;
   --white-text-color: #ffffff;
   // Font
   --primary-font: 'Montserrat', sans-serif;
   // Transition
-  --primary-transition: all 0.3s ease-in-out;
+  --primary-transition: all 0.3s ease-in-out 0s;
   // Button bg color
   --button-bg-color: rgba(0, 0, 0, 0.05);
 }

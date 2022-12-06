@@ -2,7 +2,7 @@ import classNames from 'classnames/bind';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faCartShopping,
+  faBasketShopping,
   faUser,
   faBars,
   faTags,
@@ -11,13 +11,13 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 import { Dropdown } from 'react-bootstrap';
+import DropdownButton from 'react-bootstrap/esm/DropdownButton';
 
 import styles from './Header.module.scss';
-import logo from '../../assets/images/flash-food-logo.png';
+import { Logo } from '../../assets/images';
 import Avatar from '../Avatar';
 import SideMenu from '../SideMenu';
 import Cart from '../Cart';
-import DropdownButton from 'react-bootstrap/esm/DropdownButton';
 
 const cx = classNames.bind(styles);
 function Header() {
@@ -29,7 +29,7 @@ function Header() {
       <div className={cx('inner')}>
         <nav className={cx('nav')}>
           <Link className={cx('logo')} to="/">
-            <img className={cx('logo-image')} src={logo} alt="logo" />
+            <img className={cx('logo-image')} src={Logo} alt="logo" />
           </Link>
           <ul className={cx('nav-bar')}>
             <li className={cx('nav-item')}>
@@ -59,12 +59,12 @@ function Header() {
         </button>
         <div className={cx('logo-sm')}>
           <Link className={cx('logo')} to="/">
-            <img className={cx('logo-image')} src={logo} alt="logo" />
+            <img className={cx('logo-image')} src={Logo} alt="logo" />
           </Link>
         </div>
         <div className={cx('user-infor')}>
           <button className={cx('cart-btn')} onClick={() => setShowCart(true)}>
-            <FontAwesomeIcon icon={faCartShopping} className={cx('cart-icon')} />
+            <FontAwesomeIcon icon={faBasketShopping} className={cx('cart-icon')} />
             {user && <span className={cx('cart-quantity')}>6</span>}
           </button>
           {user ? (

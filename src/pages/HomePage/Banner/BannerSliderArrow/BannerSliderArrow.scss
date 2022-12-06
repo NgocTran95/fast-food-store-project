@@ -1,0 +1,41 @@
+.slider-arrow {
+    width: 40px;
+    height: 100px;
+    clip-path: ellipse(79% 45% at 96% 53%);
+    background-color: #ffffff;
+    z-index: 1;
+    &:focus, &:hover {
+        background-color: #ffffff;
+    }
+    &.prev {
+        transform: rotate(-180deg) translateY(50%);
+        left: 0;
+        &::before {
+            content: 'PREV';
+            font-family: var(--primary-font);
+            font-weight: 600;
+            font-size: 1.3rem;
+            position: absolute;
+            top: 47px;
+            left: 7px;
+            color: var(--primary-text-color);
+            transform: rotate(90deg);
+            opacity: 1;
+        }
+    }
+    &.next {
+        right: 0;
+        &::before {
+            content: 'NEXT';
+            font-family: var(--primary-font);
+            font-weight: 600;
+            font-size: 1.3rem;
+            position: absolute;
+            top: 47px;
+            left: 7px;
+            color: var(--primary-text-color);
+            transform: rotate(-90deg);
+            opacity: 1;
+        }
+    }
+}
