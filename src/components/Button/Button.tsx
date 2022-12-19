@@ -9,10 +9,11 @@ interface Props {
   className?: string;
   children: JSX.Element | string;
   variants: 'outline' | 'primary';
+  type?: 'submit';
 }
 
 const cx = classNames.bind(styles);
-function Button({ onClick, to, href, children, className, variants }: Props) {
+function Button({ onClick, to, href, children, className, variants, type }: Props) {
   if (to)
     return (
       <Link to={to} className={cx('btn', `btn-${variants}` , className)}>
@@ -27,7 +28,7 @@ function Button({ onClick, to, href, children, className, variants }: Props) {
     );
   else {
     return (
-      <button className={cx('btn', `btn-${variants}` , className)} onClick={onClick}>
+      <button className={cx('btn', `btn-${variants}` , className)} onClick={onClick} type={type}>
         {children}
       </button>
     );

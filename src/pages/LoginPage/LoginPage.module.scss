@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.inner {
+    width: 1200px;
+    height: 70%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 4px 25px rgb(0 0 0 / 7%);
+    display: flex;
+    align-items: center;
+}
+
+.hero {
+    width: 55%;
+    height: 100%;
+    background-image: url(../../assets/images/login-page-bg.jpg);
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.content {
+    width: 45%;
+    padding: 70px 50px 70px 30px;
+    color: var(--primary-text-color);
+}
