@@ -13,7 +13,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import styles from './SignUpForm.module.scss';
 import { validateSignUpSchema } from './../../../validateForm/validateSchema';
-import { useAppDispatch } from '../../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { registerUser } from '../../../features/user/userAction';
 
 interface Props {
@@ -30,7 +30,8 @@ interface SignUpFormInputs {
 const cx = classNames.bind(styles);
 function SignUpForm({ setIsLogIn }: Props) {
   const [showPassword, setShowPassword] = useState(false);
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
+  const { error } = useAppSelector((state) => state.user);
   const {
     register,
     handleSubmit,
@@ -44,9 +45,9 @@ function SignUpForm({ setIsLogIn }: Props) {
     e.preventDefault();
     setShowPassword((prev) => !prev);
   };
-  const handleSignUp = async(data: SignUpFormInputs) => {
-    const { email, username, password } = data
-    dispatch(registerUser({email, username, password}))
+  const handleSignUp = async (data: SignUpFormInputs) => {
+    const { email, username, password } = data;
+    dispatch(registerUser({ email, username, password }));
   };
   return (
     <>
@@ -63,7 +64,11 @@ function SignUpForm({ setIsLogIn }: Props) {
               {...register('email')}
             />
           </div>
-          <p className={cx('error-msg')}>{errors.email?.message}</p>
+          <p className={cx('error-msg')}>
+            {errors.email?.message}
+            {error.code === 'auth/email-already-in-use' &&
+              'Email have been registered, please try others'}
+          </p>
         </div>
         <div className={cx('form-control')}>
           <label htmlFor="signup-username">Username</label>

@@ -1,5 +1,7 @@
+import Loading from "../../components/Loading";
+
 function ErrorPage() {
-  return <div>This is Error Page</div>;
+  return <div><Loading /></div>;
 }
 
 export default ErrorPage;

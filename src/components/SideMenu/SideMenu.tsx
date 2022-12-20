@@ -8,13 +8,16 @@ import {
   faSquarePhone,
   faFire,
   faTags,
-  faAddressCard
+  faAddressCard,
+  faUser,
 } from '@fortawesome/free-solid-svg-icons';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 
 import styles from './SideMenu.module.scss';
 import Avatar from '../Avatar';
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { logOut } from '../../features/user/userAction';
 
 const cx = classNames.bind(styles);
 
@@ -24,16 +27,30 @@ interface Props {
 }
 
 function SideMenu({ show, setShow }: Props) {
+  const dispatch = useAppDispatch();
+  const { userInfo } = useAppSelector((state) => state.user);
   const handleClose = () => {
+    setShow(false);
+  };
+  const handleLogOut = () => {
+    dispatch(logOut());
     setShow(false);
   };
   return (
     <Offcanvas show={show} onHide={handleClose} className={cx('container')}>
       <Offcanvas.Header>
-        <div className={cx('user')}>
-          <Avatar size={40} url="" displayName="Tran Ngoc" />
-          <p className={cx('user-name')}>Trần Ngọc</p>
-        </div>
+        {!!userInfo.uid ? (
+          <div className={cx('user')}>
+            <Avatar
+              size={40}
+              url={userInfo.photoURL}
+              displayName={userInfo.displayName}
+            />
+            <p className={cx('user-name')}>{userInfo.displayName}</p>
+          </div>
+        ) : (
+          <p className={cx('notification')}>You are not logged in</p>
+        )}
         <button className={cx('close-btn')} onClick={handleClose}>
           <FontAwesomeIcon icon={faXmark} />
         </button>
@@ -64,10 +81,29 @@ function SideMenu({ show, setShow }: Props) {
           My wish list
         </button>
         <hr />
-        <button className={cx('nav-btn', 'logout-btn')}>
-          <FontAwesomeIcon icon={faRightFromBracket} className={cx('nav-icon')} />
-          Log out
-        </button>
+        {!!userInfo.uid ? (
+          <button
+            className={cx('nav-btn', 'logout-btn')}
+            onClick={handleLogOut}
+          >
+            <FontAwesomeIcon
+              icon={faRightFromBracket}
+              className={cx('nav-icon')}
+            />
+            Log out
+          </button>
+        ) : (
+          <Link
+            to='/login'
+            className={cx('nav-btn', 'logout-btn')}
+          >
+            <FontAwesomeIcon
+              icon={faUser}
+              className={cx('nav-icon')}
+            />
+            Log in
+          </Link>
+        )}
       </Offcanvas.Body>
     </Offcanvas>
   );

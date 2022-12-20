@@ -18,12 +18,16 @@ import { Logo } from '../../assets/images';
 import Avatar from '../Avatar';
 import SideMenu from '../SideMenu';
 import Cart from '../Cart';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { logOut } from '../../features/user/userAction';
 
 const cx = classNames.bind(styles);
 function Header() {
-  const [user, setUser] = useState(true);
+  const dispatch = useAppDispatch()
+  const { userInfo } = useAppSelector((state) => state.user);
   const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
+
   return (
     <header className={cx('container')}>
       <div className={cx('inner')}>
@@ -64,10 +68,13 @@ function Header() {
         </div>
         <div className={cx('user-infor')}>
           <button className={cx('cart-btn')} onClick={() => setShowCart(true)}>
-            <FontAwesomeIcon icon={faBasketShopping} className={cx('cart-icon')} />
-            {user && <span className={cx('cart-quantity')}>6</span>}
+            <FontAwesomeIcon
+              icon={faBasketShopping}
+              className={cx('cart-icon')}
+            />
+            {!!userInfo.uid && <span className={cx('cart-quantity')}>6</span>}
           </button>
-          {user ? (
+          {!!userInfo.uid ? (
             <>
               <DropdownButton
                 className={cx('drop-down')}
@@ -75,38 +82,50 @@ function Header() {
                   <div className={cx('user')}>
                     <Avatar
                       size={40}
-                      url="https://haycafe.vn/wp-content/uploads/2022/02/Anh-gai-xinh-de-thuong.jpg"
-                      displayName="Tran Ngoc"
+                      url={userInfo.photoURL}
+                      displayName={userInfo.displayName}
                     />
-                    <p className={cx('user-name')}>Trần Ngọc</p>
+                    <p className={cx('user-name')}>{userInfo.displayName}</p>
                   </div>
                 }
               >
                 <Dropdown.Item>
                   <Link to="/profile" className={cx('menu-item')}>
-                    <FontAwesomeIcon icon={faAddressCard} className={cx('menu-item-icon')}/>
+                    <FontAwesomeIcon
+                      icon={faAddressCard}
+                      className={cx('menu-item-icon')}
+                    />
                     My profile
                   </Link>
                 </Dropdown.Item>
                 <Dropdown.Item>
                   <button className={cx('menu-item')}>
-                    <FontAwesomeIcon icon={faTags} className={cx('menu-item-icon')}/>
+                    <FontAwesomeIcon
+                      icon={faTags}
+                      className={cx('menu-item-icon')}
+                    />
                     My wish list
                   </button>
                 </Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item>
-                  <button className={cx('menu-item', 'logout-btn')}>
-                    <FontAwesomeIcon icon={faRightFromBracket} className={cx('menu-item-icon')}/>
+                  <button
+                    className={cx('menu-item', 'logout-btn')}
+                    onClick={() => dispatch(logOut())}
+                  >
+                    <FontAwesomeIcon
+                      icon={faRightFromBracket}
+                      className={cx('menu-item-icon')}
+                    />
                     Log out
                   </button>
                 </Dropdown.Item>
               </DropdownButton>
             </>
           ) : (
-            <Link className={cx('signin-btn')} to="/signin">
+            <Link className={cx('signin-btn')} to="/login">
               <FontAwesomeIcon icon={faUser} className={cx('user-icon')} />
-              Sign In
+              Log In
             </Link>
           )}
         </div>
