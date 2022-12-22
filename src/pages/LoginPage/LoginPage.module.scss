@@ -17,6 +17,7 @@
 }
 
 .hero {
+    display: none;
     width: 55%;
     height: 100%;
     background-image: url(../../assets/images/login-page-bg.jpg);
@@ -26,7 +27,19 @@
 }
 
 .content {
-    width: 45%;
-    padding: 70px 50px 70px 30px;
+    width: 100%;
+    text-align: center;
+    padding: 70px 30px;
     color: var(--primary-text-color);
+}
+
+@media (min-width: 768px) {
+    .hero {
+        display: block;
+    }
+    .content {
+        width: 45%;
+        text-align: unset;
+        padding: 70px 50px 70px 30px;
+    }
 }

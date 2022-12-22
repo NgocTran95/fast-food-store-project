@@ -14,7 +14,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import styles from './SignUpForm.module.scss';
 import { validateSignUpSchema } from './../../../validateForm/validateSchema';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { registerUser } from '../../../features/user/userAction';
+import { registerUser } from '../../../features/user/services';
 
 interface Props {
   setIsLogIn: React.Dispatch<React.SetStateAction<boolean>>;

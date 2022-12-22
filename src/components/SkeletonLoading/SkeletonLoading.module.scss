@@ -1,0 +1,99 @@
+.menu {
+    width: 100%;
+}
+
+.product-wrapper {
+    padding: 10px 15px;
+}
+
+.product-inner {
+    padding: 15px;
+    position: relative;
+    border-radius: 30px;
+    transition: var(--primary-transition);
+    -webkit-transition: var(--primary-transition);
+    overflow: hidden;
+    box-shadow: 0 0 21px 0 rgb(39 39 39 / 12%);
+}
+
+.product-widget {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 1;
+}
+
+.widget-notification {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    .widget-item {
+        width: 35px;
+        height: 35px;
+        color: var(--white-text-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+}
+
+.wishlist-btn {
+    font-size: 2.3rem;
+    color: #e9e9e9;
+}
+
+.product-thumbnail {
+    width: 240px;
+    height: 240px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin-top: 45px;
+    margin-bottom: 10px;
+
+}
+
+.product-info {
+    text-align: center;
+    .product-name {
+        margin-bottom: 5px;
+        &.skeleton {
+            min-height: 24px;
+        }
+    }
+    .product-price {
+        margin-bottom: 5px;
+        &.skeleton {
+            min-height: 27px;
+        }
+    }
+}
+
+// THE LOADING EFFECT
+.skeleton {
+	background-color: #e2e5e7;
+	// The shine that's going to move across the skeleton:
+	background-image:			
+			linear-gradient(
+				90deg, 
+				rgba(#fff, 0), 
+				rgba(#fff, 0.5),
+				rgba(#fff, 0)
+			);
+	background-size: 40px 100%; // width of the shine
+	background-repeat: no-repeat; // No need to repeat the shine effect
+	background-position: left -40px top 0; // Place shine on the left side, with offset on the left based on the width of the shine - see background-size
+	animation: shine 1s ease infinite; // increase animation time to see effect in 'slow-mo'
+}
+
+@keyframes shine {
+	to {
+		// Move shine from left to right, with offset on the right based on the width of the shine - see background-size
+		background-position: right -40px top 0;
+	}
+}

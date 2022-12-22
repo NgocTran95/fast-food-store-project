@@ -14,10 +14,7 @@ import { FacebookAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 import styles from './LoginForm.module.scss';
 import { googleIcon, facebookIcon } from '../../../assets/images/social-icon';
 import { validateLoginSchema } from '../../../validateForm/validateSchema';
-import {
-  logInByEmail,
-  logInWithPopup,
-} from '../../../features/user/userAction';
+import { logInByEmail, logInWithPopup } from '../../../features/user/services';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 
 const facebookProvider = new FacebookAuthProvider();

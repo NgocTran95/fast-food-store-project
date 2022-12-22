@@ -1,6 +1,7 @@
 import classNames from 'classnames/bind';
 import styles from './Banner.module.scss';
 import Slider from 'react-slick';
+
 import BannerSliderArrow from './BannerSliderArrow';
 import Button from '../../../components/Button';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

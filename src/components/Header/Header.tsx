@@ -19,11 +19,11 @@ import Avatar from '../Avatar';
 import SideMenu from '../SideMenu';
 import Cart from '../Cart';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { logOut } from '../../features/user/userAction';
+import { logOut } from '../../features/user/services';
 
 const cx = classNames.bind(styles);
 function Header() {
-  const dispatch = useAppDispatch()
+  const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
   const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);

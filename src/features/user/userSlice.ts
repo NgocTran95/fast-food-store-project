@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { registerUser, logInByEmail, logInWithPopup, logOut } from './userAction';
+import { registerUser, logInByEmail, logInWithPopup, logOut } from './services';
 
 export interface userInfo {
     email: string;
@@ -28,6 +28,9 @@ const userSlice = createSlice({
     reducers: {
         setUser: (state, { payload }) => {
             state.userInfo = {...payload}
+        },
+        resetSuccessStatus: (state) => {
+            state.isSuccess = false
         }
     },
     extraReducers: {
@@ -76,5 +79,5 @@ const userSlice = createSlice({
     }
 })
 
-export const { setUser } = userSlice.actions
+export const { setUser, resetSuccessStatus } = userSlice.actions
 export default userSlice.reducer

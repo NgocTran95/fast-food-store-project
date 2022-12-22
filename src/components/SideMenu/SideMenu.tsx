@@ -17,7 +17,7 @@ import styles from './SideMenu.module.scss';
 import Avatar from '../Avatar';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { logOut } from '../../features/user/userAction';
+import { logOut } from '../../features/user/services';
 
 const cx = classNames.bind(styles);
 
@@ -93,14 +93,8 @@ function SideMenu({ show, setShow }: Props) {
             Log out
           </button>
         ) : (
-          <Link
-            to='/login'
-            className={cx('nav-btn', 'logout-btn')}
-          >
-            <FontAwesomeIcon
-              icon={faUser}
-              className={cx('nav-icon')}
-            />
+          <Link to="/login" className={cx('nav-btn', 'logout-btn')}>
+            <FontAwesomeIcon icon={faUser} className={cx('nav-icon')} />
             Log in
           </Link>
         )}
