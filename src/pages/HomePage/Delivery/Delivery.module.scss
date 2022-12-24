@@ -1,0 +1,51 @@
+.container {
+    width: 100%;
+    height: 500px;
+    background: url('../../../assets/images/delivery-bg.jpg') no-repeat center;
+    background-size: cover;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+
+.header {
+    width: 80%;
+    font-size: 6rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    font-style: italic;
+    text-align: center;
+}
+
+.promotion {
+    width: 80%;
+    text-align: center;
+    padding: 0 70px;
+    background-color: var(--primary-color);
+    clip-path: polygon(11% 0,100% 0,89% 100%,0 100%);
+    color: var(--white-text-color);
+}
+
+.oder-btn {
+    bottom: -80px;
+}
+
+@media (min-width: 769px) {
+    .header {
+        width: 100%;
+        font-size: 8rem;
+    }
+    .promotion {
+        width: 100%;
+    }
+}

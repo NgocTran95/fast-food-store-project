@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBasketShopping,
@@ -27,7 +27,8 @@ function Header() {
   const { userInfo } = useAppSelector((state) => state.user);
   const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
-
+  const { pathname } = useLocation() 
+  
   return (
     <header className={cx('container')}>
       <div className={cx('inner')}>
@@ -37,22 +38,22 @@ function Header() {
           </Link>
           <ul className={cx('nav-bar')}>
             <li className={cx('nav-item')}>
-              <Link to="/" className={cx('nav-link')}>
+              <Link to="/" className={cx('nav-link', pathname == '/' && 'active')}>
                 Home
               </Link>
             </li>
             <li className={cx('nav-item')}>
-              <Link to="/products" className={cx('nav-link')}>
+              <Link to="/products" className={cx('nav-link', pathname == '/products' && 'active')}>
                 Oder Online
               </Link>
             </li>
             <li className={cx('nav-item')}>
-              <Link to="/news" className={cx('nav-link')}>
+              <Link to="/news" className={cx('nav-link', pathname == '/news' && 'active')}>
                 News
               </Link>
             </li>
             <li className={cx('nav-item')}>
-              <Link to="/contact" className={cx('nav-link')}>
+              <Link to="/contact" className={cx('nav-link', pathname == '/contact' && 'active')}>
                 Contact
               </Link>
             </li>

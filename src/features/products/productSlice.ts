@@ -1,6 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { AxiosError } from "axios";
-import { getFeaturedProducts } from "./services";
+import { getFeaturedProducts, getBurgerList } from "./services";
 
 export interface Product {
     id: string;
@@ -15,6 +14,7 @@ export interface Product {
 export interface Products {
     isLoading: boolean;
     featuredProducts: Product[];
+    burgerList: Product[];
     isSuccess: boolean;
     error: any;
 }
@@ -22,6 +22,7 @@ export interface Products {
 const initialState = {
     isLoading: false,
     featuredProducts: [],
+    burgerList: [],
     isSuccess: false,
     error: {},
 } as Products
@@ -30,10 +31,9 @@ const productSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
-
     },
     extraReducers(builder) {
-        builder.addCase(getFeaturedProducts.pending, (state, action) => {
+        builder.addCase(getFeaturedProducts.pending, (state) => {
             state.isLoading = true
         })
         .addCase(getFeaturedProducts.fulfilled, (state, action) => {
@@ -42,6 +42,18 @@ const productSlice = createSlice({
             state.featuredProducts = action.payload;
         })
         .addCase(getFeaturedProducts.rejected, (state, action) => {
+            state.isLoading = false;
+            state.error = action.payload
+        })
+        .addCase(getBurgerList.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(getBurgerList.fulfilled, (state, action) => {
+            state.isLoading = false;
+            state.isSuccess = true;
+            state.burgerList = action.payload;
+        })
+        .addCase(getBurgerList.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.payload
         })

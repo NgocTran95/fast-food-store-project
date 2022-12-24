@@ -34,14 +34,14 @@ function SubBanner() {
       <div className={cx('inner')}>
         <Reveal
           keyframes={fadeInLeft}
-          duration={1500}
+          duration={2000}
           style={{ display: 'flex', justifyContent: 'center' }}
         >
           <h1 className={cx('header')}>combo salad with fried chicken</h1>
         </Reveal>
         <Reveal
           keyframes={fadeInRight}
-          duration={1500}
+          duration={2000}
           style={{ display: 'flex', justifyContent: 'center' }}
         >
           <span className={cx('promotion')}>

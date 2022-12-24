@@ -1,0 +1,82 @@
+.container {
+    padding-top: 170px;
+    padding-bottom: 100px;
+    background: url('../../../assets/images/products-nav-bg.jpg') no-repeat center;
+    background-size: cover;
+}
+
+.inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading {
+    font-size: 6rem;
+    margin-bottom: 15px;
+}
+
+.breadscrum {
+    margin-bottom: 25px;
+    .link {
+        color: var(--blur-text-color);
+        &:hover {
+            color: var(--primary-color);
+        }
+    }
+}
+
+.slider {
+    width: 40%;
+}
+
+.slide-inner {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px 0;
+    position: relative;
+}
+.slide-thumbnail {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    background-color: #ffffff;
+    overflow: hidden;
+    border: 1px solid transparent;
+    box-shadow: 0 6px 14px 0 rgb(0 0 0 / 10%);
+    &:hover {
+        color: var(--primary-color);
+        border-color: var(--primary-color);
+        transition: var(--primary-transition);
+        &::before {
+            opacity: 1;
+            visibility: visible;
+            -webkit-transform: translateY(0);
+            transform: translateY(0);
+        }
+        & ~ .slide-name {
+            color: var(--primary-color)
+        }
+    }
+}
+.slide-image {
+    width: 100px;
+    height: 100px;
+    img {
+        object-fit: contain;
+    }
+}
+.slide-name {
+    position: absolute;
+    bottom: 0;
+    font-size: 1.4rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}

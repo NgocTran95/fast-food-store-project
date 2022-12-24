@@ -1,15 +1,20 @@
-import Banner from './Banner';
-import Header from '../../components/Header';
-import FavoriteMenu from './FavoriteMenu';
-import EventBanner from './EventBanner';
-import OfferMenu from './OfferMenu';
 import { toast } from 'react-toastify';
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import Header from '../../components/Header';
+import Banner from './Banner';
+import OfferMenu from './OfferMenu';
+import FavoriteMenu from './FavoriteMenu';
+import SubBanner from './SubBanner';
+import Testimonial from './Testimonial';
+import BurgerMenu from './BurgerMenu';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { useEffect } from 'react';
 import { resetSuccessStatus } from '../../features/user/userSlice';
-import SubBanner from './SubBanner/SubBanner';
+import ShowCountUp from './ShowCountUp';
+import Delivery from './Delivery';
+import Footer from '../../components/Footer';
 
 const customId = 'sign-up-success'
 
@@ -32,7 +37,11 @@ function HomePage() {
       <OfferMenu />
       <FavoriteMenu />
       <SubBanner />
-      <EventBanner/>
+      <Testimonial />
+      <BurgerMenu />
+      <ShowCountUp />
+      <Delivery />
+      <Footer />
       <ToastContainer />
     </div>
   );

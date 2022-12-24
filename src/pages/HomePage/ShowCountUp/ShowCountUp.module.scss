@@ -1,0 +1,84 @@
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: url('../../../assets/images/count-up-bg.jpg') no-repeat fixed;
+    background-size: cover;
+}
+
+.inner {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.count-item {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: var(--white-text-color);
+    background-color: var(--primary-color);
+}
+
+.count-number {
+    font-size: 5rem;
+    font-weight: 700;
+}
+
+.count-name {
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+
+
+
+@media (min-width: 769px) {
+    .inner {
+        padding: 200px 0;
+        flex-direction: row;
+        gap: 20px;
+    }
+    .count-item {
+        width: 170px;
+        height: 170px;
+    }
+    .count-number {
+        font-size: 4rem;
+    }
+    
+    .count-name {
+        font-size: 1.6rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .inner {
+        gap: 50px;
+    }
+    .count-item {
+        width: 200px;
+        height: 200px;
+    }
+}
+
+@media (min-width: 1200px) {
+
+    .count-item {
+        width: 250px;
+        height: 250px;
+    }
+    .count-number {
+        font-size: 5rem;
+    }
+    
+    .count-name {
+        font-size: 2rem;
+    }
+}

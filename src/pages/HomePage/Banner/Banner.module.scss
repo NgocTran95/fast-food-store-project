@@ -13,7 +13,7 @@
     position: absolute;
     top: 100px;
     left: 50%;
-    min-width: 80vw;
+    min-width: 80%;
     transform: translateX(-50%);
     color: var(--white-text-color);
 }
@@ -140,7 +140,7 @@
     }
 }
 
-@media (min-width: 768px) {
+@media (min-width: 769px) {
     .content {
         top: 20%;
     }

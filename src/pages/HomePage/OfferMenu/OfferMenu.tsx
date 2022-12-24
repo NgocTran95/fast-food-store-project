@@ -29,7 +29,7 @@ import {
 } from '../../../assets/images/offer-menu-combos';
 import Button from '../../../components/Button';
 
-const settings = {
+export const settings = {
   infinite: true,
   speed: 800,
   slidesToShow: 4,
@@ -63,60 +63,60 @@ const settings = {
   ],
 };
 
-const menuSlideItems = [
+export const menuSlideItems = [
   {
     name: 'Burgers',
-    to: '/burgers',
+    to: '/products/burgers',
     image: OffferMenuBurger,
   },
   {
     name: 'Breads',
-    to: '/breads',
+    to: '/products/breads',
     image: OffferMenuBread,
   },
   {
     name: 'BBQs',
-    to: '/bbqs',
+    to: '/products/bbqs',
     image: OffferMenuBbq,
   },
   {
     name: 'Fried Chicken',
-    to: '/fried-chicken',
+    to: '/products/fried-chicken',
     image: OffferMenuChicken,
   },
   {
     name: 'Pizzas',
-    to: '/pizzas',
+    to: '/products/pizzas',
     image: OffferMenuPizza,
   },
   {
     name: 'Porks',
-    to: '/porks',
+    to: '/products/porks',
     image: OffferMenuPork,
   },
   {
     name: 'Steaks',
-    to: '/steaks',
+    to: '/products/steaks',
     image: OffferMenuSteak,
   },
   {
     name: 'Sausages',
-    to: '/sausages',
+    to: '/products/sausages',
     image: OffferMenuSausage,
   },
   {
     name: 'Sandwiches',
-    to: '/sandwiches',
+    to: '/products/sandwiches',
     image: OffferMenuSanwich,
   },
   {
     name: 'Desserts',
-    to: '/desserts',
+    to: '/products/desserts',
     image: OffferMenuDessert,
   },
   {
     name: 'Drinks',
-    to: '/drinks',
+    to: '/products/drinks',
     image: OffferMenuDrink,
   },
 ];

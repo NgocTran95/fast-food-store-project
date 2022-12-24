@@ -1,3 +1,3 @@
-import Logo from './flash-food-logo.png';
+import Logo from './fast-food-logo.png';
 
 export { Logo } 

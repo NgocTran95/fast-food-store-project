@@ -4,7 +4,6 @@ import Slider from 'react-slick';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
-import 'react-loading-skeleton/dist/skeleton.css';
 
 import styles from './FavoriteMenu.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
@@ -43,48 +42,65 @@ function FavoriteMenu() {
             Inspired by recipes and creations of world’s best chefs
           </p>
         </div>
-        {isLoading ? (<SkeletonLoading quantity={8}/>) : 
-        (<Slider {...settings}>
-          {paginatedFeaturedProducts.map((products, index) => (
-            <Container className={cx('menu')} key={index}>
-              <Row>
-                {products.map((product) => (
-                  <Col
-                    lg={3}
-                    className={cx('product-wrapper')}
-                    key={product.id}
-                  >
-                    <div className={cx('product-inner')}>
-                      <div className={cx('product-widget')}>
-                        <div className={cx('widget-notification')}>
-                          <div className={cx('widget-item', 'hot')}>Hot</div>
-                          <div className={cx('widget-item', 'discount')}>
-                            10%
+        {isLoading ? (
+          <SkeletonLoading quantity={8} />
+        ) : (
+          <Slider {...settings}>
+            {paginatedFeaturedProducts.map((products, index) => (
+              <Container className={cx('menu')} key={index}>
+                <Row>
+                  {products.map((product) => (
+                    <Col
+                      sm={6}
+                      lg={3}
+                      className={cx('product-wrapper')}
+                      key={product.id}
+                    >
+                      <div className={cx('product-inner')}>
+                        <div className={cx('product-widget')}>
+                          <div className={cx('widget-notification')}>
+                            <div className={cx('widget-item', 'hot')}>Hot</div>
+                            <div className={cx('widget-item', 'discount')}>
+                              10%
+                            </div>
                           </div>
+                          <button className={cx('wishlist-btn', 'active')}>
+                            <FontAwesomeIcon icon={faHeart} />
+                          </button>
                         </div>
-                        <button className={cx('wishlist-btn', 'active')}>
-                          <FontAwesomeIcon icon={faHeart} />
-                        </button>
+                        <div className={cx('product-thumbnail')}>
+                          <img
+                            src={product.img}
+                            onError={({ currentTarget }) => {
+                              currentTarget.onerror = null;
+                              currentTarget.src =
+                                'https://keviniscooking.com/wp-content/uploads/2021/05/Bavette-Steak-Sirloin-Flap-square.jpg';
+                            }}
+                            alt={product.name}
+                          />
+                        </div>
+                        <div className={cx('product-info')}>
+                          <p className={cx('product-name')}>{product.name}</p>
+                          <p className={cx('product-price')}>
+                            ${product.price}
+                          </p>
+                          <button className={cx('product-btn')}>
+                            Add to cart
+                          </button>
+                        </div>
                       </div>
-                      <div className={cx('product-thumbnail')}>
-                        <img src={product.img} alt={product.name} />
-                      </div>
-                      <div className={cx('product-info')}>
-                        <p className={cx('product-name')}>{product.name}</p>
-                        <p className={cx('product-price')}>${product.price}</p>
-                        <button className={cx('product-btn')}>
-                          Add to cart
-                        </button>
-                      </div>
-                    </div>
-                  </Col>
-                ))}
-              </Row>
-            </Container>
-          ))}
-        </Slider>)
-        }
-        <Button to="products" variants="primary" className={cx('all-products-btn')}>
+                    </Col>
+                  ))}
+                </Row>
+              </Container>
+            ))}
+          </Slider>
+        )}
+        <Button
+          to="products"
+          variants="primary"
+          className={cx('all-products-btn')}
+        >
           All Products
         </Button>
       </div>
