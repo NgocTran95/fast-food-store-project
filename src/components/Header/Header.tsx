@@ -30,7 +30,7 @@ function Header() {
   const { pathname } = useLocation() 
   
   return (
-    <header className={cx('container')}>
+    <header className={cx('container', pathname === '/' && 'red-bg')}>
       <div className={cx('inner')}>
         <nav className={cx('nav')}>
           <Link className={cx('logo')} to="/">

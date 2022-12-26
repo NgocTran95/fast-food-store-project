@@ -4,9 +4,23 @@
     left: 0;
     height: 80px;
     width: 100%;
-    background-color: var(--primary-color);
-    color: var(--white-text-color);
     z-index: 2;
+    background-color: #ffffff;
+    &.red-bg {  
+        color: var(--white-text-color);
+        background-color: var(--primary-color);
+        .nav-item {
+            .nav-link {
+                color: var(--white-text-color);
+                &::before {
+                    background-color: var(--white-text-color);
+                }
+            }
+        }
+        .logo {
+            
+        }
+    }
 }
 
 .inner {
@@ -42,6 +56,7 @@
     height: 80%;
     max-width: 160px;
     background-color: #ffffff;
+    border: 1px solid var(--primary-color);
     border-radius: 50%;
     .logo-image {
         width: 100%;
@@ -65,15 +80,14 @@
         padding: 10px 0px;
         position: relative;
         transition: var(--primary-transition);
-        color: var(--white-text-color);
         &::before {
             content: '';
             height: 1px;
             width: 0;
-            background-color: var(--white-text-color);
             position: absolute;
             bottom: 0;
             left: 0;
+            background-color: var(--primary-text-color);
             transition: var(--primary-transition);
         }
 
@@ -84,8 +98,10 @@
         }
         
         &:hover {
+            color: var(--primary-color);
             &::before {
                 width: 100%;
+                background-color: var(--primary-color);
             }
         }
     }
@@ -102,6 +118,8 @@
     position: relative;
     padding: 15px;
     border-radius: 50%;
+    color: var(--white-text-color);
+    background-color: var(--primary-color);
     box-shadow: 0 6px 14px 0 rgb(39 39 39 / 25%);
     transition: var(--primary-transition);
     -webkit-transition: var(--primary-transition);
@@ -136,6 +154,8 @@
     padding: 15px 12px;
     margin-left: 10px;
     border-radius: 10px;
+    color: var(--white-text-color);
+    background-color: var(--primary-color);
     box-shadow: 0 6px 14px 0 rgb(39 39 39 / 25%);
     transition: var(--primary-transition);
     -webkit-transition: var(--primary-transition);
@@ -189,11 +209,12 @@
     margin-left: 15px;
     padding: 10px;
     border-radius: 10px;
-    cursor: pointer;
+    background-color: var(--primary-color);
     box-shadow: 0 6px 14px 0 rgb(39 39 39 / 25%);
     backface-visibility: hidden;
     transition: opacity 0.3s ease 0s,transform 0.3s ease 0s;
     -webkit-transition: opacity 0.3s ease 0s,transform 0.3s ease 0s;
+    cursor: pointer;
     .user-name {
         margin-left: 5px;
         font-size: 1.6rem;

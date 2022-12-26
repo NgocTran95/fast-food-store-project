@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { getBurgerList } from '../../../features/products/services';
+import { getBurgers } from '../../../features/products/services';
 import {
   BurgerMenuTomatoes,
   BurgerMenuBurger,
@@ -16,7 +16,7 @@ function BurgerMenu() {
   const dispatch = useAppDispatch();
   const { isLoading, burgerList } = useAppSelector((state) => state.products);
   useEffect(() => {
-    dispatch(getBurgerList(10));
+    dispatch(getBurgers(10));
   }, [dispatch]);
   return (
     <section className={cx('container')}>

@@ -1,6 +1,6 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
-import { Product } from "./productSlice";
+import { Product, Pagination } from "./productSlice";
 
 const baseUrl = process.env.REACT_APP_BASE_URL
 
@@ -14,10 +14,36 @@ export const getFeaturedProducts = createAsyncThunk('products/getFeaturedProduct
     }
 }) 
 
-export const getBurgerList = createAsyncThunk('products/getBurgerList', async(quantity: number, thunkAPI) => {
+export const getBurgers = createAsyncThunk('products/getBurgers', async(quantity: number, thunkAPI) => {
     try {
         const urlParams = `burgers?_sort=rate&_order=desc&_limit=${quantity}`
         const { data } = await axios.get<Product[]>(`${baseUrl}${urlParams}`)
+        return data
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error)
+    }
+})
+
+export interface Params {
+    route: string;
+    page: number;
+    limit: number;
+}
+
+export const getProducts = createAsyncThunk('products/getProducts', async({route, page, limit} : Params, thunkAPI) => {
+    try {
+        const urlParams = `${route}?_page=${page}&_limit=${limit}`
+        const { data } = await axios.get<Product[]>(`${baseUrl}${urlParams}`)
+        return data
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error)
+    }
+})
+
+export const getPagination = createAsyncThunk('products/getPagination', async(props, thunkAPI) => {
+    try {
+        const urlParams = 'pagination'
+        const { data } = await axios.get<Pagination>(`${baseUrl}${urlParams}`)
         return data
     } catch (error) {
         return thunkAPI.rejectWithValue(error)

@@ -63,7 +63,7 @@ export const settings = {
   ],
 };
 
-export const menuSlideItems = [
+export const MENU_LIST = [
   {
     name: 'Burgers',
     to: '/products/burgers',
@@ -127,7 +127,7 @@ function OfferMenu() {
     <div className={cx('container')}>
       <div className={cx('inner')}>
         <Slider {...settings} className={cx('slider')}>
-          {menuSlideItems.map((item, id) => (
+          {MENU_LIST.map((item, id) => (
             <div key={id}>
               <div className={cx('slide-inner')}>
                 <Link to={item.to} className={cx('slide-thumbnail')}>

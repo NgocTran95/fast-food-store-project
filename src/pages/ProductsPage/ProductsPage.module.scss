@@ -1,0 +1,11 @@
+.products {
+    width: 100%;
+    max-width: 1440px;
+    padding: 50px 15px;
+}
+
+@media (min-width: 1440px) {
+    .products {
+        padding: 50px 0px;
+    }
+}

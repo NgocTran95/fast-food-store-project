@@ -5,7 +5,7 @@ import ProductsPage from './pages/ProductsPage';
 import SingleProductPage from './pages/SingleProductPage';
 import ErrorPage from './pages/ErrorPage';
 import CheckoutPage from './pages/CheckoutPage';
-
+import { MENU_LIST } from './pages/HomePage/OfferMenu/OfferMenu';
 
 function App() {
   return (
@@ -13,9 +13,10 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/products" element={<ProductsPage />}>
-          
-        </Route>
+        <Route path="/products" element={<ProductsPage />}></Route>
+        {MENU_LIST.map((item) => (
+          <Route path={item.to} key={item.name} element={<ProductsPage />} />
+        ))}
         <Route path="products/:id" element={<SingleProductPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="*" element={<ErrorPage />} />

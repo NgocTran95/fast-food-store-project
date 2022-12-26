@@ -11,3 +11,12 @@ export const paginateList = (arr: Product[], num: number) => {
     return resultArr
 }
 
+export const getProductsPerPage = (arr: Product[], page: number, quantity: number) => {
+    return arr.slice((page-1)*quantity, page*quantity)
+} 
+
+export const formatFoodName = (name: string) => {
+    let nameWithoutDash = name.split('-').join(' ')
+    return nameWithoutDash.charAt(0).toUpperCase() + nameWithoutDash.slice(1)
+}
+

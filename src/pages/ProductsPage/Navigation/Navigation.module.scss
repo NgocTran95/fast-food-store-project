@@ -1,6 +1,6 @@
 .container {
-    padding-top: 170px;
-    padding-bottom: 100px;
+    padding-top: 150px;
+    padding-bottom: 80px;
     background: url('../../../assets/images/products-nav-bg.jpg') no-repeat center;
     background-size: cover;
 }
@@ -51,7 +51,7 @@
     overflow: hidden;
     border: 1px solid transparent;
     box-shadow: 0 6px 14px 0 rgb(0 0 0 / 10%);
-    &:hover {
+    &:hover, &.active {
         color: var(--primary-color);
         border-color: var(--primary-color);
         transition: var(--primary-transition);

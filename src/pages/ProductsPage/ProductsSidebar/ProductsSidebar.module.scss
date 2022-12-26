@@ -1,0 +1,48 @@
+.container {
+    padding: 0 15px;
+    font-weight: 400;
+    color: var(--blur-text-color);
+}
+
+.block {
+    margin-bottom: 30px;
+    .heading {
+        font-size: 1.8rem;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+    }
+    .item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        &:hover, &.active {
+            color: var(--primary-color);
+        }
+        
+        & ~ .item {
+            margin-top: 10px;
+        }
+        .title {
+            font-size: 1.5rem;
+        }
+        .count {
+            width: 25px;
+            height: 25px;
+            font-size: 1.4rem;
+            background-color: #f1f1f1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+    }
+}
+
+.rating-radio-input {
+    cursor: pointer;
+}
+.rating-radio-label {
+    color: #f7cd01;
+    cursor: pointer;
+}
+    

@@ -1,16 +1,15 @@
 import classNames from 'classnames/bind';
-import { Container, Row, Col } from 'react-bootstrap';
+import { Container, Row } from 'react-bootstrap';
 import Slider from 'react-slick';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
 import { useEffect } from 'react';
 
 import styles from './FavoriteMenu.module.scss';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getFeaturedProducts } from '../../../features/products/services';
-import { paginateList } from '../../../utils/paginateList';
+import { paginateList } from '../../../utils';
 import Button from '../../../components/Button';
-import SkeletonLoading from '../../../components/SkeletonLoading';
+import ProductCard from '../../../components/ProductCard';
+import ProductCardSkeletonLoading from '../../../components/ProductCardSkeletonLoading';
 
 const settings = {
   autoplay: true,
@@ -43,59 +42,33 @@ function FavoriteMenu() {
           </p>
         </div>
         {isLoading ? (
-          <SkeletonLoading quantity={8} />
-        ) : (
-          <Slider {...settings}>
-            {paginatedFeaturedProducts.map((products, index) => (
-              <Container className={cx('menu')} key={index}>
-                <Row>
-                  {products.map((product) => (
-                    <Col
-                      sm={6}
-                      lg={3}
-                      className={cx('product-wrapper')}
-                      key={product.id}
-                    >
-                      <div className={cx('product-inner')}>
-                        <div className={cx('product-widget')}>
-                          <div className={cx('widget-notification')}>
-                            <div className={cx('widget-item', 'hot')}>Hot</div>
-                            <div className={cx('widget-item', 'discount')}>
-                              10%
-                            </div>
-                          </div>
-                          <button className={cx('wishlist-btn', 'active')}>
-                            <FontAwesomeIcon icon={faHeart} />
-                          </button>
-                        </div>
-                        <div className={cx('product-thumbnail')}>
-                          <img
-                            src={product.img}
-                            onError={({ currentTarget }) => {
-                              currentTarget.onerror = null;
-                              currentTarget.src =
-                                'https://keviniscooking.com/wp-content/uploads/2021/05/Bavette-Steak-Sirloin-Flap-square.jpg';
-                            }}
-                            alt={product.name}
-                          />
-                        </div>
-                        <div className={cx('product-info')}>
-                          <p className={cx('product-name')}>{product.name}</p>
-                          <p className={cx('product-price')}>
-                            ${product.price}
-                          </p>
-                          <button className={cx('product-btn')}>
-                            Add to cart
-                          </button>
-                        </div>
-                      </div>
-                    </Col>
-                  ))}
-                </Row>
-              </Container>
-            ))}
-          </Slider>
-        )}
+          <Container className={cx('menu')}>
+            <Row>
+              {
+                Array.from(Array(8).keys()).map(item => (
+                  <ProductCardSkeletonLoading key={item} lg={3} sm={6}/>
+                ))
+              }
+            </Row>
+          </Container>
+        ) :(
+        <Slider {...settings}>
+          {paginatedFeaturedProducts.map((products, index) => (
+            <Container className={cx('menu')} key={index}>
+              <Row>
+                {products.map((product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                    lg={3}
+                    sm={6}
+                    isActive={false}
+                  />
+                ))}
+              </Row>
+            </Container>
+          ))}
+        </Slider>)}
         <Button
           to="products"
           variants="primary"
