@@ -8,8 +8,8 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { getFeaturedProducts } from '../../../features/products/services';
 import { paginateList } from '../../../utils';
 import Button from '../../../components/Button';
-import ProductCard from '../../../components/ProductCard';
-import ProductCardSkeletonLoading from '../../../components/ProductCardSkeletonLoading';
+import GridProductCard from '../../../components/GridProductCard';
+import GridProductCardSkeleton from '../../../components/GridProductCardSkeleton';
 
 const settings = {
   autoplay: true,
@@ -44,31 +44,30 @@ function FavoriteMenu() {
         {isLoading ? (
           <Container className={cx('menu')}>
             <Row>
-              {
-                Array.from(Array(8).keys()).map(item => (
-                  <ProductCardSkeletonLoading key={item} lg={3} sm={6}/>
-                ))
-              }
+              {Array.from(Array(8).keys()).map((item) => (
+                <GridProductCardSkeleton key={item} lg={3} sm={6} />
+              ))}
             </Row>
           </Container>
-        ) :(
-        <Slider {...settings}>
-          {paginatedFeaturedProducts.map((products, index) => (
-            <Container className={cx('menu')} key={index}>
-              <Row>
-                {products.map((product) => (
-                  <ProductCard
-                    key={product.id}
-                    product={product}
-                    lg={3}
-                    sm={6}
-                    isActive={false}
-                  />
-                ))}
-              </Row>
-            </Container>
-          ))}
-        </Slider>)}
+        ) : (
+          <Slider {...settings}>
+            {paginatedFeaturedProducts.map((products, index) => (
+              <Container className={cx('menu')} key={index}>
+                <Row>
+                  {products.map((product) => (
+                    <GridProductCard
+                      key={product.id}
+                      product={product}
+                      lg={3}
+                      sm={6}
+                      isActive={false}
+                    />
+                  ))}
+                </Row>
+              </Container>
+            ))}
+          </Slider>
+        )}
         <Button
           to="products"
           variants="primary"

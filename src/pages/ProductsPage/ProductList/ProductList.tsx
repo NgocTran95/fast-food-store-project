@@ -1,27 +1,21 @@
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGrip, faListUl } from '@fortawesome/free-solid-svg-icons';
-import { Row } from 'react-bootstrap';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import {
   faChevronLeft,
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
-import { useLocation } from 'react-router-dom';
 
 import styles from './ProductList.module.scss';
 import CustomSelect from '../../../components/CustomSelect';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import ProductCard from '../../../components/ProductCard';
-import ProductCardSkeletonLoading from '../../../components/ProductCardSkeletonLoading';
 import {
   getPagination,
   getProducts,
 } from '../../../features/products/services';
-import {
-  setCurrentFoodType,
-  setPage,
-} from '../../../features/products/productSlice';
+import GridProductView from './GridProductView';
+import ListProductView from './ListProductView';
 
 const SORT_OPTIONS = [
   { name: 'Default Sorting', value: 'default' },
@@ -33,11 +27,18 @@ const SORT_OPTIONS = [
 ];
 const cx = classNames.bind(styles);
 
-function ProductList() {
+interface Props {
+  currentFoodType: string;
+}
+
+function ProductList({ currentFoodType }: Props) {
   const dispatch = useAppDispatch();
-  const { isLoading, productList, pagination, currentFoodType, page } =
-    useAppSelector((state) => state.products);
-  const { pathname } = useLocation();
+  const { pagination } = useAppSelector(
+    (state) => state.products,
+  );
+  const [view, setView] = useState<'grid' | 'list'>('grid');
+  const [page, setPage] = useState<number>(1)
+
   const PRODUCTS_PER_PAGE = 12;
   const productTotal = pagination[currentFoodType];
   const pageTotal = Math.ceil(productTotal / PRODUCTS_PER_PAGE);
@@ -46,14 +47,11 @@ function ProductList() {
     page * PRODUCTS_PER_PAGE > productTotal
       ? productTotal
       : page * PRODUCTS_PER_PAGE;
-
+  
+  // Reset page when switch to other food
   useEffect(() => {
-    if (pathname === '/products') {
-      dispatch(setCurrentFoodType('best-foods'));
-    } else {
-      dispatch(setCurrentFoodType(pathname.split('/')[2]));
-    }
-  }, [pathname]);
+    setPage(1)
+  }, [currentFoodType])
 
   useEffect(() => {
     dispatch(
@@ -64,7 +62,7 @@ function ProductList() {
       }),
     );
   }, [dispatch, currentFoodType, page]);
-
+  
   useEffect(() => {
     dispatch(getPagination());
     localStorage.setItem('pagination', JSON.stringify(pagination));
@@ -78,23 +76,23 @@ function ProductList() {
 
   const handleSwitchPage = (page: number) => {
     scrollToView();
-    dispatch(setPage(page));
+    setPage(page);
   };
 
   const handlePrevNextPage = (action: 'prev' | 'next') => {
     if (action === 'prev') {
       if (page === 1) return;
-      dispatch(setPage(page - 1));
+      setPage(page - 1);
       scrollToView();
     } else {
       if (page === pageTotal) return;
-      dispatch(setPage(page + 1));
+      setPage(page + 1);
       scrollToView();
     }
   };
 
   return (
-    <section>
+    <section className={cx('container')}>
       <div className={cx('topbar')}>
         <p className={cx('count-item')}>
           Showing {firstProductPosition}-{lastProductPosition} of {productTotal}{' '}
@@ -102,32 +100,26 @@ function ProductList() {
         </p>
         <div className={cx('tools-bar')}>
           <div className={cx('display')}>
-            <button className={cx('display-btn')}>
+            <button
+              className={cx('display-btn', view === 'grid' && 'active')}
+              onClick={() => setView('grid')}
+            >
               <FontAwesomeIcon icon={faGrip} />
             </button>
-            <button className={cx('display-btn')}>
+            <button
+              className={cx('display-btn', view === 'list' && 'active')}
+              onClick={() => setView('list')}
+            >
               <FontAwesomeIcon icon={faListUl} />
             </button>
           </div>
           <CustomSelect optionArray={SORT_OPTIONS} />
         </div>
       </div>
-      {isLoading ? (
-        <Row>
-          {Array.from(Array(12).keys()).map((item) => (
-            <ProductCardSkeletonLoading key={item} lg={3} />
-          ))}
-        </Row>
-      ) : (
-        <Row>
-          {productList.map((product) => (
-            <ProductCard product={product} lg={3} isActive={true} key={product.id}/>
-          ))}
-        </Row>
-      )}
+      {view === 'grid' ? <GridProductView /> : <ListProductView />}
       <div className={cx('pagination')}>
         <button
-          className={cx('pagination-btn', page === 1 && 'hide' )}
+          className={cx('pagination-btn', page === 1 && 'hide')}
           onClick={() => handlePrevNextPage('prev')}
         >
           <FontAwesomeIcon icon={faChevronLeft} />

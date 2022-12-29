@@ -9,18 +9,23 @@ import ProductList from './ProductList';
 import ProductsSidebar from './ProductsSidebar';
 
 const cx = classNames.bind(styles);
-function ProductsPage() {
+
+interface Props {
+  currentFoodType: string,
+}
+
+function ProductsPage({currentFoodType}: Props) {
   return (
     <div>
       <Header />
-      <Navigation />
+      <Navigation currentFoodType={currentFoodType}/>
       <Container className={cx('products')}>
         <Row>
           <Col lg={3}>
-            <ProductsSidebar />
+            <ProductsSidebar/>
           </Col>
           <Col lg={9}>
-            <ProductList/>
+            <ProductList currentFoodType={currentFoodType}/>
           </Col>
         </Row>
       </Container>

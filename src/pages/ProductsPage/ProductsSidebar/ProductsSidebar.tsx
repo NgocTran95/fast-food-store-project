@@ -5,14 +5,13 @@ import { Form } from 'react-bootstrap';
 import styles from './ProductsSidebar.module.scss';
 import { MENU_LIST } from '../../HomePage/OfferMenu/OfferMenu';
 import DoubleRangeSlider from '../../../components/DoubleRangeSlider';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setPage } from '../../../features/products/productSlice';
+import { useAppSelector } from '../../../app/hooks';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
+
 function ProductsSidebar() {
-  const dispatch = useAppDispatch();
   const { pagination } = useAppSelector((state) => state.products);
 
   return (
@@ -26,7 +25,6 @@ function ProductsSidebar() {
             className={({ isActive }) =>
               isActive ? cx('item', 'active') : cx('item')
             }
-            onClick={() => dispatch(setPage(1))}
           >
             <p className={cx('title')}>{item.name}</p>
             <div className={cx('count')}>

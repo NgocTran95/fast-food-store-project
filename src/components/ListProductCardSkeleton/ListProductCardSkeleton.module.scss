@@ -1,0 +1,80 @@
+.container {
+    margin-bottom: 50px;
+}
+
+.thumnail-wrapper {
+    padding: unset; 
+}
+
+.thumbnail {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    transition: var(--primary-transition);
+}
+
+.product-name {
+    height: 37px;
+    margin-bottom: 15px;
+}
+
+.product-price {
+    height: 27px;
+    margin-bottom: 10px;
+}
+
+.rating {
+    height: 17px;
+    margin-bottom: 25px;
+}
+
+.actions {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.add-btn {
+    height: 42px;
+    min-width: 160px;
+    padding: 0 30px;
+    margin-right: 15px;
+    border-radius: 42px;
+}
+
+.add-wishlist {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+}
+
+.product-desc {
+    margin-top: 25px;
+    height: 22px;
+}
+
+// THE LOADING EFFECT
+.skeleton {
+	background-color: #e2e5e7;
+	// The shine that's going to move across the skeleton:
+	background-image:			
+			linear-gradient(
+				90deg, 
+				rgba(#fff, 0), 
+				rgba(#fff, 0.5),
+				rgba(#fff, 0)
+			);
+	background-size: 40px 100%; // width of the shine
+	background-repeat: no-repeat; // No need to repeat the shine effect
+	background-position: left -40px top 0; // Place shine on the left side, with offset on the left based on the width of the shine - see background-size
+	animation: shine 1s ease infinite; // increase animation time to see effect in 'slow-mo'
+}
+
+@keyframes shine {
+	to {
+		// Move shine from left to right, with offset on the right based on the width of the shine - see background-size
+		background-position: right -40px top 0;
+	}
+}

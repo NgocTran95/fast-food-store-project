@@ -20,8 +20,6 @@ export interface Products {
     featuredProducts: Product[];
     burgerList: Product[];
     productList: Product[];
-    page: number;
-    currentFoodType: string;
     pagination: Pagination;
     isSuccess: boolean;
     error: any;
@@ -33,8 +31,6 @@ const initialState = {
     burgerList: [],
     productList: [],
     pagination: JSON.parse(localStorage.getItem('pagination') || '{}') ,
-    page: 1,
-    currentFoodType: 'best-foods',
     isSuccess: false,
     error: {},
 } as Products
@@ -43,12 +39,6 @@ const productSlice = createSlice({
     name: 'products',
     initialState,
     reducers: {
-        setPage: (state, { payload }) => {
-            state.page = payload
-        },
-        setCurrentFoodType: (state, { payload }) => {
-            state.currentFoodType = payload
-        }
     },
     extraReducers(builder) {
         builder
@@ -103,6 +93,4 @@ const productSlice = createSlice({
     },
 })
 
-
-export const { setPage, setCurrentFoodType } = productSlice.actions
 export default productSlice.reducer

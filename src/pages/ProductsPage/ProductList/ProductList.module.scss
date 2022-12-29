@@ -1,8 +1,11 @@
-
+.container {
+    padding: 0 7.5px;
+}
 .topbar {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    margin-bottom: 20px;
 }
 .count-item {
     font-size: 1.4rem;
@@ -29,7 +32,7 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        &:hover {
+        &:hover, &.active {
             color: var(--primary-text-color);
         }
     }

@@ -1,6 +1,6 @@
 import classNames from 'classnames/bind';
 import { Col } from 'react-bootstrap';
-import styles from './ProductCardSkeletonLoading.module.scss';
+import styles from './GridProductCardSkeleton.module.scss';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,7 +9,7 @@ interface Props {
   lg?: number,
   sm?: number,
 }
-function ProductCardSkeletonLoading({ lg, sm }: Props) {
+function GridProductCardSkeleton({ lg, sm }: Props) {
   return (
     <Col lg={lg} sm={sm} className={cx('product-wrapper')}>
       <div className={cx('product-inner')}>
@@ -32,4 +32,4 @@ function ProductCardSkeletonLoading({ lg, sm }: Props) {
   );
 }
 
-export default ProductCardSkeletonLoading;
+export default GridProductCardSkeleton;

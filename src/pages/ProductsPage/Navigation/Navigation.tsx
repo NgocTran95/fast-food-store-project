@@ -1,18 +1,19 @@
 import classNames from 'classnames/bind';
-import { NavLink, Link, useParams, useLocation } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import Slider from 'react-slick';
 
 import styles from './Navigation.module.scss';
 import { MENU_LIST } from '../../HomePage/OfferMenu/OfferMenu';
 import { settings } from '../../HomePage/OfferMenu/OfferMenu';
-import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { setPage } from '../../../features/products/productSlice';
 import { formatFoodName } from '../../../utils';
 
 const cx = classNames.bind(styles);
-function Navigation() {
-  const dispatch = useAppDispatch();
-  const { currentFoodType } = useAppSelector((state) => state.products);
+
+interface Props {
+  currentFoodType: string,
+}
+
+function Navigation({currentFoodType}: Props) {
   return (
     <section className={cx('container')}>
       <div className={cx('inner')}>
@@ -47,7 +48,6 @@ function Navigation() {
                       ? cx('slide-thumbnail', 'active')
                       : cx('slide-thumbnail')
                   }
-                  onClick={() => dispatch(setPage(1))}
                 >
                   <div className={cx('slide-image')}>
                     <img src={item.image} alt={item.name} />

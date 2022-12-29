@@ -3,7 +3,7 @@ import { Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 
-import styles from './ProductCard.module.scss';
+import styles from './GridProductCard.module.scss';
 import { Product } from '../../features/products/productSlice';
 import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
@@ -15,7 +15,7 @@ interface Props {
     isActive: boolean
 }
 
-function ProductCard( { product, lg, sm, isActive } : Props) {
+function GridProductCard( { product, lg, sm, isActive } : Props) {
 
   return (
     <Col sm={sm} lg={lg} className={cx('product-wrapper')}>
@@ -53,4 +53,4 @@ function ProductCard( { product, lg, sm, isActive } : Props) {
   );
 }
 
-export default ProductCard;
+export default GridProductCard;

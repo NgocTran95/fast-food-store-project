@@ -13,9 +13,16 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/products" element={<ProductsPage />}></Route>
+        <Route
+          path="/products"
+          element={<ProductsPage currentFoodType="best-foods" />}
+        />
         {MENU_LIST.map((item) => (
-          <Route path={item.to} key={item.name} element={<ProductsPage />} />
+          <Route
+            path={item.to}
+            key={item.name}
+            element={<ProductsPage currentFoodType={item.to.split('/')[2]} />}
+          />
         ))}
         <Route path="products/:id" element={<SingleProductPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
