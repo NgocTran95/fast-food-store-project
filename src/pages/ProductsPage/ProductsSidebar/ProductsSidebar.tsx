@@ -1,19 +1,28 @@
 import classNames from 'classnames/bind';
 import { NavLink } from 'react-router-dom';
-import { Form } from 'react-bootstrap';
 
 import styles from './ProductsSidebar.module.scss';
 import { MENU_LIST } from '../../HomePage/OfferMenu/OfferMenu';
-import DoubleRangeSlider from '../../../components/DoubleRangeSlider';
-import { useAppSelector } from '../../../app/hooks';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar } from '@fortawesome/free-solid-svg-icons';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import {
+  clearFilters,
+  setFilterPrice,
+} from '../../../features/filters/filtersSlice';
 
 const cx = classNames.bind(styles);
 
 function ProductsSidebar() {
+  const dispatch = useAppDispatch();
   const { pagination } = useAppSelector((state) => state.products);
+  const {
+    filters: { max_price, min_price, price },
+  } = useAppSelector((state) => state.filters);
 
+  const isClearFilterActive = price !== max_price
+  
+  const handleSetFilterByPrice = (e: React.ChangeEvent<HTMLInputElement>) => {
+    dispatch(setFilterPrice(+e.target.value));
+  };
   return (
     <section className={cx('container')}>
       <div className={cx('block')}>
@@ -35,67 +44,28 @@ function ProductsSidebar() {
       </div>
       <div className={cx('block')}>
         <h3 className={cx('heading')}>price</h3>
-        <DoubleRangeSlider
-          min={0}
-          max={100}
-          onChange={({ min, max }) => console.log(`min = ${min}, max = ${max}`)}
-        />
+        <div className={cx('price-filter-container')}>
+          <input
+            type="range"
+            min={min_price}
+            max={max_price}
+            value={price}
+            className={cx('price-filter')}
+            onChange={handleSetFilterByPrice}
+          />
+        </div>
+        <div>
+          Range: <span className={cx('price')}>${min_price}</span> -{' '}
+          <span className={cx('price')}>${price}</span>
+        </div>
       </div>
       <div className={cx('block')}>
-        <h3 className={cx('heading')}>rating filter</h3>
-        <Form>
-          <Form.Check>
-            <Form.Check.Input
-              type="radio"
-              name="rating"
-              id="rating-5-stars"
-              className={cx('rating-radio-input')}
-            />
-            <Form.Check.Label
-              htmlFor="rating-5-stars"
-              className={cx('rating-radio-label')}
-            >
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-            </Form.Check.Label>
-          </Form.Check>
-          <Form.Check>
-            <Form.Check.Input
-              type="radio"
-              name="rating"
-              id="rating-4-stars"
-              className={cx('rating-radio-input')}
-            />
-            <Form.Check.Label
-              htmlFor="rating-4-stars"
-              className={cx('rating-radio-label')}
-            >
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-            </Form.Check.Label>
-          </Form.Check>
-          <Form.Check>
-            <Form.Check.Input
-              type="radio"
-              name="rating"
-              id="rating-3-stars"
-              className={cx('rating-radio-input')}
-            />
-            <Form.Check.Label
-              htmlFor="rating-3-stars"
-              className={cx('rating-radio-label')}
-            >
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-              <FontAwesomeIcon icon={faStar} />
-            </Form.Check.Label>
-          </Form.Check>
-        </Form>
+        <button
+          className={cx('clear-filters', isClearFilterActive && 'active')}
+          onClick={() => dispatch(clearFilters())}
+        >
+          Clear filters
+        </button>
       </div>
     </section>
   );

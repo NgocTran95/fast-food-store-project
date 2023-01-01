@@ -14,7 +14,7 @@ import BurgerMenuSkeletonLoading from './BurgerMenuSkeletonLoading';
 const cx = classNames.bind(styles);
 function BurgerMenu() {
   const dispatch = useAppDispatch();
-  const { isLoading, burgerList } = useAppSelector((state) => state.products);
+  const { isLoading, burgers } = useAppSelector((state) => state.products);
   useEffect(() => {
     dispatch(getBurgers(10));
   }, [dispatch]);
@@ -33,7 +33,7 @@ function BurgerMenu() {
         ) : (
           <Container>
             <Row>
-              {burgerList.map((product) => (
+              {burgers.map((product) => (
                 <Col lg={6} key={product.id}>
                   <div className={cx('product-inner')}>
                     <div className={cx('product-widget')}>

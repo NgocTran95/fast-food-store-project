@@ -1,8 +1,6 @@
 import classNames from 'classnames/bind';
 import { Row, Col } from 'react-bootstrap';
 import styles from './ListProductCardSkeleton.module.scss';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart } from '@fortawesome/free-solid-svg-icons';
 
 const cx = classNames.bind(styles);
 

@@ -24,15 +24,10 @@ export const getBurgers = createAsyncThunk('products/getBurgers', async(quantity
     }
 })
 
-export interface Params {
-    route: string;
-    page: number;
-    limit: number;
-}
 
-export const getProducts = createAsyncThunk('products/getProducts', async({route, page, limit} : Params, thunkAPI) => {
+export const getProducts = createAsyncThunk('products/getProducts', async(foodType : string, thunkAPI) => {
     try {
-        const urlParams = `${route}?_page=${page}&_limit=${limit}`
+        const urlParams = `${foodType}`
         const { data } = await axios.get<Product[]>(`${baseUrl}${urlParams}`)
         return data
     } catch (error) {

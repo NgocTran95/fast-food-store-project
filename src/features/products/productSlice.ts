@@ -17,9 +17,9 @@ export interface Pagination {
 
 export interface Products {
     isLoading: boolean;
-    featuredProducts: Product[];
-    burgerList: Product[];
-    productList: Product[];
+    featured_products: Product[];
+    burgers: Product[];
+    products: Product[];
     pagination: Pagination;
     isSuccess: boolean;
     error: any;
@@ -27,10 +27,10 @@ export interface Products {
 
 const initialState = {
     isLoading: false,
-    featuredProducts: [],
-    burgerList: [],
-    productList: [],
-    pagination: JSON.parse(localStorage.getItem('pagination') || '{}') ,
+    featured_products: [],
+    burgers: [],
+    products: [],
+    pagination: JSON.parse(localStorage.getItem('pagination') || '{}'),
     isSuccess: false,
     error: {},
 } as Products
@@ -48,7 +48,7 @@ const productSlice = createSlice({
         .addCase(getFeaturedProducts.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
-            state.featuredProducts = action.payload;
+            state.featured_products = action.payload;
         })
         .addCase(getFeaturedProducts.rejected, (state, action) => {
             state.isLoading = false;
@@ -60,7 +60,7 @@ const productSlice = createSlice({
         .addCase(getBurgers.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
-            state.burgerList = action.payload;
+            state.burgers = action.payload;
         })
         .addCase(getBurgers.rejected, (state, action) => {
             state.isLoading = false;
@@ -72,7 +72,7 @@ const productSlice = createSlice({
         .addCase(getProducts.fulfilled, (state, action) => {
             state.isLoading = false;
             state.isSuccess = true;
-            state.productList = action.payload;
+            state.products = action.payload;
         })
         .addCase(getProducts.rejected, (state, action) => {
             state.isLoading = false;

@@ -1,7 +1,7 @@
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGrip, faListUl } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {
   faChevronLeft,
   faChevronRight,
@@ -10,10 +10,7 @@ import {
 import styles from './ProductList.module.scss';
 import CustomSelect from '../../../components/CustomSelect';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import {
-  getPagination,
-  getProducts,
-} from '../../../features/products/services';
+import { setPage, setDisplay } from '../../../features/filters/filtersSlice';
 import GridProductView from './GridProductView';
 import ListProductView from './ListProductView';
 
@@ -22,52 +19,32 @@ const SORT_OPTIONS = [
   { name: 'Sort by average rating', value: 'rating' },
   { name: 'Sort by price: High to Low', value: 'price-des' },
   { name: 'Sort by price: Low to High', value: 'price-inc' },
-  { name: 'Sort by from A to Z', value: 'alphabet' },
-  { name: 'Sort by from Z to A', value: 'alphabet-reverse' },
+  { name: 'Sort by from A to Z', value: 'a-z' },
+  { name: 'Sort by from Z to A', value: 'z-a' },
 ];
 const cx = classNames.bind(styles);
 
 interface Props {
   currentFoodType: string;
 }
+export const PRODUCTS_PER_PAGE = 12;
 
 function ProductList({ currentFoodType }: Props) {
   const dispatch = useAppDispatch();
-  const { pagination } = useAppSelector(
-    (state) => state.products,
-  );
-  const [view, setView] = useState<'grid' | 'list'>('grid');
-  const [page, setPage] = useState<number>(1)
+  const { page, display, filtered_products } = useAppSelector((state) => state.filters);
 
-  const PRODUCTS_PER_PAGE = 12;
-  const productTotal = pagination[currentFoodType];
+  const productTotal = filtered_products.length;
   const pageTotal = Math.ceil(productTotal / PRODUCTS_PER_PAGE);
   const firstProductPosition = (page - 1) * PRODUCTS_PER_PAGE + 1;
   const lastProductPosition =
     page * PRODUCTS_PER_PAGE > productTotal
       ? productTotal
       : page * PRODUCTS_PER_PAGE;
-  
+
   // Reset page when switch to other food
   useEffect(() => {
-    setPage(1)
-  }, [currentFoodType])
-
-  useEffect(() => {
-    dispatch(
-      getProducts({
-        route: currentFoodType,
-        page: page,
-        limit: PRODUCTS_PER_PAGE,
-      }),
-    );
-  }, [dispatch, currentFoodType, page]);
-  
-  useEffect(() => {
-    dispatch(getPagination());
-    localStorage.setItem('pagination', JSON.stringify(pagination));
-    // eslint-disable-next-line
-  }, [dispatch]);
+    dispatch(setPage(1));
+  }, [dispatch, currentFoodType]);
 
   const scrollToView = () => {
     document.body.scrollTop = 500; // For Safari
@@ -76,17 +53,17 @@ function ProductList({ currentFoodType }: Props) {
 
   const handleSwitchPage = (page: number) => {
     scrollToView();
-    setPage(page);
+    dispatch(setPage(page));
   };
 
   const handlePrevNextPage = (action: 'prev' | 'next') => {
     if (action === 'prev') {
       if (page === 1) return;
-      setPage(page - 1);
+      dispatch(setPage(page - 1));
       scrollToView();
     } else {
       if (page === pageTotal) return;
-      setPage(page + 1);
+      dispatch(setPage(page + 1));
       scrollToView();
     }
   };
@@ -101,14 +78,14 @@ function ProductList({ currentFoodType }: Props) {
         <div className={cx('tools-bar')}>
           <div className={cx('display')}>
             <button
-              className={cx('display-btn', view === 'grid' && 'active')}
-              onClick={() => setView('grid')}
+              className={cx('display-btn', display === 'grid' && 'active')}
+              onClick={() => dispatch(setDisplay('grid'))}
             >
               <FontAwesomeIcon icon={faGrip} />
             </button>
             <button
-              className={cx('display-btn', view === 'list' && 'active')}
-              onClick={() => setView('list')}
+              className={cx('display-btn', display === 'list' && 'active')}
+              onClick={() => dispatch(setDisplay('list'))}
             >
               <FontAwesomeIcon icon={faListUl} />
             </button>
@@ -116,7 +93,7 @@ function ProductList({ currentFoodType }: Props) {
           <CustomSelect optionArray={SORT_OPTIONS} />
         </div>
       </div>
-      {view === 'grid' ? <GridProductView /> : <ListProductView />}
+      {display === 'grid' ? <GridProductView /> : <ListProductView />}
       <div className={cx('pagination')}>
         <button
           className={cx('pagination-btn', page === 1 && 'hide')}

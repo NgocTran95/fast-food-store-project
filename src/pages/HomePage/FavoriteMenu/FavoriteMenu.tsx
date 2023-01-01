@@ -23,14 +23,14 @@ const settings = {
 const cx = classNames.bind(styles);
 function FavoriteMenu() {
   const dispatch = useAppDispatch();
-  const { isLoading, featuredProducts } = useAppSelector(
+  const { isLoading, featured_products } = useAppSelector(
     (state) => state.products,
   );
   useEffect(() => {
     dispatch(getFeaturedProducts(30));
   }, [dispatch]);
 
-  const paginatedFeaturedProducts = paginateList(featuredProducts, 8);
+  const paginatedFeaturedProducts = paginateList(featured_products, 8);
   return (
     <section className={cx('container')}>
       <div className={cx('inner')}>
