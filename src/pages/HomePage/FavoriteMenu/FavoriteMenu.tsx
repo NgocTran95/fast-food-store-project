@@ -58,6 +58,7 @@ function FavoriteMenu() {
                     <GridProductCard
                       key={product.id}
                       product={product}
+                      category='best-foods'
                       lg={3}
                       sm={6}
                       isActive={false}

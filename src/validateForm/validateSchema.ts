@@ -16,4 +16,10 @@ export const validateLoginSchema = yup.object().shape({
       .string()
       .required('Password is required')
       .password('Password must be 8 characters, at least 1 letter and number'),
+});
+
+export const validateReviewSchema = yup.object().shape({
+    name: yup.string().required('Name is required'),
+    email: yup.string().required('Email is required').email('Email invalid'),
+    comment: yup.string().required('Review content is required'),
   });

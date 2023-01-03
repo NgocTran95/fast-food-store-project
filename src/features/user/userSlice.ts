@@ -14,10 +14,10 @@ export interface userState {
     isSuccess: boolean;
     error: {code: string};
 }
-const currenUser = JSON.parse(localStorage.getItem('user') || '{}')
+const currentUser = JSON.parse(localStorage.getItem('user') || '{}')
 const initialState = {
     isLoading: false,
-    userInfo: currenUser,
+    userInfo: currentUser,
     isSuccess: false,
     error: {},
 } as userState

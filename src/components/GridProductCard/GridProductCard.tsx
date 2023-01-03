@@ -9,14 +9,14 @@ import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 
 interface Props {
-    product: Product,
-    lg?: number,
-    sm?: number,
-    isActive: boolean
+  product: Product;
+  lg?: number;
+  sm?: number;
+  isActive: boolean;
+  category: string;
 }
 
-function GridProductCard( { product, lg, sm, isActive } : Props) {
-
+function GridProductCard({ product, lg, sm, isActive, category }: Props) {
   return (
     <Col sm={sm} lg={lg} className={cx('product-wrapper')}>
       <div className={cx('product-inner')}>
@@ -29,7 +29,10 @@ function GridProductCard( { product, lg, sm, isActive } : Props) {
             <FontAwesomeIcon icon={faHeart} />
           </button>
         </div>
-        <Link className={cx('product-thumbnail')} to={`/products/${product.id}`}>
+        <Link
+          className={cx('product-thumbnail')}
+          to={`/products/${category}/${product.id}`}
+        >
           <img
             src={product.img}
             onError={({ currentTarget }) => {
@@ -40,7 +43,7 @@ function GridProductCard( { product, lg, sm, isActive } : Props) {
             alt={product.name}
           />
           <div className={cx('detail-icon')}>
-            <FontAwesomeIcon icon={faMagnifyingGlass}/>
+            <FontAwesomeIcon icon={faMagnifyingGlass} />
           </div>
         </Link>
         <div className={cx('product-info')}>

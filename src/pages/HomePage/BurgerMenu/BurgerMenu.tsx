@@ -43,7 +43,7 @@ function BurgerMenu() {
                     <div className={cx('product-info')}>
                       <Link
                         className={cx('product-name')}
-                        to={`/products/${product.id}`}
+                        to={`/products/burgers/${product.id}`}
                       >
                         {product.name}
                       </Link>

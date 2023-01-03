@@ -44,3 +44,18 @@ export const getPagination = createAsyncThunk('products/getPagination', async(pr
         return thunkAPI.rejectWithValue(error)
     }
 })
+
+interface SingleProductParams {
+    id: string | undefined,
+    category: string | undefined,
+}
+
+export const getSingleProduct = createAsyncThunk('products/getSingleProduct', async({ id, category }: SingleProductParams, thunkAPI) => {
+    try {
+        const urlParams = `${category}?id=${id}`
+        const { data } = await axios.get<Product[]>(`${baseUrl}${urlParams}`)
+        return data[0]
+    } catch (error) {
+        return thunkAPI.rejectWithValue(error) 
+    }
+})

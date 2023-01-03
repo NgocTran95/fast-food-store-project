@@ -31,7 +31,9 @@ export const PRODUCTS_PER_PAGE = 12;
 
 function ProductList({ currentFoodType }: Props) {
   const dispatch = useAppDispatch();
-  const { page, display, filtered_products } = useAppSelector((state) => state.filters);
+  const { page, display, filtered_products } = useAppSelector(
+    (state) => state.filters,
+  );
 
   const productTotal = filtered_products.length;
   const pageTotal = Math.ceil(productTotal / PRODUCTS_PER_PAGE);
@@ -93,7 +95,11 @@ function ProductList({ currentFoodType }: Props) {
           <CustomSelect optionArray={SORT_OPTIONS} />
         </div>
       </div>
-      {display === 'grid' ? <GridProductView /> : <ListProductView />}
+      {display === 'grid' ? (
+        <GridProductView category={currentFoodType} />
+      ) : (
+        <ListProductView category={currentFoodType} />
+      )}
       <div className={cx('pagination')}>
         <button
           className={cx('pagination-btn', page === 1 && 'hide')}

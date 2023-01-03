@@ -1,5 +1,6 @@
 import { collection, DocumentData, FieldValue, onSnapshot, orderBy, query, Query, where, WhereFilterOp } from "firebase/firestore";
 import { useEffect, useState } from "react";
+import { Review } from "../features/reviews/services";
 import { db } from "./config";
 
 export interface condition {
@@ -7,40 +8,37 @@ export interface condition {
     compareValue: string;
 }
 
-export interface userType {
-    email: string,
-    displayName: string,
-    password?: string,
-    uid: string,
-    providerId: string | null,
-    createAt: FieldValue,
-}
 
-export const useFireStoreGetUser = (condition : condition) => {
-    const [users, setUsers] = useState<userType[]>([])
-    useEffect(() => {
-        if (!condition.compareValue.length) {
-            return
-        }
-        const collectionRef: Query<DocumentData> = query(
-            collection(db, 'users'),
-            where('users', condition.operator, condition.compareValue),
-            orderBy('createAt', 'asc'),
-        )
-        const unscribed = onSnapshot(collectionRef, (snapshot) => {
-            const documents : userType[] = snapshot.docs.map((doc) => ({
-                email: doc.data().email,
-                displayName: doc.data().displayName,
-                password: doc.data().password,
-                uid: doc.data().uid,
-                providerId: doc.data().providerId,
-                createAt: doc.data().createAt
-            }))
-            setUsers(documents)
-        })
-        return (() => {
-            unscribed()
-        })
-    }, [condition])
-    return users
-}
+
+// export interface ReviewData extends Review {
+//     createAt: FieldValue;
+// }
+
+// export const useFireStoreGetReviews = (condition : condition) => {
+//     const [reviews, setReviews] = useState<ReviewData[]>([])
+//     useEffect(() => {
+//         if (!condition.compareValue.length) {
+//             return
+//         }
+//         const collectionRef: Query<DocumentData> = query(
+//             collection(db, 'reviews'),
+//             where('uid', condition.operator, condition.compareValue),
+//             orderBy('createAt', 'asc'),
+//         )
+//         const unscribed = onSnapshot(collectionRef, (snapshot) => {
+//             const documents : ReviewData[] = snapshot.docs.map((doc) => ({
+//                 uid: doc.data().uid,
+//                 name: doc.data().name,
+//                 email: doc.data().email,
+//                 comment: doc.data().comment,
+//                 rating: doc.data().rating,
+//                 createAt: doc.data().createAt
+//             }))
+//             setReviews(documents)
+//         })
+//         return (() => {
+//             unscribed()
+//         })
+//     }, [condition])
+//     return reviews
+// }

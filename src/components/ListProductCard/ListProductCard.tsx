@@ -10,14 +10,15 @@ import { Product } from '../../features/products/productSlice';
 
 interface Props {
   product: Product;
+  category: string;
 }
 const cx = classNames.bind(styles);
-function ListProductCard({ product }: Props) {
+function ListProductCard({ product, category }: Props) {
   return (
     <Row className={cx('container')}>
       <Col lg={3}>
         <div className={cx('thumnail-wrapper')}>
-          <Link to={`/products/${product.id}`} className={cx('thumbnail')}>
+          <Link to={`/products/${category}/${product.id}`} className={cx('thumbnail')}>
             <img
               src={product.img}
               onError={({ currentTarget }) => {
@@ -38,7 +39,7 @@ function ListProductCard({ product }: Props) {
         </div>
       </Col>
       <Col lg={9}>
-        <Link to={`/products/${product.id}`} className={cx('product-name')}>
+        <Link to={`/products/${category}/${product.id}`} className={cx('product-name')}>
           {product.name}
         </Link>
         <p className={cx('product-price')}>{`$${product.price}`}</p>

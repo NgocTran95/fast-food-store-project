@@ -18,13 +18,17 @@ function App() {
           element={<ProductsPage currentFoodType="best-foods" />}
         />
         {MENU_LIST.map((item) => (
-          <Route
-            path={item.to}
-            key={item.name}
-            element={<ProductsPage currentFoodType={item.to.split('/')[2]} />}
-          />
+          <>
+            <Route
+              path={item.to}
+              key={item.name}
+              element={<ProductsPage currentFoodType={item.to.split('/')[2]} />}
+            >
+            </Route>
+            <Route path={`${item.to}/:id`} key={`${item.name}/:id`} element={<SingleProductPage />} />
+          </>
         ))}
-        <Route path="products/:id" element={<SingleProductPage />} />
+        <Route path='products/best-foods/:id' element={<SingleProductPage />} />
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
