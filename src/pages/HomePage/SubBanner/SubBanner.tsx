@@ -48,7 +48,7 @@ function SubBanner() {
             Buy 2 dishes and get a 1L Pepsi Free
           </span>
         </Reveal>
-        <Button to="/products" variants="outline" className={cx('oder-btn')}>
+        <Button to="/products/fried-chicken" variants="outline" className={cx('oder-btn')}>
           ORDER NOW
         </Button>
       </div>

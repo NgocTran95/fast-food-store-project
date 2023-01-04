@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { getFeaturedProducts, getBurgers, getProducts, getPagination, getSingleProduct } from "./services";
+import { getFeaturedProducts, getBurgers, getProducts, getPagination } from "./services";
 
 export interface Product {
     id: string;
@@ -20,7 +20,6 @@ export interface Products {
     featured_products: Product[];
     burgers: Product[];
     products: Product[];
-    single_product: Product;
     pagination: Pagination;
     isSuccess: boolean;
     error: any;
@@ -31,7 +30,6 @@ const initialState = {
     featured_products: [],
     burgers: [],
     products: [],
-    single_product: { id: '', img: '', country: '', dsc: '', name: '', price: 0, rate: 0},
     pagination: JSON.parse(localStorage.getItem('pagination') || '{}'),
     isSuccess: false,
     error: {},
@@ -89,18 +87,6 @@ const productSlice = createSlice({
             state.pagination = action.payload;
         })
         .addCase(getPagination.rejected, (state, action) => {
-            state.isLoading = false;
-            state.error = action.payload
-        })
-        .addCase(getSingleProduct.pending, (state) => {
-            state.isLoading = true
-        })
-        .addCase(getSingleProduct.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.isSuccess = true;
-            state.single_product = action.payload;
-        })
-        .addCase(getSingleProduct.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.payload
         })

@@ -1,6 +1,6 @@
 import { collection, DocumentData, FieldValue, onSnapshot, orderBy, query, Query, where, WhereFilterOp } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { Review } from "../features/reviews/services";
+import { Review } from "../features/single_product/services";
 import { db } from "./config";
 
 export interface condition {

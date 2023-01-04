@@ -19,11 +19,11 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import ReviewItem from './ReviewItem';
 import styles from './Reviews.module.scss';
 import { validateReviewSchema } from '../../../validateForm/validateSchema';
-import { createReview } from '../../../features/reviews/services';
+import { createReview } from '../../../features/single_product/services';
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
-import { Review } from '../../../features/reviews/services';
+import { Review } from '../../../features/single_product/services';
 import { db } from '../../../firebase/config';
-import { setReviews } from '../../../features/reviews/reviewSlice';
+import { setReviews } from '../../../features/single_product/singleProductSlice';
 const cx = classNames.bind(styles);
 
 interface ReviewInput {
@@ -38,8 +38,7 @@ export interface ReviewData extends Review {
 
 function Reviews() {
   const dispatch = useAppDispatch();
-  const { single_product } = useAppSelector((state) => state.products);
-  const { isSuccess, reviews } = useAppSelector((state) => state.reviews);
+  const { single_product, isSentReviewSuccess, reviews } = useAppSelector((state) => state.single_product);
   const [rating, setRating] = useState<number>(0);
   const {
     register,
@@ -95,7 +94,7 @@ function Reviews() {
           ))}
         </div>
       )}
-      {isSuccess ? (
+      {isSentReviewSuccess ? (
         <div className={cx('review-success')}>
           <FontAwesomeIcon
             icon={faCheckCircle}

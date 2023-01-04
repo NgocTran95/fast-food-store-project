@@ -1,6 +1,7 @@
 import Footer from '../../components/Footer';
 import Header from '../../components/Header';
 import ProductInfo from './ProductInfo';
+import RelatedProducts from './RelatedProducts';
 import Reviews from './Reviews';
 
 function SingleProductPage() {
@@ -10,6 +11,8 @@ function SingleProductPage() {
       <ProductInfo />
       <hr/>
       <Reviews />
+      <hr/>
+      <RelatedProducts />
       <Footer />
     </div>
   );

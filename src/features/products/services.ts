@@ -1,5 +1,5 @@
-import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import { Product, Pagination } from "./productSlice";
 
 const baseUrl = process.env.REACT_APP_BASE_URL
@@ -45,17 +45,3 @@ export const getPagination = createAsyncThunk('products/getPagination', async(pr
     }
 })
 
-interface SingleProductParams {
-    id: string | undefined,
-    category: string | undefined,
-}
-
-export const getSingleProduct = createAsyncThunk('products/getSingleProduct', async({ id, category }: SingleProductParams, thunkAPI) => {
-    try {
-        const urlParams = `${category}?id=${id}`
-        const { data } = await axios.get<Product[]>(`${baseUrl}${urlParams}`)
-        return data[0]
-    } catch (error) {
-        return thunkAPI.rejectWithValue(error) 
-    }
-})

@@ -11,16 +11,15 @@ import {
 import { useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { getSingleProduct } from '../../../features/products/services';
+import { getRelatedProducts, getSingleProduct } from '../../../features/single_product/services';
 import { formatFoodName } from '../../../utils';
-
 import styles from './ProductInfo.module.scss';
 
 const cx = classNames.bind(styles);
 function ProductInfo() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
-  const { single_product } = useAppSelector((state) => state.products);
+  const { single_product } = useAppSelector((state) => state.single_product);
   const { pathname } = useLocation();
   const category = pathname.split('/')[2];
   const [inputValue, setInputValue] = useState<number>(1)
@@ -28,6 +27,10 @@ function ProductInfo() {
   useEffect(() => {
     dispatch(getSingleProduct({ category, id }));
   }, [dispatch, category, id]);
+
+  useEffect(() => {
+    dispatch(getRelatedProducts(category));
+  }, [dispatch, category])
 
   const handleChangeInput = (action: 'increase' | 'decrease') => {
     if (action === 'decrease') {

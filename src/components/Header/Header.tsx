@@ -38,22 +38,22 @@ function Header() {
           </Link>
           <ul className={cx('nav-bar')}>
             <li className={cx('nav-item')}>
-              <Link to="/" className={cx('nav-link', pathname == '/' && 'active')}>
+              <Link to="/" className={cx('nav-link', pathname === '/' && 'active')}>
                 Home
               </Link>
             </li>
             <li className={cx('nav-item')}>
-              <Link to="/products" className={cx('nav-link', pathname == '/products' && 'active')}>
+              <Link to="/products" className={cx('nav-link', pathname === '/products' && 'active')}>
                 Oder Online
               </Link>
             </li>
             <li className={cx('nav-item')}>
-              <Link to="/news" className={cx('nav-link', pathname == '/news' && 'active')}>
+              <Link to="/news" className={cx('nav-link', pathname === '/news' && 'active')}>
                 News
               </Link>
             </li>
             <li className={cx('nav-item')}>
-              <Link to="/contact" className={cx('nav-link', pathname == '/contact' && 'active')}>
+              <Link to="/contact" className={cx('nav-link', pathname === '/contact' && 'active')}>
                 Contact
               </Link>
             </li>
