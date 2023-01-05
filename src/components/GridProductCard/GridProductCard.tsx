@@ -6,6 +6,11 @@ import { faHeart, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import styles from './GridProductCard.module.scss';
 import { Product } from '../../features/products/productSlice';
 import { Link } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import {
+  setAddToCartProduct,
+  setShowCartModal,
+} from '../../features/cart/cartSlice';
 const cx = classNames.bind(styles);
 
 interface Props {
@@ -17,6 +22,17 @@ interface Props {
 }
 
 function GridProductCard({ product, lg, sm, isActive, category }: Props) {
+  const dispatch = useAppDispatch();
+  const { userInfo } = useAppSelector((state) => state.user);
+  const { cart } = useAppSelector((state) => state.cart);
+  const isAddedToCart = cart.some(
+    (item) => item.product_info.id === product.id,
+  );
+
+  const handleAddToCart = () => {
+    dispatch(setShowCartModal('open'));
+    dispatch(setAddToCartProduct(product));
+  };
   return (
     <Col sm={sm} lg={lg} className={cx('product-wrapper')}>
       <div className={cx('product-inner')}>
@@ -25,9 +41,11 @@ function GridProductCard({ product, lg, sm, isActive, category }: Props) {
             <div className={cx('widget-item', 'hot')}>Hot</div>
             <div className={cx('widget-item', 'discount')}>10%</div>
           </div>
-          <button className={cx('wishlist-btn', isActive && 'active')}>
-            <FontAwesomeIcon icon={faHeart} />
-          </button>
+          {userInfo.uid && (
+            <button className={cx('wishlist-btn', isActive && 'active')}>
+              <FontAwesomeIcon icon={faHeart} />
+            </button>
+          )}
         </div>
         <Link
           className={cx('product-thumbnail')}
@@ -49,7 +67,19 @@ function GridProductCard({ product, lg, sm, isActive, category }: Props) {
         <div className={cx('product-info')}>
           <p className={cx('product-name')}>{product.name}</p>
           <p className={cx('product-price')}>${product.price}</p>
-          <button className={cx('product-btn')}>Add to cart</button>
+          {!userInfo.uid ? (
+            <Link className={cx('product-btn', 'to-login')} to="/login">
+              Go to log in
+            </Link>
+          ) : (
+            <button
+              className={cx('product-btn', 'cart', isAddedToCart && 'disabled')}
+              onClick={handleAddToCart}
+              disabled={isAddedToCart}
+            >
+              {isAddedToCart ? 'Aready added' : 'Add to cart'}
+            </button>
+          )}
         </div>
       </div>
     </Col>

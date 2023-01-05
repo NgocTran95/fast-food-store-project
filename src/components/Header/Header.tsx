@@ -25,6 +25,7 @@ const cx = classNames.bind(styles);
 function Header() {
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
+  const { total_items } = useAppSelector(state => state.cart)
   const [showMenu, setShowMenu] = useState(false);
   const [showCart, setShowCart] = useState(false);
   const { pathname } = useLocation() 
@@ -73,7 +74,7 @@ function Header() {
               icon={faBasketShopping}
               className={cx('cart-icon')}
             />
-            {!!userInfo.uid && <span className={cx('cart-quantity')}>6</span>}
+            {!!userInfo.uid && <span className={cx('cart-quantity')}>{total_items}</span>}
           </button>
           {!!userInfo.uid ? (
             <>

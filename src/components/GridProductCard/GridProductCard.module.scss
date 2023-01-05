@@ -135,29 +135,40 @@
         overflow: hidden;
         transition: var(--primary-transition);
         -webkit-transition: var(--primary-transition);
-        &:hover {
-            &::before {
-                opacity: 1;
-                visibility: visible;
-                font-size: 2rem;
-            } 
+        &.to-login {
+            border-color: var(--login-color);
+            color: var(--login-color);
         }
-        &::before {
-            content: '\f291';
-            font-family: 'Font Awesome 5 Free';
-            font-weight: 900;
-            font-size: 0;
-            color: var(--white-text-color);
-            position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-color: var(--primary-color);
-            opacity: 0;
-            visibility: hidden;
-            transition: var(--primary-transition);
-            -webkit-transition: var(--primary-transition);
+        &.cart {
+            &:hover {
+                &::before {
+                    opacity: 1;
+                    visibility: visible;
+                    font-size: 2rem;
+                } 
+            }
+            &::before {
+                content: '\f291';
+                font-family: 'Font Awesome 5 Free';
+                font-weight: 900;
+                font-size: 0;
+                color: var(--white-text-color);
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background-color: var(--primary-color);
+                opacity: 0;
+                visibility: hidden;
+                transition: var(--primary-transition);
+                -webkit-transition: var(--primary-transition);
+            }
+            &.disabled {
+                &::before {
+                    content: '\f00c';
+                }
+            }
         }
     }
 }

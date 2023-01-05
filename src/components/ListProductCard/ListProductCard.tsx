@@ -7,6 +7,11 @@ import { faHeart } from '@fortawesome/free-regular-svg-icons';
 
 import styles from './ListProductCard.module.scss';
 import { Product } from '../../features/products/productSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import {
+  setAddToCartProduct,
+  setShowCartModal,
+} from '../../features/cart/cartSlice';
 
 interface Props {
   product: Product;
@@ -14,11 +19,25 @@ interface Props {
 }
 const cx = classNames.bind(styles);
 function ListProductCard({ product, category }: Props) {
+  const dispatch = useAppDispatch();
+  const { cart } = useAppSelector((state) => state.cart);
+  const { userInfo } = useAppSelector((state) => state.user);
+  const isAddedToCart = cart.some(
+    (item) => item.product_info.id === product.id,
+  );
+
+  const handleAddToCart = () => {
+    dispatch(setShowCartModal('open'));
+    dispatch(setAddToCartProduct(product));
+  };
   return (
     <Row className={cx('container')}>
       <Col lg={3}>
         <div className={cx('thumnail-wrapper')}>
-          <Link to={`/products/${category}/${product.id}`} className={cx('thumbnail')}>
+          <Link
+            to={`/products/${category}/${product.id}`}
+            className={cx('thumbnail')}
+          >
             <img
               src={product.img}
               onError={({ currentTarget }) => {
@@ -39,7 +58,10 @@ function ListProductCard({ product, category }: Props) {
         </div>
       </Col>
       <Col lg={9}>
-        <Link to={`/products/${category}/${product.id}`} className={cx('product-name')}>
+        <Link
+          to={`/products/${category}/${product.id}`}
+          className={cx('product-name')}
+        >
           {product.name}
         </Link>
         <p className={cx('product-price')}>{`$${product.price}`}</p>
@@ -49,12 +71,26 @@ function ListProductCard({ product, category }: Props) {
           ))}
         </div>
         <div className={cx('actions')}>
-          <button className={cx('add-btn')}>Add to cart</button>
-          <button className={cx('add-wishlist')}>
-            <FontAwesomeIcon icon={faHeart}/>
-          </button>
+          {!userInfo.uid ? (
+            <Link className={cx('add-btn', 'to-login')} to="/login">
+              Go to Log in
+            </Link>
+          ) : (
+            <button
+              className={cx('add-btn', 'cart', isAddedToCart && 'disabled')}
+              onClick={handleAddToCart}
+              disabled={isAddedToCart}
+            >
+              {isAddedToCart ? 'Aready added' : 'Add to cart'}
+            </button>
+          )}
+          {userInfo.uid && (
+            <button className={cx('add-wishlist')}>
+              <FontAwesomeIcon icon={faHeart} />
+            </button>
+          )}
         </div>
-        <hr/>
+        <hr />
         <p className={cx('product-desc')}>{product.dsc}</p>
       </Col>
     </Row>

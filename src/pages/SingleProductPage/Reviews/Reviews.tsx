@@ -14,13 +14,14 @@ import {
   query,
   onSnapshot,
 } from 'firebase/firestore';
+import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
+import { Link } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import ReviewItem from './ReviewItem';
 import styles from './Reviews.module.scss';
 import { validateReviewSchema } from '../../../validateForm/validateSchema';
 import { createReview } from '../../../features/single_product/services';
-import { faCheckCircle } from '@fortawesome/free-regular-svg-icons';
 import { Review } from '../../../features/single_product/services';
 import { db } from '../../../firebase/config';
 import { setReviews } from '../../../features/single_product/singleProductSlice';
@@ -38,7 +39,10 @@ export interface ReviewData extends Review {
 
 function Reviews() {
   const dispatch = useAppDispatch();
-  const { single_product, isSentReviewSuccess, reviews } = useAppSelector((state) => state.single_product);
+  const { single_product, isSentReviewSuccess, reviews } = useAppSelector(
+    (state) => state.single_product,
+  );
+  const { userInfo } = useAppSelector((state) => state.user);
   const [rating, setRating] = useState<number>(0);
   const {
     register,
@@ -94,88 +98,103 @@ function Reviews() {
           ))}
         </div>
       )}
-      {isSentReviewSuccess ? (
-        <div className={cx('review-success')}>
-          <FontAwesomeIcon
-            icon={faCheckCircle}
-            className={cx('success-icon')}
-          />
-          Sent your review successfully!
+      {!userInfo.uid ? (
+        <div className={cx('not-login')}>
+          <p className={cx('notification')}>You are not logged in. Please log in to use this feature!</p>
+          <Link to='/login' className={cx('navigate-login-btn')}>Go to Login</Link>
         </div>
       ) : (
-        <div className={cx('response')}>
-          <div className={cx('title')}>
-            <FontAwesomeIcon icon={faPen} className={cx('icon')} />
-            add a review
-          </div>
-          <form
-            className={cx('res-form')}
-            onSubmit={handleSubmit(handleSubmitReview)}
-          >
-            <p className={cx('notification')}>
-              Your email address will not be published. Required fields are
-              marked *
-            </p>
-            <div className={cx('rating')}>
-              <p className={cx('label')}>Your rating:</p>
-              <div className={cx('stars')}>
-                {Array.from(Array(5).keys()).map((item) => (
-                  <FontAwesomeIcon
-                    icon={faStar}
-                    key={item}
-                    className={cx(
-                      'product-rating-star',
-                      item + 1 <= rating && 'active',
-                    )}
-                    onClick={() => setRating(item + 1)}
-                  />
-                ))}
+        <>
+          {isSentReviewSuccess ? (
+            <div className={cx('review-success')}>
+              <FontAwesomeIcon
+                icon={faCheckCircle}
+                className={cx('success-icon')}
+              />
+              Sent your review successfully!
+            </div>
+          ) : (
+            <div className={cx('response')}>
+              <div className={cx('title')}>
+                <FontAwesomeIcon icon={faPen} className={cx('icon')} />
+                add a review
               </div>
-              <p className={cx('rating-msg')}>
-                {rating === 0 && '(Choose your rating)'}
-              </p>
+              <form
+                className={cx('res-form')}
+                onSubmit={handleSubmit(handleSubmitReview)}
+              >
+                <p className={cx('notification')}>
+                  Your email address will not be published. Required fields are
+                  marked *
+                </p>
+                <div className={cx('rating')}>
+                  <p className={cx('label')}>Your rating:</p>
+                  <div className={cx('stars')}>
+                    {Array.from(Array(5).keys()).map((item) => (
+                      <FontAwesomeIcon
+                        icon={faStar}
+                        key={item}
+                        className={cx(
+                          'product-rating-star',
+                          item + 1 <= rating && 'active',
+                        )}
+                        onClick={() => setRating(item + 1)}
+                      />
+                    ))}
+                  </div>
+                  <p className={cx('rating-msg')}>
+                    {rating === 0 && '(Choose your rating)'}
+                  </p>
+                </div>
+                <div className={cx('form-info')}>
+                  <Row className={cx('form-info-inner')}>
+                    <Col lg={6} className={cx('col')}>
+                      <Row className={cx('row')}>
+                        <input
+                          type="text"
+                          placeholder="Name *"
+                          className={cx('form-control')}
+                          {...register('name')}
+                        />
+                        <p className={cx('error-msg')}>
+                          {errors.name?.message}
+                        </p>
+                      </Row>
+                      <Row className={cx('row')}>
+                        <input
+                          type="email"
+                          placeholder="Email *"
+                          className={cx('form-control')}
+                          {...register('email')}
+                        />
+                        <p className={cx('error-msg')}>
+                          {errors.email?.message}
+                        </p>
+                      </Row>
+                      <Row className={cx('row')}>
+                        <input
+                          type="submit"
+                          value="submit"
+                          className={cx('form-control', 'submit-btn')}
+                        />
+                      </Row>
+                    </Col>
+                    <Col lg={6} className={cx('col')}>
+                      <textarea
+                        placeholder="Your review *"
+                        className={cx('comment')}
+                        {...register('comment')}
+                      />
+                      <p className={cx('error-msg')}>
+                        {errors.comment?.message}
+                      </p>
+                    </Col>
+                  </Row>
+                </div>
+              </form>
             </div>
-            <div className={cx('form-info')}>
-              <Row className={cx('form-info-inner')}>
-                <Col lg={6} className={cx('col')}>
-                  <Row className={cx('row')}>
-                    <input
-                      type="text"
-                      placeholder="Name *"
-                      className={cx('form-control')}
-                      {...register('name')}
-                    />
-                    <p className={cx('error-msg')}>{errors.name?.message}</p>
-                  </Row>
-                  <Row className={cx('row')}>
-                    <input
-                      type="email"
-                      placeholder="Email *"
-                      className={cx('form-control')}
-                      {...register('email')}
-                    />
-                    <p className={cx('error-msg')}>{errors.email?.message}</p>
-                  </Row>
-                  <Row className={cx('row')}>
-                    <input
-                      type="submit"
-                      value="submit"
-                      className={cx('form-control', 'submit-btn')}
-                    />
-                  </Row>
-                </Col>
-                <Col lg={6} className={cx('col')}>
-                  <textarea
-                    placeholder="Your review *"
-                    className={cx('comment')}
-                    {...register('comment')}
-                  />
-                  <p className={cx('error-msg')}>{errors.comment?.message}</p>
-                </Col>
-              </Row>
-            </div>
-          </form>
-        </div>
+          )}
+        </>
       )}
     </section>
   );

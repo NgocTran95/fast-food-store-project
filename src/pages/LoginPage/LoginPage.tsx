@@ -18,7 +18,7 @@ function LoginPage() {
   const { isLoading } = useAppSelector((state) => state.user);
   const navigate = useNavigate()
   const dispatch = useAppDispatch()
-  const getUsers = async (uid: string) => {
+  const getUser = async (uid: string) => {
     const q = query(collection(db, 'users'), where('uid', '==', uid));
     const querySnapshot = await getDocs(q);
     return querySnapshot.docs.map((doc) => ({
@@ -28,7 +28,7 @@ function LoginPage() {
   useEffect(() => {
     const unscribed = onAuthStateChanged(auth, (user) => {
       if (user) {
-        getUsers(user.uid).then(user => {
+        getUser(user.uid).then(user => {
           const { email, displayName, photoURL, uid } = user[0]
           dispatch(setUser({ email, displayName, photoURL, uid }))
           localStorage.setItem('user', JSON.stringify({email, displayName, photoURL, uid}))

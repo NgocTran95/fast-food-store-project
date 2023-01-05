@@ -11,38 +11,51 @@ import {
 import { useState } from 'react';
 
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { getRelatedProducts, getSingleProduct } from '../../../features/single_product/services';
+import {
+  getRelatedProducts,
+  getSingleProduct,
+} from '../../../features/single_product/services';
 import { formatFoodName } from '../../../utils';
 import styles from './ProductInfo.module.scss';
+import { addToCart } from '../../../features/cart/cartSlice';
 
 const cx = classNames.bind(styles);
 function ProductInfo() {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const { single_product } = useAppSelector((state) => state.single_product);
+  const { cart } = useAppSelector((state) => state.cart);
+  const { userInfo } = useAppSelector((state) => state.user);
   const { pathname } = useLocation();
   const category = pathname.split('/')[2];
-  const [inputValue, setInputValue] = useState<number>(1)
-  
+  const [quantity, setQuantity] = useState<number>(1);
+
+  const isAddedToCart = cart.some((item) => item.product_info.id === id);
+
   useEffect(() => {
     dispatch(getSingleProduct({ category, id }));
   }, [dispatch, category, id]);
 
   useEffect(() => {
     dispatch(getRelatedProducts(category));
-  }, [dispatch, category])
+  }, [dispatch, category]);
 
-  const handleChangeInput = (action: 'increase' | 'decrease') => {
+  const handleChangeQuantity = (action: 'increase' | 'decrease') => {
     if (action === 'decrease') {
-      if (inputValue === 0) {
-        setInputValue(0)
+      if (quantity === 1) {
+        setQuantity(1);
       } else {
-        setInputValue(prev => prev - 1)
+        setQuantity((prev) => prev - 1);
       }
     } else {
-      setInputValue(prev => prev + 1)
+      setQuantity((prev) => prev + 1);
     }
-  }
+  };
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ product_info: single_product, quantity }));
+  };
+
   return (
     <section className={cx('container')}>
       <div className={cx('breadscrumb')}>
@@ -79,39 +92,65 @@ function ProductInfo() {
           </div>
           <hr />
           <p className={cx('product-desc')}>{single_product.dsc}</p>
-          <div className={cx('actions')}>
-            <div className={cx('quantity-btns')}>
-              <div className={cx('quantity')}>
-                <button className={cx('quantity-btn', 'decrease')} onClick={() => handleChangeInput('decrease')}>
-                  <FontAwesomeIcon icon={faMinus} />
-                </button>
-                <input
-                  type="text"
-                  value={inputValue}
-                  className={cx('quantity-input')}
-                  onChange={(e) => setInputValue(+e.target.value)}
-                />
-                <button className={cx('quantity-btn', 'increase')} onClick={() => handleChangeInput('increase')}>
-                  <FontAwesomeIcon icon={faPlus} />
+          {userInfo.uid && (
+            <div className={cx('actions')}>
+              <div className={cx('quantity-btns')}>
+                <div className={cx('quantity')}>
+                  <button
+                    className={cx('quantity-btn', 'decrease')}
+                    onClick={() => handleChangeQuantity('decrease')}
+                  >
+                    <FontAwesomeIcon icon={faMinus} />
+                  </button>
+                  <input
+                    type="text"
+                    value={quantity}
+                    className={cx('quantity-input')}
+                    onChange={(e) => setQuantity(+e.target.value)}
+                  />
+                  <button
+                    className={cx('quantity-btn', 'increase')}
+                    onClick={() => handleChangeQuantity('increase')}
+                  >
+                    <FontAwesomeIcon icon={faPlus} />
+                  </button>
+                </div>
+                <button
+                  className={cx('add-cart-btn', isAddedToCart && 'disabled')}
+                  onClick={handleAddToCart}
+                  disabled={isAddedToCart}
+                >
+                  {isAddedToCart ? 'Already added' : 'Add to cart'}
                 </button>
               </div>
-              <button className={cx('add-cart-btn')}>Add to cart</button>
+              <button className={cx('buy-now-btn')}>Buy it now</button>
+              <button className={cx('add-wishlist-btn')}>
+                <span className={cx('add-wishlist-icon')}>
+                  <FontAwesomeIcon icon={faHeart} />
+                </span>
+                Add to wishlist
+              </button>
             </div>
-            <button className={cx('buy-now-btn')}>Buy it now</button>
-            <button className={cx('add-wishlist-btn')}>
-              <span className={cx('add-wishlist-icon')}>
-                <FontAwesomeIcon icon={faHeart} />
-              </span>
-              Add to wishlist
-            </button>
-          </div>
+          )}
           <hr />
           <div className={cx('more-info')}>
-            <p className={cx('item')}>category: <Link className={cx('content')} to={`/products/${category === 'best-foods'? '' : category}`}>{category}</Link></p>
             <p className={cx('item')}>
-              country: <span className={cx('content')}>{single_product.country}</span>
+              category:{' '}
+              <Link
+                className={cx('content')}
+                to={`/products/${category === 'best-foods' ? '' : category}`}
+              >
+                {category}
+              </Link>
             </p>
-            <p className={cx('item')}>tags: <span className={cx('content')}>hot</span>, <span className={cx('content')}>trend</span></p>
+            <p className={cx('item')}>
+              country:{' '}
+              <span className={cx('content')}>{single_product.country}</span>
+            </p>
+            <p className={cx('item')}>
+              tags: <span className={cx('content')}>hot</span>,{' '}
+              <span className={cx('content')}>trend</span>
+            </p>
           </div>
         </div>
       </div>

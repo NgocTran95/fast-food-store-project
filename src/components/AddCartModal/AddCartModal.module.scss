@@ -1,0 +1,102 @@
+.heading {
+    font-size: 2.3rem;
+    font-weight: 500;
+}
+
+.product {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.product-info {
+    display: flex;
+    align-items: center;
+    .product-image {
+        width: 120px;
+        aspect-ratio: 1;
+        border-radius: 50%;
+        overflow: hidden;
+    }
+    .product-detail {
+        margin-left: 20px;
+        .product-name {
+            font-size: 2.2rem;
+            font-weight: 600;
+            max-width: 450px;
+            text-overflow: ellipsis;
+            overflow: hidden;
+            white-space: nowrap;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+        .product-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+    }
+}
+
+.quantity {
+    height: 50px;
+    font-size: 1.8rem;
+    border-radius: 25px;
+    border: 1px solid #b5b5b5;
+    overflow: hidden;
+    position: relative;
+    .quantity-btn {
+        position: absolute;
+        top: 0;
+        width: 38px;
+        height: 100%;
+        color: var(--blur-text-color);
+        &:hover {
+            color: var(--primary-color);
+        }
+        &.decrease {
+            left: 0;
+        }
+        &.increase {
+            right: 0;
+        }
+    }
+    .quantity-input {
+        width: 125px;
+        height: 100%;
+        padding: 0 38px;
+        text-align: center;
+        background: none;
+        border: none;
+    }
+}
+
+.sub-total {
+    font-size: 1.8rem;
+    text-align: end;
+    color: var(--blur-text-color);
+    .total-value {
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: var(--primary-color);
+        margin-left: 20px;
+    }
+}
+
+.add-cart-btn {
+    height: 45px;
+    min-width: 150px;
+    font-weight: 500;
+    padding: 0 20px;
+    border-radius: 23px;
+    border: 1px solid transparent;
+    color: var(--white-text-color);
+    background-color: var(--primary-color);
+    transition: var(--primary-transition);
+    &:hover {
+        color: var(--primary-color);
+        background-color: #ffffff;
+        border-color: var(--primary-color);
+    }
+}

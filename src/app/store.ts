@@ -3,6 +3,7 @@ import userReducer from '../features/user/userSlice';
 import productReducer from '../features/products/productSlice';
 import filterReducer from '../features/filters/filtersSlice';
 import singleProductReducer from '../features/single_product/singleProductSlice';
+import cartReducer from '../features/cart/cartSlice';
 
 export const store = configureStore({
   reducer: {
@@ -10,6 +11,7 @@ export const store = configureStore({
     products: productReducer,
     filters: filterReducer,
     single_product: singleProductReducer,
+    cart: cartReducer,
   },
 });
 

@@ -26,6 +26,14 @@ export const registerUser = createAsyncThunk('user/register', async({ email, use
                 providerId: userCredential.providerId,
                 createAt: serverTimestamp()
             })
+            addDoc(collection(db, 'carts'), {
+                uid: userCredential.user.uid,
+                cart: [],
+                total_items: 0,
+                total_amount: 0,
+                wishlist: [],
+                createAt: serverTimestamp()
+            })
         })
     } catch (error) {
         return thunkAPI.rejectWithValue(error)
@@ -52,6 +60,14 @@ export const logInWithPopup = createAsyncThunk('user/logInWithPopup', async(prov
                 photoURL: user.photoURL,
                 displayName: user.displayName,
                 providerId,
+                createAt: serverTimestamp()
+            })
+            addDoc(collection(db, 'carts'), {
+                uid: user.uid,
+                cart: [],
+                total_items: 0,
+                total_amount: 0,
+                wishlist: [],
                 createAt: serverTimestamp()
             })
         }

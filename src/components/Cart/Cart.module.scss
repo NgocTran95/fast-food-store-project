@@ -23,6 +23,33 @@
     flex-direction: column;
     justify-content: space-between;
 }
+
+.not-login {
+    flex: 1;
+    padding: 20px 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .notification {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .navigate-login-btn {
+        height: 40px;
+        padding: 0 20px;
+        line-height: 40px;
+        border-radius: 20px;
+        border: 1px solid var(--login-color);
+        color: var(--white-text-color);
+        background-color: var(--login-color);
+        transition: var(--primary-transition);
+        &:hover {
+            color: var(--login-color);
+            background-color: #ffffff;
+        }
+
+    }
+}
 .cart-list {
     flex: 1;
     padding: 10px 20px;
@@ -62,7 +89,7 @@
 }
 
 .item-name {
-    max-width: 100%;
+    max-width: 220px;
     font-size: 1.6rem;
     font-weight: 600;
     text-overflow: ellipsis;
