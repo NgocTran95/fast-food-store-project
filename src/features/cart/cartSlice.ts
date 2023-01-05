@@ -7,15 +7,14 @@ interface CartItem {
 }
 
 export interface CartData {
+    id: string;
     uid: string;
     cart: CartItem[];
     total_items: number;
     total_amount: number;
-    wishlist: string[];
 }
 
 interface CartType extends CartData {
-    id: string;
     isOpenCartModal: boolean;
     add_cart_product: Product;
     isShowCart: boolean;
@@ -28,7 +27,6 @@ const initialState = {
     cart: [],
     total_items: 0,
     total_amount: 0,
-    wishlist: [],
     isOpenCartModal: false,
     add_cart_product: { id: '', img: '', country: '', dsc: '', name: '', price: 0, rate: 0},
     isShowCart: false,
@@ -45,14 +43,9 @@ const cartSlice = createSlice({
             state.cart = [...payload.cart];
             state.total_items = payload.total_items;
             state.total_amount = payload.total_amount;
-            state.wishlist = [...payload.wishlist];
         },
-        setShowCartModal: (state, { payload } : { payload: 'close'|'open'}) => {
-            if (payload === 'open') {
-                state.isOpenCartModal = true
-            } else {
-                state.isOpenCartModal = false
-            }
+        setShowCartModal: (state, { payload } : { payload: boolean}) => {
+            state.isOpenCartModal = payload
         },
         setShowCart: (state, { payload }: {payload : boolean}) => {
             state.isShowCart = payload

@@ -31,6 +31,10 @@ export const registerUser = createAsyncThunk('user/register', async({ email, use
                 cart: [],
                 total_items: 0,
                 total_amount: 0,
+                createAt: serverTimestamp()
+            })
+            addDoc(collection(db, 'wishlists'), {
+                uid: userCredential.user.uid,
                 wishlist: [],
                 createAt: serverTimestamp()
             })
@@ -67,6 +71,10 @@ export const logInWithPopup = createAsyncThunk('user/logInWithPopup', async(prov
                 cart: [],
                 total_items: 0,
                 total_amount: 0,
+                createAt: serverTimestamp()
+            })
+            addDoc(collection(db, 'wishlists'), {
+                uid: userCredential.user.uid,
                 wishlist: [],
                 createAt: serverTimestamp()
             })

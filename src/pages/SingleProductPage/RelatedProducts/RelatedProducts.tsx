@@ -38,7 +38,6 @@ function RelatedProducts() {
                   category={category}
                   lg={3}
                   sm={6}
-                  isActive={false}
                 />
               ))}
             </Row>

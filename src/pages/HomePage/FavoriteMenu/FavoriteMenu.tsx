@@ -61,7 +61,6 @@ function FavoriteMenu() {
                       category='best-foods'
                       lg={3}
                       sm={6}
-                      isActive={false}
                     />
                   ))}
                 </Row>

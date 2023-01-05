@@ -10,10 +10,13 @@ import AddCartModal from './components/AddCartModal';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { setShowCartModal } from './features/cart/cartSlice';
 import CornerTools from './components/CornerTools';
+import WishlistModal from './components/WishlistModal';
+import { setShowWishList } from './features/wishlist/wishlistSlice';
 
 function App() {
   const dispatch = useAppDispatch()
   const { isOpenCartModal, add_cart_product } = useAppSelector(state => state.cart)
+  const { isOpenWishListModal } = useAppSelector(state => state.wishlist)
   return (
     <BrowserRouter>
       <Routes>
@@ -38,7 +41,8 @@ function App() {
         <Route path="*" element={<ErrorPage />} />
       </Routes>
       <CornerTools />
-      <AddCartModal show={isOpenCartModal} product={add_cart_product} onHide={() => dispatch(setShowCartModal('close'))}/>
+      <AddCartModal show={isOpenCartModal} product={add_cart_product} onHide={() => dispatch(setShowCartModal(false))}/>
+      <WishlistModal show={isOpenWishListModal} onHide={() => dispatch(setShowWishList(false))}/>
     </BrowserRouter>
   );
 }

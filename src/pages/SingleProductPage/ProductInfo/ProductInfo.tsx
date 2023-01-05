@@ -18,6 +18,7 @@ import {
 import { formatFoodName } from '../../../utils';
 import styles from './ProductInfo.module.scss';
 import { addToCart } from '../../../features/cart/cartSlice';
+import { addToWishList } from '../../../features/wishlist/wishlistSlice';
 
 const cx = classNames.bind(styles);
 function ProductInfo() {
@@ -25,12 +26,14 @@ function ProductInfo() {
   const dispatch = useAppDispatch();
   const { single_product } = useAppSelector((state) => state.single_product);
   const { cart } = useAppSelector((state) => state.cart);
+  const { wishlist } = useAppSelector((state) => state.wishlist);
   const { userInfo } = useAppSelector((state) => state.user);
   const { pathname } = useLocation();
   const category = pathname.split('/')[2];
   const [quantity, setQuantity] = useState<number>(1);
 
   const isAddedToCart = cart.some((item) => item.product_info.id === id);
+  const isAddedToWishList = wishlist.some((item) => item.id === id);
 
   useEffect(() => {
     dispatch(getSingleProduct({ category, id }));
@@ -54,6 +57,7 @@ function ProductInfo() {
 
   const handleAddToCart = () => {
     dispatch(addToCart({ product_info: single_product, quantity }));
+    setQuantity(1);
   };
 
   return (
@@ -124,11 +128,20 @@ function ProductInfo() {
                 </button>
               </div>
               <button className={cx('buy-now-btn')}>Buy it now</button>
-              <button className={cx('add-wishlist-btn')}>
+              <button
+                className={cx(
+                  'add-wishlist-btn',
+                  isAddedToWishList && 'active',
+                )}
+                onClick={() => dispatch(addToWishList(single_product))}
+                disabled={isAddedToWishList}
+              >
                 <span className={cx('add-wishlist-icon')}>
                   <FontAwesomeIcon icon={faHeart} />
                 </span>
-                Add to wishlist
+                {isAddedToWishList
+                  ? 'Already add to wishlist'
+                  : 'Add to wishlist'}
               </button>
             </div>
           )}

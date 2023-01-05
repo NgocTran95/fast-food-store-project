@@ -157,7 +157,7 @@
                 border: 1px solid #cecece;
                 color: #cecece;
             }
-            &:hover {
+            &:hover, &.active {
                 .add-wishlist-icon {
                     color: var(--white-text-color);
                     background-color: var(--primary-color);

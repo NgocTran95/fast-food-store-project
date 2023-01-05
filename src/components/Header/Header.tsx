@@ -21,15 +21,16 @@ import Cart from '../Cart';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { logOut } from '../../features/user/services';
 import { setShowCart } from '../../features/cart/cartSlice';
+import { setShowWishList } from '../../features/wishlist/wishlistSlice';
 
 const cx = classNames.bind(styles);
 function Header() {
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
-  const { total_items, isShowCart } = useAppSelector(state => state.cart)
+  const { total_items } = useAppSelector((state) => state.cart);
   const [showMenu, setShowMenu] = useState(false);
-  const { pathname } = useLocation() 
-  
+  const { pathname } = useLocation();
+
   return (
     <header className={cx('container', pathname === '/' && 'red-bg')}>
       <div className={cx('inner')}>
@@ -39,22 +40,34 @@ function Header() {
           </Link>
           <ul className={cx('nav-bar')}>
             <li className={cx('nav-item')}>
-              <Link to="/" className={cx('nav-link', pathname === '/' && 'active')}>
+              <Link
+                to="/"
+                className={cx('nav-link', pathname === '/' && 'active')}
+              >
                 Home
               </Link>
             </li>
             <li className={cx('nav-item')}>
-              <Link to="/products" className={cx('nav-link', pathname === '/products' && 'active')}>
+              <Link
+                to="/products"
+                className={cx('nav-link', pathname === '/products' && 'active')}
+              >
                 Oder Online
               </Link>
             </li>
             <li className={cx('nav-item')}>
-              <Link to="/news" className={cx('nav-link', pathname === '/news' && 'active')}>
+              <Link
+                to="/news"
+                className={cx('nav-link', pathname === '/news' && 'active')}
+              >
                 News
               </Link>
             </li>
             <li className={cx('nav-item')}>
-              <Link to="/contact" className={cx('nav-link', pathname === '/contact' && 'active')}>
+              <Link
+                to="/contact"
+                className={cx('nav-link', pathname === '/contact' && 'active')}
+              >
                 Contact
               </Link>
             </li>
@@ -69,12 +82,17 @@ function Header() {
           </Link>
         </div>
         <div className={cx('user-infor')}>
-          <button className={cx('cart-btn')} onClick={() => dispatch(setShowCart(true))}>
+          <button
+            className={cx('cart-btn')}
+            onClick={() => dispatch(setShowCart(true))}
+          >
             <FontAwesomeIcon
               icon={faBasketShopping}
               className={cx('cart-icon')}
             />
-            {!!userInfo.uid && <span className={cx('cart-quantity')}>{total_items}</span>}
+            {!!userInfo.uid && (
+              <span className={cx('cart-quantity')}>{total_items}</span>
+            )}
           </button>
           {!!userInfo.uid ? (
             <>
@@ -101,7 +119,10 @@ function Header() {
                   </Link>
                 </Dropdown.Item>
                 <Dropdown.Item>
-                  <button className={cx('menu-item')}>
+                  <button
+                    className={cx('menu-item')}
+                    onClick={() => dispatch(setShowWishList(true))}
+                  >
                     <FontAwesomeIcon
                       icon={faTags}
                       className={cx('menu-item-icon')}

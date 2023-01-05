@@ -11,26 +11,29 @@ import {
   setAddToCartProduct,
   setShowCartModal,
 } from '../../features/cart/cartSlice';
+import { addToWishList } from '../../features/wishlist/wishlistSlice';
 const cx = classNames.bind(styles);
 
 interface Props {
   product: Product;
   lg?: number;
   sm?: number;
-  isActive: boolean;
   category: string;
 }
 
-function GridProductCard({ product, lg, sm, isActive, category }: Props) {
+function GridProductCard({ product, lg, sm, category }: Props) {
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
   const { cart } = useAppSelector((state) => state.cart);
+  const { wishlist } = useAppSelector((state) => state.wishlist);
+
   const isAddedToCart = cart.some(
     (item) => item.product_info.id === product.id,
   );
+  const isAddedToWishlist = wishlist.some((item) => item.id === product.id);
 
   const handleAddToCart = () => {
-    dispatch(setShowCartModal('open'));
+    dispatch(setShowCartModal(true));
     dispatch(setAddToCartProduct(product));
   };
   return (
@@ -42,7 +45,11 @@ function GridProductCard({ product, lg, sm, isActive, category }: Props) {
             <div className={cx('widget-item', 'discount')}>10%</div>
           </div>
           {userInfo.uid && (
-            <button className={cx('wishlist-btn', isActive && 'active')}>
+            <button
+              className={cx('wishlist-btn', isAddedToWishlist && 'active')}
+              onClick={() => dispatch(addToWishList(product))}
+              disabled={isAddedToWishlist}
+            >
               <FontAwesomeIcon icon={faHeart} />
             </button>
           )}

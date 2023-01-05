@@ -36,8 +36,6 @@ import { CartBg } from '../../assets/images';
 
 const cx = classNames.bind(styles);
 
-
-
 function Cart() {
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
@@ -46,7 +44,7 @@ function Cart() {
     id,
     total_amount,
     discount,
-    isShowCart
+    isShowCart,
   } = useAppSelector((state) => state.cart);
   const [showOderDetails, setShowOderDetails] = useState<boolean>(false);
 
@@ -56,7 +54,7 @@ function Cart() {
       updateDoc(doc(db, 'carts', id), { cart: [...currentCart] });
     }
   }, [currentCart, id]);
-  
+
   // Reset cart state when user logout
   useEffect(() => {
     if (!userInfo.uid) {
@@ -67,7 +65,6 @@ function Cart() {
           cart: [],
           total_items: 0,
           total_amount: 0,
-          wishlist: [],
         }),
       );
     }
@@ -87,7 +84,6 @@ function Cart() {
         cart: doc.data().cart,
         total_amount: doc.data().total_amount,
         total_items: doc.data().total_items,
-        wishlist: doc.data().wishlist,
       }));
       dispatch(setCart(document[0]));
     });
@@ -126,63 +122,82 @@ function Cart() {
         {!userInfo.uid ? (
           <div className={cx('not-login')}>
             <div className={cx('not-login-image')}>
-              <img src={CartBg} alt='cart-background'/>
+              <img src={CartBg} alt="cart-background" />
             </div>
-            <p className={cx('notification')}>You are not logged in. Please log in to use this feature!</p>
-            <Link to='/login' className={cx('navigate-login-btn')}>Go to Login</Link>
+            <p className={cx('notification')}>
+              You are not logged in. Please log in to use this feature!
+            </p>
+            <Link to="/login" className={cx('navigate-login-btn')}>
+              Go to Login
+            </Link>
           </div>
         ) : (
-          <div className={cx('cart-list')}>
-            {currentCart.map((item) => (
-              <div className={cx('cart-item')} key={item.product_info.id}>
-                <div className={cx('item-info')}>
-                  <div className={cx('item-image')}>
-                    <img
-                      src={item.product_info.img}
-                      alt={item.product_info.name}
-                    />
-                  </div>
-                  <div className={cx('item-details')}>
-                    <p className={cx('item-name')}>{item.product_info.name}</p>
-                    <span className={cx('item-price')}>
-                      ${item.product_info.price}
-                    </span>
-                    <div className={cx('item-quantity')}>
-                      <button
-                        className={cx('change-qtt-btn')}
-                        onClick={() =>
-                          toggleCartItemAmount(
-                            item.product_info.id,
-                            item.quantity - 1,
-                          )
-                        }
-                      >
-                        -
-                      </button>
-                      <span>{item.quantity}</span>
-                      <button
-                        className={cx('change-qtt-btn')}
-                        onClick={() =>
-                          toggleCartItemAmount(
-                            item.product_info.id,
-                            item.quantity + 1,
-                          )
-                        }
-                      >
-                        +
-                      </button>
-                    </div>
-                  </div>
+          <>
+            {currentCart.length === 0 ? (
+              <div className={cx('empty-cart')}>
+                <div className={cx('empty-image')}>
+                  <img src={CartBg} alt="cart-background" />
                 </div>
-                <button
-                  className={cx('delete-btn')}
-                  onClick={() => dispatch(removeFromCart(item.product_info.id))}
-                >
-                  <FontAwesomeIcon icon={faTrashCan} />
-                </button>
+                <p className={cx('notification')}>Your cart is empty!</p>
               </div>
-            ))}
-          </div>
+            ) : (
+              <div className={cx('cart-list')}>
+                {currentCart.map((item) => (
+                  <div className={cx('cart-item')} key={item.product_info.id}>
+                    <div className={cx('item-info')}>
+                      <div className={cx('item-image')}>
+                        <img
+                          src={item.product_info.img}
+                          alt={item.product_info.name}
+                        />
+                      </div>
+                      <div className={cx('item-details')}>
+                        <p className={cx('item-name')}>
+                          {item.product_info.name}
+                        </p>
+                        <span className={cx('item-price')}>
+                          ${item.product_info.price}
+                        </span>
+                        <div className={cx('item-quantity')}>
+                          <button
+                            className={cx('change-qtt-btn')}
+                            onClick={() =>
+                              toggleCartItemAmount(
+                                item.product_info.id,
+                                item.quantity - 1,
+                              )
+                            }
+                          >
+                            -
+                          </button>
+                          <span>{item.quantity}</span>
+                          <button
+                            className={cx('change-qtt-btn')}
+                            onClick={() =>
+                              toggleCartItemAmount(
+                                item.product_info.id,
+                                item.quantity + 1,
+                              )
+                            }
+                          >
+                            +
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                    <button
+                      className={cx('delete-btn')}
+                      onClick={() =>
+                        dispatch(removeFromCart(item.product_info.id))
+                      }
+                    >
+                      <FontAwesomeIcon icon={faTrashCan} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
+          </>
         )}
         <div className={cx('oder-info')}>
           <button

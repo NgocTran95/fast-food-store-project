@@ -12,6 +12,7 @@ import {
   setAddToCartProduct,
   setShowCartModal,
 } from '../../features/cart/cartSlice';
+import { addToWishList } from '../../features/wishlist/wishlistSlice';
 
 interface Props {
   product: Product;
@@ -21,13 +22,15 @@ const cx = classNames.bind(styles);
 function ListProductCard({ product, category }: Props) {
   const dispatch = useAppDispatch();
   const { cart } = useAppSelector((state) => state.cart);
+  const { wishlist } = useAppSelector((state) => state.wishlist);
   const { userInfo } = useAppSelector((state) => state.user);
   const isAddedToCart = cart.some(
     (item) => item.product_info.id === product.id,
   );
+  const isAddedToWishList = wishlist.some(item => item.id === product.id)
 
   const handleAddToCart = () => {
-    dispatch(setShowCartModal('open'));
+    dispatch(setShowCartModal(true));
     dispatch(setAddToCartProduct(product));
   };
   return (
@@ -85,7 +88,11 @@ function ListProductCard({ product, category }: Props) {
             </button>
           )}
           {userInfo.uid && (
-            <button className={cx('add-wishlist')}>
+            <button
+              className={cx('add-wishlist', isAddedToWishList && 'active')}
+              onClick={() => dispatch(addToWishList(product))}
+              disabled={isAddedToWishList}
+            >
               <FontAwesomeIcon icon={faHeart} />
             </button>
           )}

@@ -180,6 +180,10 @@
         color: var(--white-text-color);
         background-color: var(--primary-color);
     }
+    &.active {
+        color: var(--white-text-color);
+        background-color: var(--primary-color);
+    }
 }
 
 .product-desc {

@@ -33,7 +33,7 @@ function AddCartModal({ show, onHide, product }: Props) {
 
   const handleAddToCart = () => {
     dispatch(addToCart({ product_info: product, quantity}))
-    dispatch(setShowCartModal('close'))
+    dispatch(setShowCartModal(false))
     setQuantity(1)
   }
   return (

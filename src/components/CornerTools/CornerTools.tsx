@@ -11,6 +11,7 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import styles from './CornerTools.module.scss';
 import { useAppDispatch } from '../../app/hooks';
 import { setShowCart } from '../../features/cart/cartSlice';
+import { setShowWishList } from '../../features/wishlist/wishlistSlice';
 
 const cx = classNames.bind(styles);
 function CornerTools() {
@@ -62,7 +63,7 @@ function CornerTools() {
             </Tooltip>
           }
         >
-          <button className={cx('tool-btn')}>
+          <button className={cx('tool-btn')} onClick={() => dispatch(setShowWishList(true))}>
             <FontAwesomeIcon icon={faHeart} />
           </button>
         </OverlayTrigger>
