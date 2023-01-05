@@ -29,18 +29,16 @@ import {
   CartData,
   removeFromCart,
   setCart,
+  setShowCart,
   toggleAmountCartItem,
 } from '../../features/cart/cartSlice';
 import { CartBg } from '../../assets/images';
 
 const cx = classNames.bind(styles);
 
-interface Props {
-  show: boolean;
-  setShow: React.Dispatch<React.SetStateAction<boolean>>;
-}
 
-function Cart({ show, setShow }: Props) {
+
+function Cart() {
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
   const {
@@ -48,6 +46,7 @@ function Cart({ show, setShow }: Props) {
     id,
     total_amount,
     discount,
+    isShowCart
   } = useAppSelector((state) => state.cart);
   const [showOderDetails, setShowOderDetails] = useState<boolean>(false);
 
@@ -108,11 +107,11 @@ function Cart({ show, setShow }: Props) {
   };
 
   const handleClose = () => {
-    setShow(false);
+    dispatch(setShowCart(false));
   };
   return (
     <Offcanvas
-      show={show}
+      show={isShowCart}
       onHide={handleClose}
       placement="end"
       className={cx('container')}

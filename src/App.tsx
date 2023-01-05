@@ -9,6 +9,7 @@ import { MENU_LIST } from './pages/HomePage/OfferMenu/OfferMenu';
 import AddCartModal from './components/AddCartModal';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { setShowCartModal } from './features/cart/cartSlice';
+import CornerTools from './components/CornerTools';
 
 function App() {
   const dispatch = useAppDispatch()
@@ -36,6 +37,7 @@ function App() {
         <Route path="/checkout" element={<CheckoutPage />} />
         <Route path="*" element={<ErrorPage />} />
       </Routes>
+      <CornerTools />
       <AddCartModal show={isOpenCartModal} product={add_cart_product} onHide={() => dispatch(setShowCartModal('close'))}/>
     </BrowserRouter>
   );

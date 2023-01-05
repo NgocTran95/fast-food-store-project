@@ -33,6 +33,17 @@
     color: var(--primary-text-color);
 }
 
+.back-home-btn {
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-align: center;
+    text-decoration: underline;
+    color: var(--primary-color);
+}
+
 @media (min-width: 769px) {
     .hero {
         display: block;

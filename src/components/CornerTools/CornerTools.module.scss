@@ -1,0 +1,40 @@
+.container {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    opacity: 0;
+    visibility: hidden;
+    transition: var(--primary-transition);
+    &.show {
+        opacity: 1;
+        visibility: visible;
+    }
+}
+
+.tools {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    .tool-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: 1px solid var(--primary-color);
+        color: var(--primary-color);
+        background-color: #ffffff;
+        box-shadow: 0 6px 14px 0 rgb(39 39 39 / 25%);
+        transition: var(--primary-transition);
+        &:hover {
+            color: var(--white-text-color);
+            background-color: var(--primary-color);
+        }
+    }
+}
+
+.tooltip {
+    font-size: 1.5rem;
+}

@@ -20,14 +20,14 @@ import SideMenu from '../SideMenu';
 import Cart from '../Cart';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { logOut } from '../../features/user/services';
+import { setShowCart } from '../../features/cart/cartSlice';
 
 const cx = classNames.bind(styles);
 function Header() {
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
-  const { total_items } = useAppSelector(state => state.cart)
+  const { total_items, isShowCart } = useAppSelector(state => state.cart)
   const [showMenu, setShowMenu] = useState(false);
-  const [showCart, setShowCart] = useState(false);
   const { pathname } = useLocation() 
   
   return (
@@ -69,7 +69,7 @@ function Header() {
           </Link>
         </div>
         <div className={cx('user-infor')}>
-          <button className={cx('cart-btn')} onClick={() => setShowCart(true)}>
+          <button className={cx('cart-btn')} onClick={() => dispatch(setShowCart(true))}>
             <FontAwesomeIcon
               icon={faBasketShopping}
               className={cx('cart-icon')}
@@ -133,7 +133,7 @@ function Header() {
         </div>
       </div>
       <SideMenu show={showMenu} setShow={setShowMenu} />
-      <Cart show={showCart} setShow={setShowCart} />
+      <Cart />
     </header>
   );
 }

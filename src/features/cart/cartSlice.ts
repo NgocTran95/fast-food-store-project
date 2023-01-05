@@ -18,6 +18,7 @@ interface CartType extends CartData {
     id: string;
     isOpenCartModal: boolean;
     add_cart_product: Product;
+    isShowCart: boolean;
     discount: number;
 }
 
@@ -30,6 +31,7 @@ const initialState = {
     wishlist: [],
     isOpenCartModal: false,
     add_cart_product: { id: '', img: '', country: '', dsc: '', name: '', price: 0, rate: 0},
+    isShowCart: false,
     discount: 0.1,
 } as CartType
 
@@ -52,6 +54,9 @@ const cartSlice = createSlice({
                 state.isOpenCartModal = false
             }
         },
+        setShowCart: (state, { payload }: {payload : boolean}) => {
+            state.isShowCart = payload
+        }, 
         setAddToCartProduct: (state, { payload }: { payload: Product }) => {
             state.add_cart_product = {...payload}
         },
@@ -88,5 +93,14 @@ const cartSlice = createSlice({
     },
 })
 
-export const { setCart, setShowCartModal, setAddToCartProduct, addToCart, removeFromCart, calculateTotals, toggleAmountCartItem } = cartSlice.actions
+export const { 
+    setCart,
+    setShowCartModal,
+    setShowCart,
+    setAddToCartProduct,
+    addToCart,
+    removeFromCart,
+    calculateTotals,
+    toggleAmountCartItem
+} = cartSlice.actions
 export default cartSlice.reducer
