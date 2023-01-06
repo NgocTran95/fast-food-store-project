@@ -18,6 +18,7 @@ import Avatar from '../Avatar';
 import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { logOut } from '../../features/user/services';
+import { setShowWishList } from '../../features/wishlist/wishlistSlice';
 
 const cx = classNames.bind(styles);
 
@@ -76,7 +77,7 @@ function SideMenu({ show, setShow }: Props) {
           <FontAwesomeIcon icon={faAddressCard} className={cx('nav-icon')} />
           My profile
         </Link>
-        <button className={cx('nav-btn')}>
+        <button className={cx('nav-btn')} onClick={() => dispatch(setShowWishList(true))}>
           <FontAwesomeIcon icon={faTags} className={cx('nav-icon')} />
           My wish list
         </button>

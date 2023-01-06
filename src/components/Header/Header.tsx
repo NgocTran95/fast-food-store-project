@@ -55,14 +55,19 @@ function Header() {
                 Oder Online
               </Link>
             </li>
-            <li className={cx('nav-item')}>
-              <Link
-                to="/news"
-                className={cx('nav-link', pathname === '/news' && 'active')}
-              >
-                News
-              </Link>
-            </li>
+            {userInfo.uid && (
+              <li className={cx('nav-item')}>
+                <Link
+                  to="/checkout"
+                  className={cx(
+                    'nav-link',
+                    pathname === '/checkout' && 'active',
+                  )}
+                >
+                  Checkout
+                </Link>
+              </li>
+            )}
             <li className={cx('nav-item')}>
               <Link
                 to="/contact"
