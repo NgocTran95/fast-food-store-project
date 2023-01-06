@@ -33,6 +33,7 @@ import {
   toggleAmountCartItem,
 } from '../../features/cart/cartSlice';
 import { CartBg } from '../../assets/images';
+import { toast } from 'react-toastify';
 
 const cx = classNames.bind(styles);
 
@@ -102,6 +103,24 @@ function Cart() {
     dispatch(toggleAmountCartItem({ id, amount }));
   };
 
+  const handleRemoveFromCart = (id: string, name: string) => {
+    dispatch(removeFromCart(id));
+    toast.warning(
+      ({ closeToast }) => (
+        <p>
+          Removed{' '}
+          <span className={cx('toast-product-name')}>{name}</span> from{' '}
+          <span className={cx('toast-list-name')}>Cart</span>!
+        </p>
+      ),
+      {
+        toastId: `cart-remove-${id}`,
+        position: 'top-left',
+        icon: false,
+      },
+    );
+  };
+
   const handleClose = () => {
     dispatch(setShowCart(false));
   };
@@ -127,7 +146,11 @@ function Cart() {
             <p className={cx('notification')}>
               You are not logged in. Please log in to use this feature!
             </p>
-            <Link to="/login" className={cx('navigate-login-btn')}>
+            <Link
+              to="/login"
+              className={cx('navigate-login-btn')}
+              onClick={() => dispatch(setShowCart(false))}
+            >
               Go to Login
             </Link>
           </div>
@@ -188,7 +211,10 @@ function Cart() {
                     <button
                       className={cx('delete-btn')}
                       onClick={() =>
-                        dispatch(removeFromCart(item.product_info.id))
+                        handleRemoveFromCart(
+                          item.product_info.id,
+                          item.product_info.name,
+                        )
                       }
                     >
                       <FontAwesomeIcon icon={faTrashCan} />

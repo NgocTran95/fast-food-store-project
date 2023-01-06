@@ -117,11 +117,11 @@
             padding: 0 15px;
             text-transform: uppercase;
             border-radius: 25px;
-            color: var(--white-text-color);
+            color: var(--white-color);
             border: 1px solid var(--primary-color);
             background-color: var(--primary-color);
             &.disabled {
-                color: var(--white-text-color);
+                color: var(--white-color);
                 border-color: rgba(39, 39, 39,  0.5);
                 background-color: rgba(39, 39, 39,  0.5);
             }
@@ -136,7 +136,7 @@
             border-radius: 25px;
             border: 1px solid var(--primary-text-color);
             &:hover {
-                color: var(--white-text-color);
+                color: var(--white-color);
                 background-color: var(--primary-color);
                 border-color: var(--primary-color);
             }
@@ -159,7 +159,7 @@
             }
             &:hover, &.active {
                 .add-wishlist-icon {
-                    color: var(--white-text-color);
+                    color: var(--white-color);
                     background-color: var(--primary-color);
                     border-color: var(--primary-color);
                 }
@@ -183,4 +183,13 @@
             color: var(--primary-color);
         }
     }
+}
+
+.toast-product-name {
+    color: var(--success-color);
+    font-weight: 500;
+}
+.toast-list-name {
+    font-weight: 500;
+    color: var(--primary-color);
 }

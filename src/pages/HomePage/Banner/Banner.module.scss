@@ -15,7 +15,7 @@
     left: 50%;
     min-width: 80%;
     transform: translateX(-50%);
-    color: var(--white-text-color);
+    color: var(--white-color);
 }
 
 .food-type {
@@ -92,8 +92,8 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        background-color: #00a950;
-        color: var(--white-text-color);
+        background-color: var(--success-color);
+        color: var(--white-color);
         animation: rotate3D 2s infinite;
         font-size: 1.3rem;
         .price {

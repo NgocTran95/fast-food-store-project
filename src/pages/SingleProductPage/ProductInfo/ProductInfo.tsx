@@ -19,6 +19,7 @@ import { formatFoodName } from '../../../utils';
 import styles from './ProductInfo.module.scss';
 import { addToCart } from '../../../features/cart/cartSlice';
 import { addToWishList } from '../../../features/wishlist/wishlistSlice';
+import { toast } from 'react-toastify';
 
 const cx = classNames.bind(styles);
 function ProductInfo() {
@@ -58,6 +59,36 @@ function ProductInfo() {
   const handleAddToCart = () => {
     dispatch(addToCart({ product_info: single_product, quantity }));
     setQuantity(1);
+    toast.success(
+      ({ closeToast }) => (
+        <p>
+          Add <span className={cx('toast-product-name')}>{single_product.name}</span>{' '}
+          to <span className={cx('toast-list-name')}>Cart</span>{' '}
+          successfully!
+        </p>
+      ),
+      {
+        toastId: `cart-add-${single_product.id}`,
+        icon: false,
+      },
+    );
+  };
+
+  const handleAddToWishList = () => {
+    dispatch(addToWishList(single_product));
+    toast.success(
+      ({ closeToast }) => (
+        <p>
+          Add <span className={cx('toast-product-name')}>{single_product.name}</span>{' '}
+          to <span className={cx('toast-list-name')}>Wish List</span>{' '}
+          successfully!
+        </p>
+      ),
+      {
+        toastId: `wishlist-add-${single_product.id}`,
+        icon: false,
+      },
+    );
   };
 
   return (
@@ -133,7 +164,7 @@ function ProductInfo() {
                   'add-wishlist-btn',
                   isAddedToWishList && 'active',
                 )}
-                onClick={() => dispatch(addToWishList(single_product))}
+                onClick={handleAddToWishList}
                 disabled={isAddedToWishList}
               >
                 <span className={cx('add-wishlist-icon')}>

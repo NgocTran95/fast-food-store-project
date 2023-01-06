@@ -8,3 +8,42 @@
     overflow-y: auto;
 }
 
+.not-login {
+    text-align: center;
+    .navigate-login-btn {
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+        margin-top: 20px;
+        border-radius: 40px;
+        border: 1px solid var(--login-color);
+        color: var(--white-color);
+        background-color: var(--login-color);
+        transition: var(--primary-transition);
+        &:hover {
+            color: var(--login-color);
+            background-color: var(--white-color);
+        }
+    }
+}
+
+.wishlist-empty {
+    text-align: center;
+    .navigate-products-btn {
+        display: inline-block;
+        height: 40px;
+        line-height: 40px;
+        padding: 0 20px;
+        margin-top: 20px;
+        border-radius: 40px;
+        border: 1px solid var(--primary-color);
+        color: var(--white-color);
+        background-color: var(--primary-color);
+        transition: var(--primary-transition);
+        &:hover {
+            color: var(--primary-color);
+            background-color: var(--white-color);
+        }
+    }
+}

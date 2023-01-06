@@ -1,17 +1,20 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import ProductsPage from './pages/ProductsPage';
 import SingleProductPage from './pages/SingleProductPage';
 import ErrorPage from './pages/ErrorPage';
 import CheckoutPage from './pages/CheckoutPage';
-import { MENU_LIST } from './pages/HomePage/OfferMenu/OfferMenu';
 import AddCartModal from './components/AddCartModal';
 import { useAppDispatch, useAppSelector } from './app/hooks';
 import { setShowCartModal } from './features/cart/cartSlice';
 import CornerTools from './components/CornerTools';
 import WishlistModal from './components/WishlistModal';
 import { setShowWishList } from './features/wishlist/wishlistSlice';
+import { MENU_LIST } from './pages/HomePage/OfferMenu/OfferMenu';
 
 function App() {
   const dispatch = useAppDispatch()
@@ -43,6 +46,7 @@ function App() {
       <CornerTools />
       <AddCartModal show={isOpenCartModal} product={add_cart_product} onHide={() => dispatch(setShowCartModal(false))}/>
       <WishlistModal show={isOpenWishListModal} onHide={() => dispatch(setShowWishList(false))}/>
+      <ToastContainer />
     </BrowserRouter>
   );
 }

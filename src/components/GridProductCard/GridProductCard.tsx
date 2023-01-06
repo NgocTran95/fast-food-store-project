@@ -2,10 +2,11 @@ import classNames from 'classnames/bind';
 import { Col } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 
 import styles from './GridProductCard.module.scss';
 import { Product } from '../../features/products/productSlice';
-import { Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   setAddToCartProduct,
@@ -36,6 +37,22 @@ function GridProductCard({ product, lg, sm, category }: Props) {
     dispatch(setShowCartModal(true));
     dispatch(setAddToCartProduct(product));
   };
+  const handleAddToWishList = () => {
+    dispatch(addToWishList(product));
+    toast.success(
+      ({ closeToast }) => (
+        <p>
+          Add <span className={cx('toast-product-name')}>{product.name}</span>{' '}
+          to <span className={cx('toast-list-name')}>Wish List</span>{' '}
+          successfully!
+        </p>
+      ),
+      {
+        toastId: `wishlist-add-${product.id}`,
+        icon: false,
+      },
+    );
+  };
   return (
     <Col sm={sm} lg={lg} className={cx('product-wrapper')}>
       <div className={cx('product-inner')}>
@@ -47,7 +64,7 @@ function GridProductCard({ product, lg, sm, category }: Props) {
           {userInfo.uid && (
             <button
               className={cx('wishlist-btn', isAddedToWishlist && 'active')}
-              onClick={() => dispatch(addToWishList(product))}
+              onClick={handleAddToWishList}
               disabled={isAddedToWishlist}
             >
               <FontAwesomeIcon icon={faHeart} />

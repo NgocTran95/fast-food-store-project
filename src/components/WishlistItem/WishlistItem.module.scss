@@ -92,7 +92,7 @@
         border: 1px solid var(--primary-color);
         transition: var(--primary-transition);
         &:hover {
-            color: var(--white-text-color);
+            color: var(--white-color);
             background-color: var(--primary-color);
         }
     }
@@ -112,4 +112,16 @@
         color: var(--primary-color);
         transition: var(--primary-transition);
     }
+}
+
+.toast-product-name {
+    font-weight: 500;
+    color: var(--warning-color);
+    &.success {
+        color: var(--success-color);
+    }
+}
+.toast-list-name {
+    font-weight: 500;
+    color: var(--primary-color);
 }

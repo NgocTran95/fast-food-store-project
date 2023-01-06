@@ -8,6 +8,7 @@ import styles from './AddCartModal.module.scss';
 import { Product } from '../../features/products/productSlice';
 import { useAppDispatch } from '../../app/hooks';
 import { addToCart, setShowCartModal } from '../../features/cart/cartSlice';
+import { toast } from 'react-toastify';
 const cx = classNames.bind(styles);
 interface Props {
   show: boolean;
@@ -35,6 +36,19 @@ function AddCartModal({ show, onHide, product }: Props) {
     dispatch(addToCart({ product_info: product, quantity}))
     dispatch(setShowCartModal(false))
     setQuantity(1)
+    toast.success(
+      ({ closeToast }) => (
+        <p>
+          Add <span className={cx('toast-product-name')}>{product.name}</span>{' '}
+          to <span className={cx('toast-list-name')}>Cart</span>{' '}
+          successfully!
+        </p>
+      ),
+      {
+        toastId: `cart-${product.id}`,
+        icon: false,
+      },
+    );
   }
   return (
     <Modal

@@ -8,6 +8,7 @@ import { Product } from '../../features/products/productSlice';
 import { useAppDispatch } from '../../app/hooks';
 import { removeFromWishList } from '../../features/wishlist/wishlistSlice';
 import { addToCart } from '../../features/cart/cartSlice';
+import { toast } from 'react-toastify';
 const cx = classNames.bind(styles);
 
 interface Props {
@@ -31,7 +32,36 @@ function WishlistItem({ product }: Props) {
   const handleAddToCart = () => {
     dispatch(addToCart({ product_info: product, quantity}))
     setQuantity(1)
+    toast.success(
+      ({ closeToast }) => (
+        <p>
+          Add <span className={cx('toast-product-name','success')}>{product.name}</span>{' '}
+          to <span className={cx('toast-list-name')}>Wish List</span>{' '}
+          successfully!
+        </p>
+      ),
+      {
+        toastId: `wishlist-add-${product.id}`,
+        icon: false,
+      },
+    );
   }
+
+  const handleRemoveFromWishList = () => {
+    dispatch(removeFromWishList(product.id));
+    toast.warning(
+      ({ closeToast }) => (
+        <p>
+          Removed <span className={cx('toast-product-name')}>{product.name}</span> from <span className={cx('toast-list-name')}>Wish List</span>!
+        </p>
+      ),
+      {
+        toastId: `wishlist-remove-${product.id}`,
+        icon: false,
+      },
+    );
+  };
+
   return (
     <div className={cx('product')} key={product.id}>
       <div className={cx('product-info')}>
@@ -67,7 +97,7 @@ function WishlistItem({ product }: Props) {
           </div>
           <button className={cx('add-cart-btn')} onClick={handleAddToCart}>Add to cart</button>
         </div>
-        <button className={cx('remove-btn')} onClick={() => dispatch(removeFromWishList(product.id))}>
+        <button className={cx('remove-btn')} onClick={handleRemoveFromWishList}>
           <FontAwesomeIcon icon={faTrashCan} />
         </button>
       </div>

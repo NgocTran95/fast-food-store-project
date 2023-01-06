@@ -60,12 +60,12 @@
         line-height: 40px;
         border-radius: 20px;
         border: 1px solid var(--login-color);
-        color: var(--white-text-color);
+        color: var(--white-color);
         background-color: var(--login-color);
         transition: var(--primary-transition);
         &:hover {
             color: var(--login-color);
-            background-color: #ffffff;
+            background-color: var(--white-color);
         }
 
     }
@@ -153,7 +153,7 @@
                 &:hover {
                     background-color: var(--primary-color);
                     border-color: var(--primary-color);
-                    color: var(--white-text-color);
+                    color: var(--white-color);
                 }
             }
             .comment {

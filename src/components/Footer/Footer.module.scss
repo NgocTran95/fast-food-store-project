@@ -24,7 +24,7 @@
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background-color: #ffffff;
+    background-color: var(--white-color);
 }
 
 .devider {
@@ -54,7 +54,7 @@
         &:hover {
             border-color: var(--primary-color);
             background-color: var(--primary-color);
-            color: var(--white-text-color);
+            color: var(--white-color);
         }
     }
 }
@@ -65,7 +65,7 @@
         font-weight: 700;
         line-height: 4rem;
         text-transform: uppercase;
-        color: var(--white-text-color);
+        color: var(--white-color);
     }
     .desc {
         font-size: 1.5rem;
@@ -90,7 +90,7 @@
             flex: 1;
             padding: 20px;
             font-size: 1.2rem;
-            color: var(--white-text-color);
+            color: var(--white-color);
             background-color: transparent;
         }
         button {
@@ -100,11 +100,11 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            background-color: #ffffff;
+            background-color: var(--white-color);
             transition: var(--primary-transition);
             &:hover {
                 background-color: var(--primary-color);
-                color: var(--white-text-color);
+                color: var(--white-color);
             }
         }
     }
@@ -151,7 +151,7 @@
     border-top-right-radius: 50px;
     .content {
         font-size: 1.4rem;
-        color: var(--white-text-color);
+        color: var(--white-color);
         text-align: center;
     }
 }

@@ -25,11 +25,11 @@
         border-radius: 50%;
         border: 1px solid var(--primary-color);
         color: var(--primary-color);
-        background-color: #ffffff;
+        background-color: var(--white-color);
         box-shadow: 0 6px 14px 0 rgb(39 39 39 / 25%);
         transition: var(--primary-transition);
         &:hover {
-            color: var(--white-text-color);
+            color: var(--white-color);
             background-color: var(--primary-color);
         }
     }

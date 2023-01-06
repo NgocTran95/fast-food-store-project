@@ -215,7 +215,7 @@ function OfferMenu() {
                 <p className={cx('combo-desc')}>
                   Order Your Favourite Food Today
                 </p>
-                <Button variants="primary" to="/products/best-foods">
+                <Button variants="primary" to="/products">
                   Explore now
                 </Button>
               </div>

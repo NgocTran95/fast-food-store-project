@@ -72,7 +72,7 @@
     height: 15px;
     border: 2px solid var(--primary-text-color);
     border-radius: 50%;
-    background: #ffffff;
+    background: var(--white-color);
     cursor:ew-resize;
 }
   
@@ -81,7 +81,7 @@
     height: 15px;
     border: 2px solid var(--primary-text-color);
     border-radius: 50%;
-    background: #ffffff;
+    background: var(--white-color);
     cursor:ew-resize;
 }
 
@@ -95,7 +95,7 @@
     padding: 0 15px;
     border-radius: 40px;
     background-color: var(--primary-color);
-    color: var(--white-text-color);
+    color: var(--white-color);
     opacity: 0.3;
     &.active {
         opacity: 1;

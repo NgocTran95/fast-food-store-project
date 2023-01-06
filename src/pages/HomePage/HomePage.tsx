@@ -1,6 +1,4 @@
 import { toast } from 'react-toastify';
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 import Header from '../../components/Header';
 import Banner from './Banner';
@@ -16,15 +14,13 @@ import ShowCountUp from './ShowCountUp';
 import Delivery from './Delivery';
 import Footer from '../../components/Footer';
 
-const customId = 'sign-up-success'
-
 function HomePage() {
   const { isSuccess } = useAppSelector(state => state.user)
   const dispatch = useAppDispatch()
   useEffect(() => {
     if(isSuccess) {
       toast.success('Sign up successfully!', {
-        toastId: customId
+        toastId: 'sign-up-success'
       })
       dispatch(resetSuccessStatus())
     }
@@ -42,7 +38,6 @@ function HomePage() {
       <ShowCountUp />
       <Delivery />
       <Footer />
-      <ToastContainer />
     </div>
   );
 }

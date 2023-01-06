@@ -9,7 +9,7 @@
   
   // Text-color
   --primary-text-color: #272727;
-  --white-text-color: #ffffff;
+  --white-color: #ffffff;
   --blur-text-color: #868686;
   // Font
   --primary-font: 'Montserrat', sans-serif;
@@ -21,6 +21,9 @@
   --rating-star-color: #fcad02;
   // Login color: 
   --login-color: #0062d1;
+  // Toast color: 
+  --success-color: #00a950;
+  --warning-color: #f1c40f;
 }
 
 *,

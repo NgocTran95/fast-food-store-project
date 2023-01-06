@@ -40,12 +40,12 @@
         line-height: 40px;
         border-radius: 20px;
         border: 1px solid var(--login-color);
-        color: var(--white-text-color);
+        color: var(--white-color);
         background-color: var(--login-color);
         transition: var(--primary-transition);
         &:hover {
             color: var(--login-color);
-            background-color: #ffffff;
+            background-color: var(--white-color);
         }
 
     }
@@ -235,17 +235,26 @@
 }
 
 .checkout-btn {
-    color: var(--white-text-color);
+    color: var(--white-color);
     background-color: var(--primary-color);
     &:hover {
         color: var(--primary-color);
-        background-color: #ffffff;
+        background-color: var(--white-color);
         border-color: var(--primary-transition);
     }
 }
 
 .btn-icon {
     margin-right: 5px;
+}
+
+.toast-product-name {
+    font-weight: 500;
+    color: var(--warning-color);
+}
+.toast-list-name {
+    font-weight: 500;
+    color: var(--primary-color);
 }
 
 @media (min-width: 769px) {

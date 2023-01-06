@@ -51,14 +51,14 @@
         height: 35px;
         font-size: 1.1rem;
         font-weight: 600;
-        color: var(--white-text-color);
+        color: var(--white-color);
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
         box-shadow: 0 6px 14px 0 rgb(39 39 39 / 25%);
         &.hot {
-            background-color: #00a950;
+            background-color: var(--success-color);
         }
         &.discount {
             background-color: var(--primary-color);
@@ -96,7 +96,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        background-color: #ffffff;
+        background-color: var(--white-color);
         color: var(--primary-text-color);
         border-radius: 50%;
         transform: translate(-50%, -50%);
@@ -152,7 +152,7 @@
                 font-family: 'Font Awesome 5 Free';
                 font-weight: 900;
                 font-size: 0;
-                color: var(--white-text-color);
+                color: var(--white-color);
                 position: absolute;
                 top: 0;
                 bottom: 0;
@@ -171,6 +171,16 @@
             }
         }
     }
+}
+
+.toast-product-name {
+    color: var(--success-color);
+    font-weight: 500;
+}
+
+.toast-list-name {
+    font-weight: 500;
+    color: var(--primary-color);
 }
 
 @media (min-width: 992px) {

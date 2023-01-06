@@ -2,10 +2,10 @@
     width: 40px;
     height: 100px;
     clip-path: ellipse(79% 45% at 96% 53%);
-    background-color: #ffffff;
+    background-color: var(--white-color);
     z-index: 1;
     &:focus, &:hover {
-        background-color: #ffffff;
+        background-color: var(--white-color);
     }
     &.prev {
         transform: rotate(-180deg) translateY(50%);

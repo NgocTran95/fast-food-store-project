@@ -36,7 +36,7 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background-color: #ffffff;
+    background-color: var(--white-color);
     position: relative;
     overflow: hidden;
     &:hover {
@@ -97,7 +97,7 @@
 }
 
 .combos-item {
-    color: var(--white-text-color);
+    color: var(--white-color);
     position: relative;
     overflow: hidden;
     .combo-name {
@@ -187,7 +187,7 @@
 }
 
 .sixth-combo {
-    background-color: #ffffff;
+    background-color: var(--white-color);
     color: var(--primary-text-color);
     .content {
         top: 40px;

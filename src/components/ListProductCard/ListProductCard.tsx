@@ -13,6 +13,7 @@ import {
   setShowCartModal,
 } from '../../features/cart/cartSlice';
 import { addToWishList } from '../../features/wishlist/wishlistSlice';
+import { toast } from 'react-toastify';
 
 interface Props {
   product: Product;
@@ -27,11 +28,27 @@ function ListProductCard({ product, category }: Props) {
   const isAddedToCart = cart.some(
     (item) => item.product_info.id === product.id,
   );
-  const isAddedToWishList = wishlist.some(item => item.id === product.id)
+  const isAddedToWishList = wishlist.some((item) => item.id === product.id);
 
   const handleAddToCart = () => {
     dispatch(setShowCartModal(true));
     dispatch(setAddToCartProduct(product));
+  };
+  const handleAddToWishList = () => {
+    dispatch(addToWishList(product));
+    toast.success(
+      ({ closeToast }) => (
+        <p>
+          Add <span className={cx('toast-product-name')}>{product.name}</span>{' '}
+          to <span className={cx('toast-list-name')}>Wish List</span>{' '}
+          successfully!
+        </p>
+      ),
+      {
+        toastId: `wishlist-add-${product.id}`,
+        icon: false,
+      },
+    );
   };
   return (
     <Row className={cx('container')}>
@@ -90,7 +107,7 @@ function ListProductCard({ product, category }: Props) {
           {userInfo.uid && (
             <button
               className={cx('add-wishlist', isAddedToWishList && 'active')}
-              onClick={() => dispatch(addToWishList(product))}
+              onClick={handleAddToWishList}
               disabled={isAddedToWishList}
             >
               <FontAwesomeIcon icon={faHeart} />

@@ -17,10 +17,12 @@ import styles from './WishlistModal.module.scss';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { db } from '../../firebase/config';
 import {
+  setShowWishList,
   setWishList,
   WishListData,
 } from '../../features/wishlist/wishlistSlice';
 import WishlistItem from '../WishlistItem';
+import { Link } from 'react-router-dom';
 const cx = classNames.bind(styles);
 interface Props {
   show: boolean;
@@ -81,11 +83,39 @@ function WishlistModal({ show, onHide }: Props) {
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="p-4">
-        <div className={cx('wishlist')}>
-          {currentWishlist.map((product) => (
-            <WishlistItem product={product} key={product.id}/>
-          ))}
-        </div>
+        {!userInfo.uid ? (
+          <div className={cx('not-login')}>
+            <p>You are not logged in. Please log in to use this features</p>
+            <Link
+              to="login"
+              className={cx('navigate-login-btn')}
+              onClick={() => dispatch(setShowWishList(false))}
+            >
+              Go to login
+            </Link>
+          </div>
+        ) : (
+          <>
+            {currentWishlist.length === 0 ? (
+              <div className={cx('wishlist-empty')}>
+                <p>You are not logged in. Please log in to use this features</p>
+                <Link
+                  to="/products"
+                  className={cx('navigate-products-btn')}
+                  onClick={() => dispatch(setShowWishList(false))}
+                >
+                  Go to shopping
+                </Link>
+              </div>
+            ) : (
+              <div className={cx('wishlist')}>
+                {currentWishlist.map((product) => (
+                  <WishlistItem product={product} key={product.id} />
+                ))}
+              </div>
+            )}
+          </>
+        )}
       </Modal.Body>
     </Modal>
   );

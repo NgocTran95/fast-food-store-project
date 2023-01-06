@@ -43,14 +43,14 @@
         height: 35px;
         font-size: 1.1rem;
         font-weight: 600;
-        color: var(--white-text-color);
+        color: var(--white-color);
         display: flex;
         align-items: center;
         justify-content: center;
         border-radius: 50%;
         box-shadow: 0 6px 14px 0 rgb(39 39 39 / 25%);
         &.hot {
-            background-color: #00a950;
+            background-color: var(--success-color);
         }
         &.discount {
             background-color: var(--primary-color);
@@ -67,7 +67,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #ffffff;
+    background-color: var(--white-color);
     color: var(--primary-text-color);
     border-radius: 50%;
     transform: translate(-50%, -50%);
@@ -115,7 +115,7 @@
     margin-right: 15px;
     border-radius: 42px;
     border: 1px solid var(--primary-color);
-    color: var(--white-text-color);
+    color: var(--white-color);
     background-color: var(--primary-color);
     overflow: hidden;
     transition: var(--primary-transition);
@@ -123,10 +123,10 @@
     &.to-login {
         line-height: 40px;
         border-color: var(--login-color);
-        background-color: #ffffff;
+        background-color: var(--white-color);
         color: var(--login-color);
         &:hover {
-            color: var(--white-text-color);
+            color: var(--white-color);
             background-color: var(--login-color);
         }
     }
@@ -152,7 +152,7 @@
             align-items: center;
             justify-content: center;
             color: var(--primary-color);
-            background-color: #ffffff;
+            background-color: var(--white-color);
             opacity: 0;
             visibility: hidden;
             transition: var(--primary-transition);
@@ -177,11 +177,11 @@
     transition: var(--primary-transition);
     -webkit-transition: var(--primary-transition);
     &:hover {
-        color: var(--white-text-color);
+        color: var(--white-color);
         background-color: var(--primary-color);
     }
     &.active {
-        color: var(--white-text-color);
+        color: var(--white-color);
         background-color: var(--primary-color);
     }
 }
@@ -190,4 +190,14 @@
     margin-top: 25px;
     font-size: 1.5rem;
     color: var(--blur-text-color);
+}
+
+.toast-product-name {
+    color: var(--success-color);
+    font-weight: 500;
+}
+
+.toast-list-name {
+    font-weight: 500;
+    color: var(--primary-color);
 }
