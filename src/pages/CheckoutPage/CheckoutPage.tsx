@@ -12,6 +12,7 @@ import styles from './CheckoutPage.module.scss';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import { useAppSelector } from '../../app/hooks';
+import { CartBg } from '../../assets/images';
 
 const cx = classNames.bind(styles);
 function CheckoutPage() {
@@ -96,25 +97,36 @@ function CheckoutPage() {
           <Col xl={4} lg={5} md={12} className="px-4">
             <div className={cx('oder-reviews')}>
               <h1 className={cx('title')}>Products</h1>
-              {cart.map((item) => (
-                <div className={cx('oder-item')} key={item.product_info.id}>
-                  <div className={cx('item-details')}>
-                    <div className={cx('item-image')}>
-                      <img
-                        src={item.product_info.img}
-                        alt={item.product_info.name}
-                      />
-                    </div>
-                    <div className={cx('item-name')}>
-                      <p className={cx('name')}>{item.product_info.name}</p>
-                      <strong>qty: {item.quantity}</strong>
-                    </div>
+              {cart.length === 0 ? (
+                <div className={cx('empty-cart')}>
+                  <div className={cx('empty-image')}>
+                    <img src={CartBg} alt="cart-background" />
                   </div>
-                  <div className={cx('item-total')}>
-                    ${(item.product_info.price * item.quantity).toFixed(2)}
-                  </div>
+                  <p className={cx('notification')}>Your cart is empty!</p>
                 </div>
-              ))}
+              ) : (
+                <>
+                  {cart.map((item) => (
+                    <div className={cx('oder-item')} key={item.product_info.id}>
+                      <div className={cx('item-details')}>
+                        <div className={cx('item-image')}>
+                          <img
+                            src={item.product_info.img}
+                            alt={item.product_info.name}
+                          />
+                        </div>
+                        <div className={cx('item-name')}>
+                          <p className={cx('name')}>{item.product_info.name}</p>
+                          <strong>qty: {item.quantity}</strong>
+                        </div>
+                      </div>
+                      <div className={cx('item-total')}>
+                        ${(item.product_info.price * item.quantity).toFixed(2)}
+                      </div>
+                    </div>
+                  ))}
+                </>
+              )}
               <div className={cx('cart-option', 'shipping')}>
                 <span>Subtotal</span>
                 <span>${total_amount.toFixed(2)}</span>
@@ -179,7 +191,9 @@ function CheckoutPage() {
                   </p>
                 </div>
               </div>
-              <button type='submit' className={cx('payment-btn')}>Place order</button>
+              <button type="submit" className={cx('payment-btn', cart.length === 0 && 'disabled')} disabled={cart.length === 0}>
+                Place order
+              </button>
             </div>
           </Col>
         </Row>

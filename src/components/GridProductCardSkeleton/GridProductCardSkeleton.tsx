@@ -11,7 +11,7 @@ interface Props {
 }
 function GridProductCardSkeleton({ lg, sm }: Props) {
   return (
-    <Col lg={lg} sm={sm} className={cx('product-wrapper')}>
+    <Col lg={lg} sm={sm} className={cx('product-wrapper')} >
       <div className={cx('product-inner')}>
         <div className={cx('product-widget')}>
           <div className={cx('widget-notification')}>

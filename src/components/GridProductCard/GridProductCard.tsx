@@ -18,11 +18,13 @@ const cx = classNames.bind(styles);
 interface Props {
   product: Product;
   lg?: number;
+  md?: number;
   sm?: number;
+  xs?: number
   category: string;
 }
 
-function GridProductCard({ product, lg, sm, category }: Props) {
+function GridProductCard({ product, lg, sm, md, category }: Props) {
   const dispatch = useAppDispatch();
   const { userInfo } = useAppSelector((state) => state.user);
   const { cart } = useAppSelector((state) => state.cart);
@@ -54,7 +56,7 @@ function GridProductCard({ product, lg, sm, category }: Props) {
     );
   };
   return (
-    <Col sm={sm} lg={lg} className={cx('product-wrapper')}>
+    <Col sm={sm} lg={lg} md={md} xs className={cx('product-wrapper')}>
       <div className={cx('product-inner')}>
         <div className={cx('product-widget')}>
           <div className={cx('widget-notification')}>

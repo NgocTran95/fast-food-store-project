@@ -1,5 +1,5 @@
 import classNames from 'classnames/bind';
-import { Container, Row } from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import Slider from 'react-slick';
 import { useEffect } from 'react';
 
@@ -12,7 +12,7 @@ import GridProductCard from '../../../components/GridProductCard';
 import GridProductCardSkeleton from '../../../components/GridProductCardSkeleton';
 
 const settings = {
-  autoplay: true,
+  // autoplay: true,
   autoplaySpeed: 3500,
   infinite: true,
   speed: 800,
@@ -27,7 +27,7 @@ function FavoriteMenu() {
     (state) => state.products,
   );
   useEffect(() => {
-    dispatch(getFeaturedProducts(30));
+    dispatch(getFeaturedProducts(32));
   }, [dispatch]);
 
   const paginatedFeaturedProducts = paginateList(featured_products, 8);
@@ -50,23 +50,29 @@ function FavoriteMenu() {
             </Row>
           </Container>
         ) : (
-          <Slider {...settings}>
-            {paginatedFeaturedProducts.map((products, index) => (
-              <Container className={cx('menu')} key={index}>
-                <Row>
-                  {products.map((product) => (
-                    <GridProductCard
-                      key={product.id}
-                      product={product}
-                      category='best-foods'
-                      lg={3}
-                      sm={6}
-                    />
-                  ))}
-                </Row>
-              </Container>
-            ))}
-          </Slider>
+          <Container >
+            <Row>
+              <Slider {...settings}>
+                {paginatedFeaturedProducts.map((products, index) => (
+                  <Col key={index}>
+                    <Row>
+                      {products.map((product) => (
+                        <GridProductCard
+                          key={product.id}
+                          product={product}
+                          category="best-foods"
+                          lg={3}
+                          md={6}
+                          sm={6}
+                          xs={12}
+                        />
+                      ))}
+                    </Row>
+                  </Col>
+                ))}
+              </Slider>
+            </Row>
+          </Container>
         )}
         <Button
           to="products"

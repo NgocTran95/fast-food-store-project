@@ -65,10 +65,12 @@ function SideMenu({ show, setShow }: Props) {
           <FontAwesomeIcon icon={faBurger} className={cx('nav-icon')} />
           Oder online
         </Link>
-        <Link to="/news" className={cx('nav-link')}>
-          <FontAwesomeIcon icon={faFire} className={cx('nav-icon')} />
-          News
-        </Link>
+        {userInfo.uid && (
+          <Link to="/checkout" className={cx('nav-link')}>
+            <FontAwesomeIcon icon={faFire} className={cx('nav-icon')} />
+            Checkout
+          </Link>
+        )}
         <Link to="/contact" className={cx('nav-link')}>
           <FontAwesomeIcon icon={faSquarePhone} className={cx('nav-icon')} />
           Contact
@@ -77,7 +79,10 @@ function SideMenu({ show, setShow }: Props) {
           <FontAwesomeIcon icon={faAddressCard} className={cx('nav-icon')} />
           My profile
         </Link>
-        <button className={cx('nav-btn')} onClick={() => dispatch(setShowWishList(true))}>
+        <button
+          className={cx('nav-btn')}
+          onClick={() => dispatch(setShowWishList(true))}
+        >
           <FontAwesomeIcon icon={faTags} className={cx('nav-icon')} />
           My wish list
         </button>
