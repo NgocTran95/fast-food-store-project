@@ -2,12 +2,10 @@ import classNames from 'classnames/bind';
 import Slider from 'react-slick';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
-import { AttentionSeeker } from 'react-awesome-reveal';
 
 import styles from './Testimonial.module.scss';
 import OfferMenuSliderArrow from '../OfferMenu/OfferMenuSliderArrow';
 import { Logo } from '../../../assets/images';
-
 
 const settings = {
   infinite: true,
@@ -64,7 +62,10 @@ function Testimonial() {
           {testimonials.map((item) => (
             <div key={item.id}>
               <div className={cx('slide-inner')}>
-                <FontAwesomeIcon icon={faQuoteLeft}  className={cx('testimonial-icon')}/>
+                <FontAwesomeIcon
+                  icon={faQuoteLeft}
+                  className={cx('testimonial-icon')}
+                />
                 <p className={cx('testimonial')}>{item.tesimonial}</p>
                 <p className={cx('name')}>{item.name}</p>
                 <p className={cx('job')}>{item.job}</p>
@@ -72,11 +73,9 @@ function Testimonial() {
             </div>
           ))}
         </Slider>
-        <AttentionSeeker effect='tada' >
-            <div className={cx('flashfood-logo')}>
-                <img src={Logo} alt='logo'/>
-            </div>
-        </AttentionSeeker>
+        <div className={cx('flashfood-logo')}>
+          <img src={Logo} alt="logo" />
+        </div>
       </div>
     </section>
   );

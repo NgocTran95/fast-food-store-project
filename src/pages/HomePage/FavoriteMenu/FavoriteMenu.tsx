@@ -50,7 +50,7 @@ function FavoriteMenu() {
             </Row>
           </Container>
         ) : (
-          <Container >
+          <Container>
             <Row>
               <Slider {...settings}>
                 {paginatedFeaturedProducts.map((products, index) => (
@@ -63,8 +63,7 @@ function FavoriteMenu() {
                           category="best-foods"
                           lg={3}
                           md={6}
-                          sm={6}
-                          xs={12}
+                          sm={12}
                         />
                       ))}
                     </Row>

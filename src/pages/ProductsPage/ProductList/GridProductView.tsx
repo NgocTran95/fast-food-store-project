@@ -41,6 +41,8 @@ function GridProductView({ category }: Props) {
           product={product}
           category={category}
           lg={3}
+          md={6}
+          xs={12}
           key={product.id}
         />
       ))}
