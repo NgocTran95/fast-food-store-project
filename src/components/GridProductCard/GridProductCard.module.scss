@@ -1,7 +1,4 @@
 @import 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css';
-.product-wrapper {
-    padding: 10px 15px;
-}
 
 .product-inner {
     padding: 15px;
@@ -10,7 +7,6 @@
     transition: var(--primary-transition);
     -webkit-transition: var(--primary-transition);
     overflow: hidden;
-    box-shadow: 0 0 21px 0 rgb(39 39 39 / 12%);
     cursor: pointer;
     &:hover {
         .product-btn {
@@ -78,6 +74,7 @@
 .product-thumbnail {
     display: block;
     width: 100%;
+    aspect-ratio: 1;
     border-radius: 50%;
     overflow: hidden;
     margin-top: 45px;
@@ -110,6 +107,7 @@
     text-align: center;
     .product-name {
         font-weight: 700;
+        min-width: 200px;
         text-transform: uppercase;
         text-overflow: ellipsis;
         overflow: hidden;

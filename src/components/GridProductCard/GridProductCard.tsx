@@ -56,7 +56,7 @@ function GridProductCard({ product, lg, sm, md, category }: Props) {
     );
   };
   return (
-    <Col sm={sm} lg={lg} md={md} xs className={cx('product-wrapper')}>
+    <Col sm={sm} lg={lg} md={md} xs className='px-4 py-3'>
       <div className={cx('product-inner')}>
         <div className={cx('product-widget')}>
           <div className={cx('widget-notification')}>

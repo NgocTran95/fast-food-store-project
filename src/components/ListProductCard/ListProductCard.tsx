@@ -52,7 +52,7 @@ function ListProductCard({ product, category }: Props) {
   };
   return (
     <Row className={cx('container')}>
-      <Col lg={3}>
+      <Col lg={3} md={4}>
         <div className={cx('thumnail-wrapper')}>
           <Link
             to={`/products/${category}/${product.id}`}
@@ -77,7 +77,7 @@ function ListProductCard({ product, category }: Props) {
           </Link>
         </div>
       </Col>
-      <Col lg={9}>
+      <Col lg={9} md={8}>
         <Link
           to={`/products/${category}/${product.id}`}
           className={cx('product-name')}

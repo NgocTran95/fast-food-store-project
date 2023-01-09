@@ -85,12 +85,13 @@
     
     .coupon-actions {
         display: flex;
+        flex-direction: column;
     }
     .coupon-input {
-        flex: 1;
         height: 55px;
         line-height: 53px;
         padding: 0 20px;
+        margin-bottom: 15px;
         border-radius: 50px;
         border: 1px solid #e5e5e5;
     }
@@ -244,6 +245,18 @@
             &:hover {
                 color: var(--white-color);
             }
+        }
+    }
+}
+
+@media (min-width: 767px) {
+    .coupon-apply {
+        .coupon-actions {
+            flex-direction: row;
+        }
+        .coupon-input {
+            flex: 1;
+            margin-bottom: unset;
         }
     }
 }

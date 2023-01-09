@@ -7,13 +7,13 @@ const cx = classNames.bind(styles);
 function ListProductCardSkeleton() {
   return (
     <Row className={cx('container')}>
-      <Col lg={3}>
+      <Col lg={3} md={4}>
         <div className={cx('thumnail-wrapper')}>
           <div  className={cx('thumbnail', 'skeleton')}>
           </div>
         </div>
       </Col>
-      <Col lg={9}>
+      <Col lg={9} md={8}>
         <div className={cx('product-name', 'skeleton')}>
         </div>
         <p className={cx('product-price', 'skeleton')}></p>

@@ -15,6 +15,7 @@ function ContactPage() {
         <h1 className={cx('heading')}>Contact Us</h1>
         <div className={cx('map')}>
           <iframe
+            title="google-address"
             src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3835.0805711302455!2d108.20432766349766!3d16.00932072292208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31421a3b4e8a83b9%3A0xd8bb071fa4aac29!2zQ-G6p3UgQ-G6qW0gTOG7hw!5e0!3m2!1svi!2s!4v1673080309812!5m2!1svi!2s"
             width="100%"
             height="450"

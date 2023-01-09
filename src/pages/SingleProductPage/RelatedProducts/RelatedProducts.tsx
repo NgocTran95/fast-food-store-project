@@ -37,7 +37,8 @@ function RelatedProducts() {
                   product={product}
                   category={category}
                   lg={3}
-                  sm={6}
+                  md={6}
+                  sm={12}
                 />
               ))}
             </Row>

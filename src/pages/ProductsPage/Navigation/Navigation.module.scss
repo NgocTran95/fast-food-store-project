@@ -15,6 +15,7 @@
 .heading {
     font-size: 6rem;
     margin-bottom: 15px;
+    text-align: center;
 }
 
 .breadscrum {
@@ -28,7 +29,8 @@
 }
 
 .slider {
-    width: 40%;
+    width: 80%;
+    color: var(--white-color);
 }
 
 .slide-inner {
@@ -80,3 +82,20 @@
     font-weight: 600;
     text-transform: uppercase;
 }
+
+@media (min-width: 768px) {
+    .slider {
+        width: 100%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .slider {
+        width: 60%;
+        color: var(--primary-text-color);
+    }
+}
+
+
+
+

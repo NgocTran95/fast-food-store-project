@@ -7,11 +7,12 @@ import { faHeart } from '@fortawesome/free-solid-svg-icons';
 const cx = classNames.bind(styles);
 interface Props {
   lg?: number,
-  sm?: number,
+  md?: number,
+  xs?: number,
 }
-function GridProductCardSkeleton({ lg, sm }: Props) {
+function GridProductCardSkeleton({ lg, md, xs }: Props) {
   return (
-    <Col lg={lg} sm={sm} className={cx('product-wrapper')} >
+    <Col lg={lg} md={md} xs={xs} className={cx('product-wrapper')} >
       <div className={cx('product-inner')}>
         <div className={cx('product-widget')}>
           <div className={cx('widget-notification')}>

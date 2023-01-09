@@ -7,9 +7,9 @@
 .breadscrumb {
     font-size: 1.4rem;
     color: var(--blur-text-color);
-    padding: 20px 0;
+    padding: 20px;
     .devider {
-        margin: 0 10px;
+        margin: 0 5px;
     }
     .name {
         color: var(--primary-text-color);
@@ -21,12 +21,12 @@
 
 .product-details {
     display: flex;
-    width: 80%;
-    margin: 0 auto 100px;
+    flex-direction: column;
+    margin: 0 auto 50px;
+    padding: 0 20px;
 }
 
 .product-image-container {
-    width: 50%;
     aspect-ratio: 1;
     border: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -40,8 +40,7 @@
 }
 
 .product-infor {
-    flex: 1;
-    padding-left: 50px;
+    margin-top: 20px;
     .product-name {
         font-size: 3rem;
         line-height: 4rem;
@@ -80,6 +79,7 @@
         }
         .quantity {
             height: 50px;
+            width: 125px;
             font-size: 1.8rem;
             margin-right: 7px;
             border-radius: 25px;
@@ -104,7 +104,7 @@
             }
         }
         .quantity-input {
-            width: 125px;
+            width: 100%;
             height: 100%;
             padding: 0 38px;
             text-align: center;
@@ -192,4 +192,46 @@
 .toast-list-name {
     font-weight: 500;
     color: var(--primary-color);
+}
+
+@media (min-width: 767px) {
+    .breadscrumb {
+        .devider {
+            margin: 0 10px;
+        }
+    }
+    .product-details {
+        padding: 20px 60px;
+    }
+    .product-infor {
+        .actions {
+            .quantity {
+                width: 30%;
+            }
+        }
+    }
+}
+
+@media (min-width: 1023px) {
+    .breadscrumb {
+        padding: 20px 0;
+        .devider {
+            margin: 0 10px;
+        }
+
+    }
+    .product-details {
+        width: 80%;
+        flex-direction: row;
+        align-items: center;
+        padding: unset;
+    }
+    .product-image-container {
+        width: 50%;
+    }
+    .product-infor {
+        flex: 1;
+        margin-top: unset;
+        margin-left: 30px;
+    }
 }

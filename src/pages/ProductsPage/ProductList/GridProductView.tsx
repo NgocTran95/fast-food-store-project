@@ -11,7 +11,6 @@ interface Props {
   category: string;
 }
 function GridProductView({ category }: Props) {
-  
   const dispatch = useAppDispatch();
   const { isLoading } = useAppSelector((state) => state.products);
   const { filtered_products, page } = useAppSelector((state) => state.filters);
@@ -30,7 +29,7 @@ function GridProductView({ category }: Props) {
     return (
       <Row>
         {paginated_products.map((product) => (
-          <GridProductCardSkeleton key={product.id} lg={3} />
+          <GridProductCardSkeleton key={product.id} lg={3} md={6} xs={12} />
         ))}
       </Row>
     );
