@@ -78,6 +78,7 @@ function LoginForm({ setIsLogIn }: Props) {
             <input
               type={showPassword ? 'text' : 'password'}
               id="login-password"
+              autoComplete='current-password'
               placeholder="Enter your password..."
               {...register('password')}
             />
