@@ -1,6 +1,5 @@
 import classNames from 'classnames/bind';
-import { Container, Row, Col } from 'react-bootstrap';
-import Slider from 'react-slick';
+import { Container, Row } from 'react-bootstrap';
 import { useEffect } from 'react';
 
 import styles from './FavoriteMenu.module.scss';
