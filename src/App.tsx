@@ -10,10 +10,11 @@ import ErrorPage from './pages/ErrorPage';
 import CheckoutPage from './pages/CheckoutPage';
 import ContactPage from './pages/ContactPage';
 import AddCartModal from './components/AddCartModal';
-import { useAppDispatch, useAppSelector } from './app/hooks';
-import { setShowCartModal } from './features/cart/cartSlice';
+import ScrollToTop from './components/ScrollToTop';
 import CornerTools from './components/CornerTools';
 import WishlistModal from './components/WishlistModal';
+import { useAppDispatch, useAppSelector } from './app/hooks';
+import { setShowCartModal } from './features/cart/cartSlice';
 import { setShowWishList } from './features/wishlist/wishlistSlice';
 import { MENU_LIST } from './pages/HomePage/OfferMenu/OfferMenu';
 
@@ -57,6 +58,7 @@ function App() {
         onHide={() => dispatch(setShowWishList(false))}
       />
       <ToastContainer />
+      <ScrollToTop />
     </BrowserRouter>
   );
 }

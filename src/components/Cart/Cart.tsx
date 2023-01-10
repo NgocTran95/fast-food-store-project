@@ -108,8 +108,7 @@ function Cart() {
     toast.warning(
       ({ closeToast }) => (
         <p>
-          Removed{' '}
-          <span className={cx('toast-product-name')}>{name}</span> from{' '}
+          Removed <span className={cx('toast-product-name')}>{name}</span> from{' '}
           <span className={cx('toast-list-name')}>Cart</span>!
         </p>
       ),
@@ -254,11 +253,11 @@ function Cart() {
           </div>
         </div>
         <div className={cx('action-btns')}>
-          <button className={cx('action-btn', 'checkout-btn')}>
+          <Link to="/checkout" onClick={handleClose} className={cx('action-btn', 'checkout-btn')}>
             <FontAwesomeIcon icon={faCreditCard} className={cx('btn-icon')} />
             Check out
-          </button>
-          <Link to="/products" className={cx('action-btn', 'getmore-btn')}>
+          </Link>
+          <Link to="/products" onClick={handleClose} className={cx('action-btn', 'getmore-btn')}>
             <FontAwesomeIcon icon={faCartPlus} className={cx('btn-icon')} />
             Get more
           </Link>
