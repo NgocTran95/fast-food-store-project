@@ -61,6 +61,7 @@ function LoginForm({ setIsLogIn }: Props) {
             <input
               type="email"
               id="login-email"
+              autoComplete='login-email'
               placeholder="Enter your email..."
               {...register('email')}
             />
